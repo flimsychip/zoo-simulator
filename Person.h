@@ -8,8 +8,8 @@ struct Person {
         string name;
         int age;
     public:
-        string getName();
-        int getAge();
+        string getName() const;
+        int getAge() const;
         void setName(string newName);
         void setAge(int newAge);
 }
