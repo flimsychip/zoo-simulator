@@ -5,13 +5,13 @@
 
 struct Person {
     private:
-        string name;
+        std::string name;
         int age;
     public:
-        string getName() const;
+        std::string getName() const;
         int getAge() const;
-        void setName(string newName);
+        void setName(std::string newName);
         void setAge(int newAge);
-}
+};
 
 #endif

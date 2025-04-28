@@ -1,5 +1,7 @@
 #include "Person.h"
 
+using namespace std;
+
 string Person::getName() const {
     return this->name;
 }

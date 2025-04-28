@@ -4,7 +4,7 @@
 using namespace std;
 
 Animal::Animal() {
-    this->setSpecies(Elephant);
+    this->setSpecies(None);
 }
 
 Animal::Animal(Species species) {

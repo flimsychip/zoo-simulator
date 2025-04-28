@@ -2,6 +2,7 @@
 #define ANIMAL_H
 
 enum Species {
+	None,
 	Chimpanzee,
 	RedPanda,
 	Otter,
