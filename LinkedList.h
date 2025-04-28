@@ -7,7 +7,8 @@ CHANGE TO FIT NODE.TPP
 #define LINKEDLIST_H
 
 #include "Node.h"
-//#include <string>
+#include <iostream>
+#include <string>
 
 template <typename T>
 struct LinkedList {
