@@ -9,19 +9,19 @@ CHANGE TO TEMPLATE CLASS
 #include <iostream>
 //#include <string>
 
-template <typename T, typename Tstr> 
+template <typename T> 
 struct Node {
    private:
       //std::string data;
-      Tstr name;
+      std::string name;
       Node<T>* next;
       Node<T>* prev;
       
    public:
-      Node(const Tstr& word);
+      Node(const std::string& word);
       Node();
       
-      void setData(const Tstr& word);
+      void setData(const std::string& word);
       void setNext(Node<T>* node);
       void setPrev(Node<T>* node);
       
