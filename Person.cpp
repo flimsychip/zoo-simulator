@@ -1,10 +1,10 @@
 #include "Person.h"
 
-string Person::getName() {
+string Person::getName() const {
     return this->name;
 }
 
-int Person::getAge() {
+int Person::getAge() const {
     return this->age;
 }
 
