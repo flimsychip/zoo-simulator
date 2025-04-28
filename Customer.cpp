@@ -1,17 +1,17 @@
 #include "Customer.h"
 
-int getTicketNum() const {
+int Customer::getTicketNum() const {
     return this->ticketNum;
 }
 
-Ticket getTicketType() const {
+Ticket Customer::getTicketType() const {
     return this->ticketType;
 }
 
-void setTicketNum(int num) {
+void Customer::setTicketNum(int num) {
     this->ticketNum = num;
 }
 
-void setTicketType(Ticket type) {
+void Customer::setTicketType(Ticket type) {
     this->ticketType = type;
 }
