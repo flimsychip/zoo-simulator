@@ -6,8 +6,8 @@ CHANGE TO TEMPLATE CLASS
 #ifndef NODE_H
 #define NODE_H
 
-// #include <iostream>
-//#include <string>
+#include <iostream>
+#include <string>
 
 template <typename T> 
 struct Node {

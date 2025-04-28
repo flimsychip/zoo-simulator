@@ -12,8 +12,8 @@ struct Customer : public Person {
         Ticket getTicketType() const;
         void setTicketNum(int num);
         void setTicketType(Ticket type);
-}
+};
 
-enum Ticket { GENERAL, SENIOR, KIDS, YEARLY }
+enum Ticket { GENERAL, SENIOR, KIDS, YEARLY };
 
 #endif
