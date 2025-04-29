@@ -4,6 +4,7 @@
 #include "Animal.h"
 #include "Employee.h"
 #include "LinkedList.h"
+
 struct Exhibit {
     public:
         void addAnimal(Animal animal);
