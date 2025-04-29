@@ -7,14 +7,14 @@
 
 struct Exhibit {
     public:
-        void addAnimal(Animal animal);
+        void addAnimal(const Animal& animal);
         Animal rmAnimal();
-        void addCaretaker(Employee caretaker);
+        void addCaretaker(const Employee& caretaker);
         Employee rmCaretaker();
 
     private:
-        LinkedList<Animal> animals;
-        LinkedList<Employee> employee;
+        LinkedList<Animal>* animals;
+        LinkedList<Employee>* employee;
 };
 
 #endif
