@@ -12,20 +12,19 @@ CHANGE TO TEMPLATE CLASS
 template <typename T> 
 struct Node {
    private:
-      //std::string data;
-      std::string name;
+      T name;
       Node<T>* next;
       Node<T>* prev;
       
    public:
-      Node(const std::string& word);
+      Node(const T& word);
       Node();
       
-      void setData(const std::string& word);
+      void setData(const T& word);
       void setNext(Node<T>* node);
       void setPrev(Node<T>* node);
       
-      Tstr getData() const;
+      T getData() const;
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
       

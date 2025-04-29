@@ -7,35 +7,39 @@ CHANGE TO FIT NODE.TPP
 #define LINKEDLIST_H
 
 #include "Node.h"
-#include <iostream>
-#include <string>
 
 template <typename T>
 struct LinkedList {
    public:
       LinkedList();
-      LinkedList(const std::string& word);
+      LinkedList(const T& value);
       
       ~LinkedList();
       
-      void deleteWord(Node<T>* curr);
-      void push_back(const std::string& word);
-      Node<T>* insert_before (std::string addWord, Node<T>* knownNode);
+      void push_back(const T& value);
+      void push_back(Node<T>* addNode);
+      Node<T>* insert_before(const T&, Node<T>* knownNode);
+
+      void remove(const T& rmValue);
+      void remove(Node<T>* rmNode);
       void clear();
       
+      // Getters
       int size() const;
       Node<T>* getHead() const;
       Node<T>* getTail() const;
       
-      void setTail(Node<T>* newTail);
-      void setHead(Node<T>* newHead);
-      
       void print(bool reverse = false) const;
       
    private:
+      // Members
       int count;
       Node<T>* head;
       Node<T>* tail;
+
+      // Setters
+      void setTail(Node<T> *newTail);
+      void setHead(Node<T> *newHead);
 };
 
 #endif
