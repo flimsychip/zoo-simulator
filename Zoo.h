@@ -8,16 +8,24 @@
 
 struct Zoo {
     public:
-        void addCustomer(Customer newCustomer);
-        void rmCustomer(Customer customer);
-        void addEmployee(Employee employee);
-        void rmEmployee(Employee employee);
-        void addExhibit(Exhibit exhibit);
+        Zoo();
+        Zoo(vector<Exhibit> exhibits);
+        // FIX ME: missing copy constructor
+        ~Zoo();
+
+        void addCustomer(const Customer& addCustomer);
+        void rmCustomer(const Customer& rmCustomer);
+        void addEmployee(const Employee& addEmployee);
+        void rmEmployee(const Employee& rmEmployee);
+        void addExhibit(const Exhibit& addExhibit);
+
+        double calcExpenses();
+        double calcRevenue();
         double calcProfit();
 
     private:
-        LinkedList<Customer> customers;
-        LinkedList<Employee> employee;
+        LinkedList<Customer>* customers;
+        LinkedList<Employee>* employees;
         std::vector<Exhibit> exhibits;
 };
 
