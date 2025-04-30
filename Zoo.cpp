@@ -8,11 +8,11 @@ Zoo::Zoo() {
     this->employees = new LinkedList<Employee>;
 }
 
-Zoo::Zoo(vector<Exhibit> exhibits) {
-    this->customers = new LinkedList<Customer>;
-    this->employees = new LinkedList<Employee>;
-    this->exhibits = exhibits;
-}
+// Zoo::Zoo(vector<Exhibit> exhibits) {
+//     this->customers = new LinkedList<Customer>;
+//     this->employees = new LinkedList<Employee>;
+//     this->exhibits = exhibits;
+// }
 
 Zoo::~Zoo() {
     delete this->customers;

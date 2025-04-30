@@ -9,8 +9,11 @@
 struct Zoo {
     public:
         Zoo();
-        Zoo(vector<Exhibit> exhibits);
-        // FIX ME: missing copy constructor
+        // FIX ME: this breaks for some reason
+        // Zoo(vector<Exhibit> exhibits);
+
+        // FIX ME: missing a copy constructor - Rule of Three
+
         ~Zoo();
 
         void addCustomer(const Customer& addCustomer);

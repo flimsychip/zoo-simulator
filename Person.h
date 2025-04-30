@@ -4,7 +4,7 @@
 #include <string>
 
 struct Person {
-    private:
+    protected:
         std::string name;
         int age;
     public:

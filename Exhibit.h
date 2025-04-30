@@ -7,14 +7,19 @@
 
 struct Exhibit {
     public:
+        Exhibit();
+
+        // FIXME: missing rule of three
+        ~Exhibit();
+
         void addAnimal(const Animal& animal);
-        Animal rmAnimal();
+        Animal rmAnimal(const Animal& animal);
         void addCaretaker(const Employee& caretaker);
-        Employee rmCaretaker();
+        Employee rmCaretaker(const Employee& caretaker);
 
     private:
         LinkedList<Animal>* animals;
-        LinkedList<Employee>* employee;
+        LinkedList<Employee>* employees;
 };
 
 #endif

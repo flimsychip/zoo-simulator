@@ -5,7 +5,7 @@
 #include <ctime>
 
 enum Jobs {
-    None,
+    Unemployed,
     Caretaker,
     Director,
     Security,
@@ -14,9 +14,17 @@ enum Jobs {
 
 struct Employee : public Person {
     public:
-        void clockIn();
-        void clockOut();
-        double calcHoursWorked();
+        Employee();
+        Employee(
+            std::string name = "", 
+            int age = -1, 
+            Jobs job = Unemployed, 
+            double wage = -1, 
+            time_t startTime = -1
+        );
+
+        void clockIn(time_t startTime);
+        time_t clockOut(time_t endTime);    // returns time worked
 
         // Getters
         Jobs getJob() const;
@@ -26,7 +34,6 @@ struct Employee : public Person {
         // Setters
         void setJob(Jobs job);
         void setWage(double wage);
-        void setStart(time_t startTime);
     
     private:
         Jobs job;
