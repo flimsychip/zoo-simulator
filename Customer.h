@@ -16,7 +16,7 @@ struct Customer : public Person {
         Ticket ticketType;
     public:
         Customer();
-        Customer(std::string name = "", int age = -1, int ticketNum = -1, Ticket ticketType = GENERAL);
+        Customer(std::string name, int age = -1, int ticketNum = -1, Ticket ticketType = GENERAL);
         
         int getTicketNum() const;
         Ticket getTicketType() const;
