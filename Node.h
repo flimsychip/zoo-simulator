@@ -27,8 +27,6 @@ struct Node {
       T getData() const;
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
-      
-      friend struct LinkedList;
 };
 
 // OPERATORS: ==, <, >, <=, >=, and !=

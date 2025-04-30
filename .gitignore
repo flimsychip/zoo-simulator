@@ -1,3 +1,9 @@
+# zoo-simulator
+main*
+.vscode*
+
+# --- Boilerplate Below ---
+
 # Prerequisites
 *.d
 
