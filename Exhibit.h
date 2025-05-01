@@ -13,9 +13,9 @@ struct Exhibit {
         ~Exhibit();
 
         void addAnimal(const Animal& animal);
-        Animal rmAnimal(const Animal& animal);
+        bool rmAnimal(const Animal& animal);
         void addCaretaker(const Employee& caretaker);
-        Employee rmCaretaker(const Employee& caretaker);
+        bool rmCaretaker(const Employee& caretaker);
 
     private:
         LinkedList<Animal>* animals;

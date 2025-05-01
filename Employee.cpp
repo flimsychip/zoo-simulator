@@ -27,6 +27,7 @@ void Employee::clockIn(time_t startTime) {
 // returns time worked
 time_t Employee::clockOut(time_t endTime) {
     cout << "Employee::clockOut() not yet implemented" << endl;
+    return -1;
 }
 
 // Getters

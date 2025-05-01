@@ -13,6 +13,7 @@ struct LinkedList {
    public:
       LinkedList();
       LinkedList(const T& value);
+      // FIXME: Rule of three: missing assignment operator and copy constructor
       
       ~LinkedList();
       
