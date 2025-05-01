@@ -10,6 +10,8 @@ struct Exhibit {
         Exhibit();
 
         // FIXME: missing rule of three
+
+        
         ~Exhibit();
 
         void addAnimal(const Animal& animal);

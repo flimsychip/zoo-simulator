@@ -12,19 +12,19 @@ CHANGE TO TEMPLATE CLASS
 template <typename T> 
 struct Node {
    private:
-      T name;
+      std::string name;
       Node<T>* next;
       Node<T>* prev;
       
    public:
-      Node(const T& word);
+      Node(const std::string& word);
       Node();
       
-      void setData(const T& word);
+      void setData(const std::string& word);
       void setNext(Node<T>* node);
       void setPrev(Node<T>* node);
       
-      T getData() const;
+      std::string getData() const;
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
 };
@@ -47,5 +47,7 @@ bool operator<=(const T& lhs, const T& rhs);
 
 template <typename T>
 bool operator>=(const T& lhs, const T& rhs);
+
+#include "Node.tpp"
 
 #endif

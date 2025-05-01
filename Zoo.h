@@ -6,13 +6,16 @@
 #include "Employee.h"
 #include "Exhibit.h"
 
+#include <iostream>
+
 struct Zoo {
     public:
         Zoo();
         // FIX ME: this breaks for some reason
-        // Zoo(vector<Exhibit> exhibits);
+        // Zoo(std::vector<Exhibit> exhibits);
 
         // FIX ME: missing a copy constructor - Rule of Three
+        //Zoo& operator=(const Zoo& otherZoo);
 
         ~Zoo();
 

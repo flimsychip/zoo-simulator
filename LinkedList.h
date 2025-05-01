@@ -7,6 +7,7 @@ CHANGE TO FIT NODE.TPP
 #define LINKEDLIST_H
 
 #include "Node.h"
+#include <iostream>
 
 template <typename T>
 struct LinkedList {
@@ -16,9 +17,12 @@ struct LinkedList {
       
       ~LinkedList();
       
-      void push_back(const T& value);
+      void push_back(const std::string& value);
       void push_back(Node<T>* addNode);
-      Node<T>* insert_before(const T&, Node<T>* knownNode);
+      Node<T>* insert_before(const std::string& data, Node<T>* knownNode);
+
+      void mergeSort(LinkedList<T>* topListPtr);
+      void mergeSort();
 
       void remove(const T& rmValue);
       void remove(Node<T>* rmNode);
@@ -42,4 +46,5 @@ struct LinkedList {
       void setHead(Node<T> *newHead);
 };
 
+#include "LinkedList.tpp"
 #endif
