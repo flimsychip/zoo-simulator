@@ -12,12 +12,16 @@ Exhibit::~Exhibit() {
 void Exhibit::addAnimal(const Animal& animal) {
     this->animals->push_back(animal);
 }
-Animal Exhibit::rmAnimal(const Animal &animal){
+bool Exhibit::rmAnimal(const Animal &animal){
     this->animals->remove(animal);
+    // FIXME: Should return if remove was succesful
+    return false;
 }
 void Exhibit::addCaretaker(const Employee& caretaker) {
     this->employees->push_back(caretaker);
 }
-Employee Exhibit::rmCaretaker(const Employee& caretaker) {
+bool Exhibit::rmCaretaker(const Employee& caretaker) {
     this->employees->remove(caretaker);
+    // FIXME: Should return if remove was succesful
+    return false;
 }

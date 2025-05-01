@@ -20,9 +20,9 @@ struct Zoo {
         ~Zoo();
 
         void addCustomer(const Customer& addCustomer);
-        void rmCustomer(const Customer& rmCustomer);
+        bool rmCustomer(const Customer& rmCustomer);
         void addEmployee(const Employee& addEmployee);
-        void rmEmployee(const Employee& rmEmployee);
+        bool rmEmployee(const Employee& rmEmployee);
         void addExhibit(const Exhibit& addExhibit);
 
         double calcExpenses();
