@@ -16,8 +16,8 @@ struct Node {
       Node<T>* prev;
       
    public:
-      Node(const T& value);
       Node();
+      Node(const T& value);
       
       void setName(const T& value);
       void setNext(Node<T>* node);

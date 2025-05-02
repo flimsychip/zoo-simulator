@@ -13,7 +13,8 @@ void Exhibit::addAnimal(const Animal& animal) {
     this->animals->push_back(animal);
 }
 bool Exhibit::rmAnimal(const Animal &animal){
-    this->animals->remove(animal);
+    // FIXME: remove only takes in Node
+    // this->animals->remove(animal);
     // FIXME: Should return if remove was succesful
     return false;
 }
@@ -21,7 +22,8 @@ void Exhibit::addCaretaker(const Employee& caretaker) {
     this->employees->push_back(caretaker);
 }
 bool Exhibit::rmCaretaker(const Employee& caretaker) {
-    this->employees->remove(caretaker);
+    // FIXME: remove only takes in Node
+    // this->employees->remove(caretaker);
     // FIXME: Should return if remove was succesful
     return false;
 }

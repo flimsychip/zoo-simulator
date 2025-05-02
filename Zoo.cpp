@@ -24,7 +24,8 @@ void Zoo::addCustomer(const Customer& addCustomer) {
 }
 
 bool Zoo::rmCustomer(const Customer& rmCustomer) {
-    this->customers->remove(rmCustomer);
+    // FIXME: remove only takes in Node
+    // this->customers->remove(rmCustomer);
     // FIXME: Should return if remove was succesful
     return false;
 }
@@ -34,7 +35,8 @@ void Zoo::addEmployee(const Employee& addEmployee) {
 }
 
 bool Zoo::rmEmployee(const Employee& rmEmployee) {
-    this->employees->remove(rmEmployee);
+    // FIXME: remove only takes in Node
+    // this->employees->remove(rmEmployee);
     // FIXME: Should return if remove was succesful
     return false;
 }

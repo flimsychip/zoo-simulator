@@ -9,15 +9,19 @@ Node<T>::Node() {
    this->prev = nullptr;
 }
 template <typename T>
-Node<T>::Node(const T& value) {
-   this->data = value;
+Node<T>::Node(const T& value) : data(value) {
+   // FIXME: uncomment this. Make sure assignment operator is overwritten for all classes first
+   // this->data = value;
    this->next = nullptr;
    this->prev = nullptr;
 }
 
 // SETTERS
 template <typename T>
-void Node<T>::setName(const T& value) { this->data = value; }
+void Node<T>::setName(const T& value) {
+   // FIXME: uncomment this. Make sure assignment operator is overwritten for all classes first
+   // this->data = value;
+}
 template <typename T>
 void Node<T>::setNext(Node<T>* node) { this->next = node; }
 template <typename T>
