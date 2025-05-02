@@ -7,26 +7,28 @@ CHANGE TO TEMPLATE CLASS
 #define NODE_H
 
 #include <iostream>
-#include <string>
 
 template <typename T> 
 struct Node {
    private:
-      std::string name;
+      T data;
       Node<T>* next;
       Node<T>* prev;
       
    public:
-      Node(const std::string& word);
+      Node(const T& value);
       Node();
       
-      void setData(const std::string& word);
+      void setName(const T& value);
       void setNext(Node<T>* node);
       void setPrev(Node<T>* node);
       
-      std::string getData() const;
+      T getName() const;
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
+
+      template<typename U> 
+      friend struct LinkedList;
 };
 
 // OPERATORS: ==, <, >, <=, >=, and !=
@@ -49,5 +51,4 @@ template <typename T>
 bool operator>=(const T& lhs, const T& rhs);
 
 #include "Node.tpp"
-
 #endif

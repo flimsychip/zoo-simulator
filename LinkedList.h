@@ -11,21 +11,24 @@ CHANGE TO FIT NODE.TPP
 
 template <typename T>
 struct LinkedList {
+   //friend struct Node;
    public:
       LinkedList();
       LinkedList(const T& value);
       // FIXME: Rule of three: missing assignment operator and copy constructor
+      LinkedList(const LinkedList<T>& other);            // Copy constructor
+      LinkedList<T>& operator=(const LinkedList<T>& rhs); // Copy assignment
       
       ~LinkedList();
       
-      void push_back(const std::string& value);
+      void push_back(const T& value);
       void push_back(Node<T>* addNode);
-      Node<T>* insert_before(const std::string& data, Node<T>* knownNode);
+      Node<T>* insert_before(const T& value, Node<T>* knownNode);
 
       void mergeSort(LinkedList<T>* topListPtr);
       void mergeSort();
 
-      void remove(const T& rmValue);
+      //void remove(const T& rmName);
       void remove(Node<T>* rmNode);
       void clear();
       
@@ -33,18 +36,18 @@ struct LinkedList {
       int size() const;
       Node<T>* getHead() const;
       Node<T>* getTail() const;
+
+      // Setters
+      void setTail(Node<T> *newTail);
+      void setHead(Node<T> *newHead);
       
-      void print(bool reverse = false) const;
+      void print(bool reverse = false);
       
    private:
       // Members
       int count;
       Node<T>* head;
       Node<T>* tail;
-
-      // Setters
-      void setTail(Node<T> *newTail);
-      void setHead(Node<T> *newHead);
 };
 
 #include "LinkedList.tpp"

@@ -1,24 +1,23 @@
-#include <iostream>
+#pragma once   // prevent 'overlap' of libraries
 #include "Node.h"
 
 using namespace std;
 
 template <typename T>
 Node<T>::Node() {
-   this->data = "";
    this->next = nullptr;
    this->prev = nullptr;
 }
 template <typename T>
-Node<T>::Node(const std::string& word) {
-   this->data = word;
+Node<T>::Node(const T& value) {
+   this->data = value;
    this->next = nullptr;
    this->prev = nullptr;
 }
 
 // SETTERS
 template <typename T>
-void Node<T>::setData(const std::string& word) { this->data = word; }
+void Node<T>::setName(const T& value) { this->data = value; }
 template <typename T>
 void Node<T>::setNext(Node<T>* node) { this->next = node; }
 template <typename T>
@@ -26,7 +25,7 @@ void Node<T>::setPrev(Node<T>* node) { this->prev = node; }
 
 // GETTERS
 template <typename T>
-string Node<T>::getData() const { return data; }
+T Node<T>::getName() const { return data; }
 template <typename T>
 Node<T>* Node<T>::getNext() const { return next; }
 template <typename T>

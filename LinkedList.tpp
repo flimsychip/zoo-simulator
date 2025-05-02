@@ -13,7 +13,7 @@ LinkedList<T>::LinkedList() {
 template <typename T>
 LinkedList<T>::LinkedList(const T& value) {
    this->count = 1;
-   this->head = new Node<T>(word);
+   this->head = new Node<T>(value);
    this->tail = head;
 }
 
@@ -50,34 +50,32 @@ void LinkedList<T>::clear() {
 
 template <typename T>
 void LinkedList<T>::remove(Node<T>* rmNode) {
-        Node<T>* toDelete = curr;
+   Node<T>* toDelete = rmNode;
 
-        if (curr == this->head) {        // DELETE HEAD
-            this->setHead(curr->next);
+   if (rmNode == this->head) {         // DELETE HEAD
+      this->setHead(rmNode->next);
+           
+      if (this->head != nullptr) {
+         (this->head)->setPrev(nullptr);
+      } else {
+         this->setTail(nullptr); // creates empty list after deletion 
+      }
+   }   
+   else if (rmNode == this->tail) {    // DELETE TAIL
+      this->setTail(rmNode->prev);
             
-            if (this->head != nullptr) {
-               (this->head)->setPrev(nullptr);
-            } else {
-                this->setTail(nullptr); // creates empty list after deletion 
-            }
-        }
-         
-        else if (curr == this->tail) {   // DELETE TAIL
-            this->setTail(curr->prev);
-            
-            if (this->tail != nullptr) {
-               (this->tail)->setNext(nullptr);
-            } 
-        } 
-         
-        else {                     // DELETE MIDDLE
-            (curr->prev)->setNext(curr->next);
-            (curr->next)->setPrev(curr->prev);
-        }
+      if (this->tail != nullptr) {
+         (this->tail)->setNext(nullptr);
+      } 
+   }    
+   else {                              // DELETE MIDDLE
+      (rmNode->prev)->setNext(rmNode->next);
+      (rmNode->next)->setPrev(rmNode->prev);
+   }
 
-        curr = curr->next; // move to next before deleting
-         delete toDelete;
-         count--;
+   rmNode = rmNode->next; // move to next before deleting
+   delete toDelete;
+   count--;
 }
    
 /*template <typename T>
@@ -259,8 +257,8 @@ void LinkedList<T>::mergeSort(LinkedList<T>* topListPtr) {
 }
 
 template <typename T>
-Node<T>* LinkedList<T>::insert_before(const std::string& data, Node<T>* knownNode) {
-   Node<T>* toInsert = new Node<T>(data);
+Node<T>* LinkedList<T>::insert_before(const T& value, Node<T>* knownNode) {
+   Node<T>* toInsert = new Node<T>(value);
    
    if (knownNode == this->head) {
       this->head = toInsert;
@@ -277,8 +275,8 @@ Node<T>* LinkedList<T>::insert_before(const std::string& data, Node<T>* knownNod
 }
 
 template <typename T>
-void LinkedList<T>::push_back(const std::string& value) {
-   Node<T>* newNode = new Node<T>(word);
+void LinkedList<T>::push_back(const T& value) {
+   Node<T>* newNode = new Node<T>(value);
    if (!head) {
       head = tail = newNode;
    }
@@ -355,11 +353,11 @@ void LinkedList<T>::setTail (Node<T>* newTail) {
 }
 
 template <typename T>
-void LinkedList<T>::print(bool reverse) const { 
-   Node<T>* curr = head;
+void LinkedList<T>::print(bool reverse) { 
+   Node<T>* curr = this->head;
    
    if (reverse) {
-      curr = tail;
+      curr = this->tail;
       while (curr) {
          cout << curr->getData() << endl;
          curr = curr->prev;
