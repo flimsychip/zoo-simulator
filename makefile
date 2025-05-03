@@ -5,7 +5,7 @@ TARGET_EXEC := main
 BUILD_DIR := ./build
 # Path to folder containing source files (.cpp)
 # I removed functionality for nested source files, so dis just local
-SRC_DIRS := .
+SRC_DIRS := ./src
 
 # Specifies compiler
 CXX := g++
