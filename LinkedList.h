@@ -16,6 +16,7 @@ struct LinkedList {
       LinkedList();
       LinkedList(const T& value);
       // FIXME: Rule of three: missing assignment operator and copy constructor
+        
       LinkedList(const LinkedList<T>& other);            // Copy constructor
       LinkedList<T>& operator=(const LinkedList<T>& rhs); // Copy assignment
       

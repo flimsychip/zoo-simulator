@@ -14,8 +14,7 @@ template <typename T>
 LinkedList<T>::LinkedList(const T& value) {
    this->count = 1;
    // FIXME: should make new Node with value here
-   // this->head = new Node<T>(value);
-   this->head = nullptr;
+   this->head = new Node<T>(value);
    this->tail = head;
 }
 
@@ -41,7 +40,7 @@ void LinkedList<T>::clear() {
    
     while (curr) {
         Node<T>* temp = curr;
-        curr = curr->next;
+        curr = curr->getnext();
         delete temp;
     }
 
@@ -54,8 +53,8 @@ template <typename T>
 void LinkedList<T>::remove(Node<T>* rmNode) {
    Node<T>* toDelete = rmNode;
 
-   if (rmNode == this->head) {         // DELETE HEAD
-      this->setHead(rmNode->next);
+   if (rmNode == head) {         // DELETE HEAD
+      this->setHead(rmNode->getnext());
            
       if (this->head != nullptr) {
          (this->head)->setPrev(nullptr);
@@ -64,21 +63,25 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
       }
    }   
    else if (rmNode == this->tail) {    // DELETE TAIL
-      this->setTail(rmNode->prev);
+      this->setTail(rmNode->getprev());
             
       if (this->tail != nullptr) {
          (this->tail)->setNext(nullptr);
       } 
    }    
    else {                              // DELETE MIDDLE
-      (rmNode->prev)->setNext(rmNode->next);
-      (rmNode->next)->setPrev(rmNode->prev);
+      Node<T>* prevNode = rmNode->getPrev();
+      Node<T>* nextNode = rmNode->getNext();
+      if (prevNode) prevNode->setNext(nextNode);
+      if (nextNode) nextNode->setPrev(prevNode);
    }
 
    rmNode = rmNode->next; // move to next before deleting
    delete toDelete;
    count--;
 }
+
+
    
 /*template <typename T>
 void LinkedList<T>::mergeDicts(LinkedList<T>* listB) {  // JUST IN CASE; MERGING 2 LISTS IN ALPHA ORDER
@@ -249,6 +252,9 @@ void LinkedList<T>::mergeSort(LinkedList<T>* topListPtr) {
    topListPtr->head = nullptr;
    topListPtr->tail = nullptr;
    topListPtr->count = 0;
+
+   Node<T>* currLeft = left->head;
+   Node<T>* currRight = right->head;
    
    // append all sorted nodes ...
    topListPtr->mergeDicts(left);   
@@ -371,4 +377,31 @@ void LinkedList<T>::print(bool reverse) {
          curr = curr->next;
       }
    }
+}
+
+template <typename T>
+LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0) {
+    Node<T>* curr = other.head;
+    while (curr) {
+        push_back(curr->getData()); // Assuming Node has a proper copy mechanism
+        curr = curr->getNext();
+    }
+}
+
+// Assignment Operator
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
+    if (this == &rhs) {
+        return *this; // Handle self-assignment
+    }
+
+    clear(); // Clear existing data
+
+    Node<T>* curr = rhs.head;
+    while (curr) {
+        push_back(curr->getData()); // Assuming Node has a proper copy mechanism
+        curr = curr->getNext();
+    }
+
+    return *this;
 }

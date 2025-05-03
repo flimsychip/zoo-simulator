@@ -20,7 +20,7 @@ int main() {
 
     Zoo* zoo = new Zoo();
     cout << zoo->calcExpenses() << endl;
-    // Is this be pushing back deep copies?
+    // Is this  be pushing back deep copies?
     zoo->addCustomer(*customer);
     delete zoo;
     zoo = nullptr;
