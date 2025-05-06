@@ -1,7 +1,9 @@
 #include "Animal.h" 
 #include "Customer.h" 
 #include "Zoo.h" 
-#include <iostream>  
+#include <iostream> 
+#include <iomanip> // make output pretty 
+#include <fstream>
 
 using namespace std;  
 
