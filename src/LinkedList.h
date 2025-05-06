@@ -29,7 +29,7 @@ struct LinkedList {
       void mergeSort(LinkedList<T>* topListPtr);
       void mergeSort();
 
-      //void remove(const T& rmName);
+      void remove(const T& rmName);
       void remove(Node<T>* rmNode);
       void clear();
       

@@ -1,4 +1,4 @@
-# basename of file with main() {}. 
+# Name to be given to exec file
 TARGET_EXEC := main
 
 # Path to folder to contain build files (.o and .h)
