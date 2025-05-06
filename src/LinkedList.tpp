@@ -50,6 +50,21 @@ void LinkedList<T>::clear() {
 }
 
 template <typename T>
+void LinkedList<T>::remove(const T& rmName) {
+   Node<T>* curr = this->getHead();
+   
+   while (curr) {
+      if (curr->getData() == rmName) {   
+         this->remove(curr);
+         cout << rmName << " has been deleted." << endl;
+         
+         return;
+      }
+      curr = curr->getNext();
+   }
+}
+
+template <typename T>
 void LinkedList<T>::remove(Node<T>* rmNode) {
    Node<T>* toDelete = rmNode;
 
@@ -72,138 +87,14 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
    else {                              // DELETE MIDDLE
       Node<T>* prevNode = rmNode->getPrev();
       Node<T>* nextNode = rmNode->getNext();
-      if (prevNode) prevNode->setNext(nextNode);
-      if (nextNode) nextNode->setPrev(prevNode);
+      if (prevNode) { prevNode->setNext(nextNode); }
+      if (nextNode) { nextNode->setPrev(prevNode); }
    }
 
    rmNode = rmNode->next; // move to next before deleting
    delete toDelete;
    count--;
 }
-
-
-   
-/*template <typename T>
-void LinkedList<T>::mergeDicts(LinkedList<T>* listB) {  // JUST IN CASE; MERGING 2 LISTS IN ALPHA ORDER
-   Node* currA = this->head;
-   Node* currB = listB->head;
-
-   Node* mergedHead = nullptr;
-   Node* mergedTail = nullptr;
-   int newCount = 0;
-
-   while (currA != nullptr && currB != nullptr) {
-      Node* nextA = currA->getNext();
-      Node* nextB = currB->getNext();
-
-      if (*currA < *currB) {       // inserting currA first
-         currA->setPrev(nullptr);
-         currA->setNext(nullptr);
-
-         if (mergedHead == nullptr) { // merging to empty list
-            mergedHead = mergedTail = currA;
-         } 
-         else {
-            mergedTail->setNext(currA);
-            currA->setPrev(mergedTail);
-            
-            mergedTail = currA;
-         }
-
-         newCount++;
-         currA = nextA;
-      }
-
-      else if (*currA > *currB) {  // inserting currB first
-         currB->setPrev(nullptr);
-         currB->setNext(nullptr);
-
-         if (mergedHead == nullptr) {        // merging to empty list
-            mergedHead = mergedTail = currB;
-         }
-         else {
-            mergedTail->setNext(currB);
-            currB->setPrev(mergedTail);
-            
-            mergedTail = currB;
-         }
-
-         newCount++;
-         currB = nextB;
-      }
-
-      else {                      // for duplicate word; keep currA & delete currB
-         currA->setPrev(nullptr);
-         currA->setNext(nullptr);
-
-         if (mergedHead == nullptr) {        // merging to empty list
-            mergedHead = mergedTail = currA;
-         } 
-         else {
-            mergedTail->setNext(currA);
-            currA->setPrev(mergedTail);
-            
-            mergedTail = currA;
-         }
-
-         newCount++;
-         delete currB;
-         
-         currA = nextA;
-         currB = nextB;
-        }
-    } // end 1st while()
-
-    while (currA != nullptr) {       // append all remaining nodes from listA
-      Node<T>* next = currA->getNext();
-
-      currA->setPrev(nullptr);
-      currA->setNext(nullptr);
-
-      if (mergedHead == nullptr) {        // merging to empty list
-         mergedHead = mergedTail = currA;
-      } 
-      else {
-            mergedTail->setNext(currA);
-            currA->setPrev(mergedTail);
-         
-            mergedTail = currA;
-        }   
-
-        newCount++;
-        currA = next;
-    }
-
-    while (currB != nullptr) {      // append all remaining nodes from listB
-     Node* next = currB->getNext();
-
-      currB->setPrev(nullptr);
-      currB->setNext(nullptr);
-
-      if (mergedHead == nullptr) {        // merging to empty list
-         mergedHead = mergedTail = currB;
-      } 
-      else {
-         mergedTail->setNext(currB);
-         currB->setPrev(mergedTail);
-         
-         mergedTail = currB;
-      }
-
-      newCount++;
-      currB = next;
-   }
-
-   // setting new head, tail, and size for listA
-   this->head = mergedHead;
-   this->tail = mergedTail;
-   this->count = newCount;
-
-   // clearing listB
-   listB->head = nullptr;
-   listB->tail = nullptr;
-   listB->count = 0;
-}*/
 
 template <typename T>
 void LinkedList<T>::mergeSort() {
