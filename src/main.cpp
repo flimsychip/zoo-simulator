@@ -15,8 +15,6 @@ int main() {
 
     Customer* customer = new Customer("Shakira");     
     cout << customer->getName() << endl;     
-    delete customer;     
-    customer = nullptr;      
 
     Zoo* zoo = new Zoo();     
     cout << zoo->calcExpenses() << endl;     // Is this  be pushing back deep copies?     
