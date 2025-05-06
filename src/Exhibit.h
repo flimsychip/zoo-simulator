@@ -18,6 +18,7 @@ struct Exhibit {
         bool rmAnimal(const Animal& animal);
         void addCaretaker(const Employee& caretaker);
         bool rmCaretaker(const Employee& caretaker);
+        double getDailyCost() const; 
 
     private:
         LinkedList<Animal>* animals;

@@ -1,5 +1,7 @@
 #include "Employee.h"
 #include <iostream>
+#include <ctime>
+#include <iomanip>
 
 using namespace std;
 
@@ -9,7 +11,8 @@ Employee::Employee() {
     this->age = -1;
     this->job = Unemployed;
     this->hourlyWage = -1;
-    this->startTime = -1;
+    this->startTime = 0;
+    this->clockedInTime  = 0;
 }
 
 Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime) {
@@ -22,13 +25,25 @@ Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime
 }
 
 void Employee::clockIn(time_t startTime) {
-    cout << "Employee::clockIn() not yet implemented" << endl;
+    this->clockedInTime = startTime;
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+    cout << getName() << " clocked in at ";
+    cout << setfill('0') << setw(2) << ltm->tm_hour << ":" << setfill('0') << setw(2) << ltm->tm_min << endl;
 }
 // returns time worked
 time_t Employee::clockOut(time_t endTime) {
-    cout << "Employee::clockOut() not yet implemented" << endl;
-    return -1;
+    if (clockedInTime == 0) {
+        cout << getName() << " cannot clock out because they haven't clocked in yet." << endl;
+        return 0;
+    }
+    time_t timeWorked = endTime - clockedInTime;
+    clockedInTime = 0; // Reset clock-in time after clocking out
+    double hoursWorked = static_cast<double>(timeWorked) / 3600.0;
+    cout << getName() << " clocked out. Time worked: " << fixed << setprecision(2) << hoursWorked << " hours." << endl;
+    return timeWorked;
 }
+
 
 // Getters
 Jobs Employee::getJob() const {
