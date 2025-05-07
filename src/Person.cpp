@@ -18,3 +18,7 @@ void Person::setName(string newName) {
 void Person::setAge(int newAge) {
     this->age = newAge;
 }
+
+void Person::print() const {
+    cout << "Name: " << this->name << ", Age: " << this->age << endl;
+}

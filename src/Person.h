@@ -13,6 +13,8 @@ struct Person {
         int getAge() const;
         void setName(std::string newName);
         void setAge(int newAge);
+
+        void print() const;
 };
 
 #endif
