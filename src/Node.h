@@ -27,6 +27,7 @@ struct Node {
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
 
+      template<typename U>
       friend struct LinkedList;  // FIXME: change LL.tpp and others so this is no longer necessary
 };
 

@@ -11,7 +11,8 @@ CHANGE TO FIT NODE.TPP
 
 template <typename T>
 struct LinkedList {
-   //friend struct Node;
+   template<typename U> //
+   friend struct Node; // FIXME: replace 
    public:
       LinkedList();
       LinkedList(const T& value);
