@@ -36,7 +36,7 @@ void Animal::setName(string toName) {
 }
 // Operator overloads
 bool operator==(const Animal& lhs, const Animal& rhs) {
-    return (lhs.species == rhs.species && lhs.name == rhs.name);
+    return (lhs.getSpecies() == rhs.getSpecies() && lhs.getName() == rhs.getName());
 }
 
 bool operator!=(const Animal& lhs, const Animal& rhs) {
@@ -44,10 +44,10 @@ bool operator!=(const Animal& lhs, const Animal& rhs) {
 }
 
 bool operator<(const Animal& lhs, const Animal& rhs) {
-    if (lhs.species != rhs.species) {
-        return lhs.species < rhs.species;
+    if (lhs.getSpecies() != rhs.getSpecies()) {
+        return lhs.getSpecies() < rhs.getSpecies();
     }
-    return lhs.name < rhs.name;
+    return lhs.getName() < rhs.getName();
 }
 
 bool operator>(const Animal& lhs, const Animal& rhs) {
