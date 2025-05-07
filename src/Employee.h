@@ -41,5 +41,11 @@ struct Employee : public Person {
         double hourlyWage;
         time_t startTime;
 };
+bool operator==(const Employee& lhs, const Employee& rhs);
+bool operator!=(const Employee& lhs, const Employee& rhs);
+bool operator<(const Employee& lhs, const Employee& rhs);
+bool operator>(const Employee& lhs, const Employee& rhs);
+bool operator<=(const Employee& lhs, const Employee& rhs);
+bool operator>=(const Employee& lhs, const Employee& rhs);
 
 #endif

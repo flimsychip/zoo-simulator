@@ -34,3 +34,30 @@ void Animal::setSpecies(Species toSpecies) {
 void Animal::setName(string toName) {
     this->name = toName;
 }
+// Operator overloads
+bool operator==(const Animal& lhs, const Animal& rhs) {
+    return (lhs.species == rhs.species && lhs.name == rhs.name);
+}
+
+bool operator!=(const Animal& lhs, const Animal& rhs) {
+    return !(lhs == rhs);
+}
+
+bool operator<(const Animal& lhs, const Animal& rhs) {
+    if (lhs.species != rhs.species) {
+        return lhs.species < rhs.species;
+    }
+    return lhs.name < rhs.name;
+}
+
+bool operator>(const Animal& lhs, const Animal& rhs) {
+    return rhs < lhs;
+}
+
+bool operator<=(const Animal& lhs, const Animal& rhs) {
+    return !(rhs < lhs);
+}
+
+bool operator>=(const Animal& lhs, const Animal& rhs) {
+    return !(lhs < rhs);
+}

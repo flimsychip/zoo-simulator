@@ -51,3 +51,49 @@ time_t Employee::getStart() const { return this->startTime; }
 // SETTERS
 void Employee::setJob(Jobs job) { this->job = job; }
 void Employee::setWage(double wage) { this->hourlyWage = wage; }
+
+Employee& Employee::operator=(const Employee& other) {
+    if (this != &other) {
+        Person::operator=(other);
+        this->job = other.job;
+        this->hourlyWage = other.hourlyWage;
+        this->startTime = other.startTime;
+    }
+    return *this;
+}
+
+bool operator==(const Employee& lhs, const Employee& rhs) {
+    return (static_cast<const Person&>(lhs) == static_cast<const Person&>(rhs) &&
+            lhs.job == rhs.job &&
+            lhs.hourlyWage == rhs.hourlyWage &&
+            lhs.startTime == rhs.startTime);
+}
+
+bool operator!=(const Employee& lhs, const Employee& rhs) {
+    return !(lhs == rhs);
+}
+
+bool operator<(const Employee& lhs, const Employee& rhs) {
+    if (static_cast<const Person&>(lhs) != static_cast<const Person&>(rhs)) {
+        return static_cast<const Person&>(lhs) < static_cast<const Person&>(rhs);
+    }
+    if (lhs.job != rhs.job) {
+        return lhs.job < rhs.job;
+    }
+    if (lhs.hourlyWage != rhs.hourlyWage) {
+        return lhs.hourlyWage < rhs.hourlyWage;
+    }
+    return lhs.startTime < rhs.startTime;
+}
+
+bool operator>(const Employee& lhs, const Employee& rhs) {
+    return rhs < lhs;
+}
+
+bool operator<=(const Employee& lhs, const Employee& rhs) {
+    return !(rhs < lhs);
+}
+
+bool operator>=(const Employee& lhs, const Employee& rhs) {
+    return !(lhs < rhs);
+}
