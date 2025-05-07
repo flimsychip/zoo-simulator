@@ -29,4 +29,10 @@ struct Customer : public Person {
         void setTicketType(Ticket type);
 };
 
+bool operator==(const Customer& lhs, const Customer& rhs);
+bool operator!=(const Customer& lhs, const Customer& rhs);
+bool operator<(const Customer& lhs, const Customer& rhs);
+bool operator>(const Customer& lhs, const Customer& rhs);
+bool operator<=(const Customer& lhs, const Customer& rhs);
+bool operator>=(const Customer& lhs, const Customer& rhs);
 #endif

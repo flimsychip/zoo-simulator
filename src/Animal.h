@@ -39,4 +39,11 @@ struct Animal {
 		std::string name;
 };
 
+
+bool operator==(const Animal& lhs, const Animal& rhs);
+bool operator!=(const Animal& lhs, const Animal& rhs);
+bool operator<(const Animal& lhs, const Animal& rhs);
+bool operator>(const Animal& lhs, const Animal& rhs);
+bool operator<=(const Animal& lhs, const Animal& rhs);
+bool operator>=(const Animal& lhs, const Animal& rhs);
 #endif

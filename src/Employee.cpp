@@ -29,7 +29,7 @@ time_t Employee::clockOut(time_t endTime) {
         return 0;
     }
     time_t timeWorked = endTime - startTime;
-    startTime = 0; // Reset clock-in time after clocking out
+    startTime = 0; // Reset cloc    k-in time after clocking out
     double hoursWorked = static_cast<double>(timeWorked) / 3600.0;
     cout << getName() << " clocked out. Time worked: " << fixed << setprecision(2) << hoursWorked << " hours." << endl;
     return timeWorked;
