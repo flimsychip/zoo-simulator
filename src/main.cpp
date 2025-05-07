@@ -78,7 +78,7 @@ void welcomeMsg() {
 }
     
 void writeTestOutputToFile(const string& filename) {
-    ofstream outputFile(filename);
+    ofstream outputFile("./data/" + filename);
 
     if (outputFile.is_open()) {
         outputFile << "Starting the test run..." << endl;

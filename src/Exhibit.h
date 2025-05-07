@@ -8,15 +8,32 @@
 struct Exhibit {
     public:
         Exhibit();
-        // FIXME: missing rule of three
-        
+        Exhibit(
+            double dailyCost, 
+            std::string name = "N/A", 
+            LinkedList<Animal>* animals = nullptr,
+            LinkedList<Employee>* employees = nullptr
+        );
+        Exhibit(const Exhibit& copyExhibit);       // Copy Constructor
+
         ~Exhibit();
+        void clear();
 
         void addAnimal(const Animal& animal);
         bool rmAnimal(const Animal& animal);
         void addCaretaker(const Employee& caretaker);
         bool rmCaretaker(const Employee& caretaker);
-        double getDailyCost() const; 
+
+        // OPERATORS
+        Exhibit &operator=(const Exhibit &rhs);     // Assignment operator
+
+        // GETTERS
+        double getDailyCost() const;
+        std::string getName() const;
+
+        // SETTERS
+        void setDailyCost(double newCost);
+        void setName(std::string newName);
 
         LinkedList<Animal>* getAnimals();
         LinkedList<Employee>* getEmployees();
@@ -24,6 +41,8 @@ struct Exhibit {
         //void sort();
 
     private:
+        double dailyCost;
+        std::string name;
         LinkedList<Animal>* animals;
         LinkedList<Employee>* employees;
 };
