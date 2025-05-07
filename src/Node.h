@@ -10,7 +10,7 @@ CHANGE TO TEMPLATE CLASS
 
 template <typename T> 
 struct Node {
-   private:
+   private:    // FIXME: change to protected?
       T data;
       Node<T>* next;
       Node<T>* prev;
@@ -27,28 +27,28 @@ struct Node {
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
 
-      template<typename U> 
-      friend struct LinkedList;
+      template <typename U>
+      friend struct LinkedList;  // FIXME: change LL.tpp and others so this is no longer necessary
 };
 
 // OPERATORS: ==, <, >, <=, >=, and !=
 template <typename T>
-bool operator==(const T& lhs, const T& rhs);
+bool operator==(const Node<T>& lhs, const Node<T>& rhs);
 
 template <typename T>
-bool operator!=(const T& lhs, const T& rhs);
+bool operator!=(const Node<T>& lhs, const Node<T>& rhs);
 
 template <typename T>
-bool operator<(const T& lhs, const T& rhs);
+bool operator<(const Node<T>& lhs, const Node<T>& rhs);
 
 template <typename T>
-bool operator>(const T& lhs, const T& rhs);
+bool operator>(const Node<T>& lhs, const Node<T>& rhs);
 
 template <typename T>
-bool operator<=(const T& lhs, const T& rhs);
+bool operator<=(const Node<T>& lhs, const Node<T>& rhs);
 
 template <typename T>
-bool operator>=(const T& lhs, const T& rhs);
+bool operator>=(const Node<T>& lhs, const Node<T>& rhs);
 
 #include "Node.tpp"
 #endif

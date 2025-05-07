@@ -41,9 +41,21 @@ bool Zoo::rmEmployee(const Employee& rmEmployee) {
     return false;
 }
 
+LinkedList<Customer>* Zoo::getCustomers() const {
+    return this->customers;
+}
+
+LinkedList<Employee>* Zoo::getEmployees() const {
+    return this->employees;
+}
+
 void Zoo::addExhibit(const Exhibit& addExhibit) {
     // this->exhibits.push_back(addExhibit);
     cout << "Zoo::addExhibit not yet implemented" << endl;
+}
+
+void Zoo::sortCustomers() {
+    (this->customers)->mergeSort();
 }
 
 double Zoo::calcExpenses() {

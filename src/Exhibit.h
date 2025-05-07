@@ -19,6 +19,11 @@ struct Exhibit {
         void addCaretaker(const Employee& caretaker);
         bool rmCaretaker(const Employee& caretaker);
 
+        LinkedList<Animal>* getAnimals();
+        LinkedList<Employee>* getEmployees();
+
+        //void sort();
+
     private:
         LinkedList<Animal>* animals;
         LinkedList<Employee>* employees;

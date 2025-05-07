@@ -37,7 +37,7 @@ Node<T>* Node<T>::getPrev() const { return prev; }
 // OPERATORS: ==, <, >, <=, >=, and !=
 template <typename T>
 bool operator==(const Node<T>& lhs, const Node<T>& rhs) {
-   return lhs.getData() == rhs.getData();
+   return lhs.getName().getName() == rhs.getName().getName();
 }
 template <typename T>
 bool operator!=(const Node<T>& lhs, const Node<T>& rhs) {
@@ -45,11 +45,11 @@ bool operator!=(const Node<T>& lhs, const Node<T>& rhs) {
 }
 template <typename T>
 bool operator<(const Node<T>& lhs, const Node<T>& rhs) {
-   return lhs.getData() < rhs.getData();
+   return lhs.getName().getName() < rhs.getName().getName();
 }
 template <typename T>
 bool operator>(const Node<T>& lhs, const Node<T>& rhs) {
-   return lhs.getData() > rhs.getData();
+   return lhs.getName().getName() > rhs.getName().getName();
 }
 template <typename T>
 bool operator<=(const Node<T>& lhs, const Node<T>& rhs) {

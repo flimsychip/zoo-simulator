@@ -2,11 +2,12 @@
 #define ANIMAL_H
 
 #include <iostream>
+#include <string>
 
 enum Species {
 	None,
 	Chimpanzee,
-	RedPanda,
+	Red_Panda,
 	Otter,
 	Wolf,
 	Bear,
@@ -26,12 +27,15 @@ struct Animal {
 
 		// Getters
 		Species getSpecies() const;
+		std::string getName() const;
 
 		// Setters
 		void setSpecies(Species toSpecies);
+		//void setName(std::string name);
 
 	private:
 		Species species;
+		//std::string name;
 };
 
 #endif
