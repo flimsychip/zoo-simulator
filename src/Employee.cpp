@@ -11,6 +11,7 @@ Employee::Employee() {
     this->startTime = 0;
 }
 
+// Initialization is calling the super constructor
 Employee::Employee(string name, int age, Jobs job, double wage) : Person(name, age) {
     this->job = job;
     this->hourlyWage = wage;

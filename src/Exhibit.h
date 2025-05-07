@@ -46,11 +46,4 @@ struct Exhibit {
         LinkedList<Employee>* employees;
 };
 
-bool operator==(const Exhibit& lhs, const Exhibit& rhs);
-bool operator!=(const Exhibit& lhs, const Exhibit& rhs);
-bool operator<(const Exhibit& lhs, const  Exhibit& rhs);
-bool operator>(const Exhibit& lhs, const  Exhibit& rhs);
-bool operator<=(const Exhibit& lhs, const Exhibit& rhs);
-bool operator>=(const Exhibit& lhs, const Exhibit& rhs);
-
 #endif

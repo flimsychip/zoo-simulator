@@ -8,6 +8,7 @@ Customer::Customer() {
     this->ticketType = GENERAL;
 }
 
+// Initialization is calling the super constructor
 Customer::Customer(std::string name, int age, int ticketNum, Ticket ticketType) : Person(name, age) {
     this->ticketNum = ticketNum;
     this->ticketType = ticketType;
@@ -33,11 +34,9 @@ void Customer::setTicketType(Ticket type) { this->ticketType = type;}
 bool operator==(const Customer& lhs, const Customer& rhs) {
     return  lhs.getTicketType() == rhs.getTicketType()
          && lhs.getTicketNum()  == rhs.getTicketNum()
-         && lhs.getName()            == rhs.getName()
-         && lhs.getAge()             == rhs.getAge();
+         && lhs.getName()       == rhs.getName()
+         && lhs.getAge()        == rhs.getAge();
 }
-
-
 
 bool operator!=(const Customer& lhs, const Customer& rhs) {
     return !(lhs == rhs);
