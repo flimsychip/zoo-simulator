@@ -11,20 +11,18 @@
 struct Zoo {
     public:
         Zoo();
-        // FIX ME: this breaks for some reason
-        // Zoo(std::vector<Exhibit> exhibits);
-
-        // FIX ME: missing a copy constructor - Rule of Three
-        //Zoo& operator=(const Zoo& otherZoo);
+        Zoo(const Zoo& copyZoo);    // Copy constructor
 
         ~Zoo();
+        void clear();
+
+        Zoo& operator=(const Zoo& rhs);     // Assignment operator
 
         void addCustomer(const Customer& addCustomer);
-        bool rmCustomer(const Customer& rmCustomer);
         void addEmployee(const Employee& addEmployee);
-        bool rmEmployee(const Employee& rmEmployee);
-
         void addExhibit(const Exhibit& addExhibit);
+        bool rmCustomer(const Customer& rmCustomer);
+        bool rmEmployee(const Employee& rmEmployee);
 
         void sortCustomers();
 

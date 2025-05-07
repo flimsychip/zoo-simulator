@@ -8,15 +8,29 @@ Zoo::Zoo() {
     this->employees = new LinkedList<Employee>;
 }
 
-// Zoo::Zoo(vector<Exhibit> exhibits) {
-//     this->customers = new LinkedList<Customer>;
-//     this->employees = new LinkedList<Employee>;
-//     this->exhibits = exhibits;
-// }
+Zoo::Zoo(const Zoo& copyZoo) {
+    this->customers = copyZoo.customers;
+    this->employees = copyZoo.employees;
+    this->exhibits = copyZoo.exhibits;
+}
 
 Zoo::~Zoo() {
+    this->clear();
+}
+
+void Zoo::clear() {
     delete this->customers;
     delete this->employees;
+}
+
+Zoo& Zoo::operator=(const Zoo &rhs) {
+    if (this == &rhs) { return *this; }
+
+    this->customers = rhs.customers;
+    this->employees = rhs.employees;
+    this->exhibits = rhs.exhibits;
+
+    return *this;
 }
 
 void Zoo::addCustomer(const Customer& addCustomer) {
@@ -24,7 +38,6 @@ void Zoo::addCustomer(const Customer& addCustomer) {
 }
 
 bool Zoo::rmCustomer(const Customer& rmCustomer) {   
-    // FIXME: Should return if remove was succesful
     return this->customers->remove(rmCustomer);;
 }
 
@@ -33,7 +46,6 @@ void Zoo::addEmployee(const Employee& addEmployee) {
 }
 
 bool Zoo::rmEmployee(const Employee& rmEmployee) {
-    // FIXME: Should return if remove was succesful
     return this->employees->remove(rmEmployee);;
 }
 
@@ -46,7 +58,7 @@ LinkedList<Employee>* Zoo::getEmployees() const {
 }
 
 void Zoo::addExhibit(const Exhibit& addExhibit) {
-    // this->exhibits.push_back(addExhibit);
+    this->exhibits.push_back(addExhibit);
     cout << "Zoo::addExhibit not yet implemented" << endl;
 }
 
