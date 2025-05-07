@@ -26,6 +26,7 @@ struct LinkedList {
       void push_back(Node<T>* addNode);
       Node<T>* insert_before(const T& value, Node<T>* knownNode);
 
+      void mergeLists(LinkedList<T>* listB);
       void mergeSort(LinkedList<T>* topListPtr);
       void mergeSort();
 

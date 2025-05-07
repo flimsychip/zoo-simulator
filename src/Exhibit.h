@@ -18,6 +18,11 @@ struct Exhibit {
         bool rmCaretaker(const Employee& caretaker);
         double getDailyCost() const; 
 
+        LinkedList<Animal>* getAnimals();
+        LinkedList<Employee>* getEmployees();
+
+        //void sort();
+
     private:
         LinkedList<Animal>* animals;
         LinkedList<Employee>* employees;

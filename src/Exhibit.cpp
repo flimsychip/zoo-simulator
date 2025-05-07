@@ -11,6 +11,14 @@ Exhibit::~Exhibit() {
     delete this->employees;
 }
 
+LinkedList<Animal>* Exhibit::getAnimals() {
+    return this->animals;
+}
+
+LinkedList<Employee>* Exhibit::getEmployees() {
+    return this->employees;
+}
+
 void Exhibit::addAnimal(const Animal& animal) {
     this->animals->push_back(animal);
 }
