@@ -35,4 +35,11 @@ struct Animal {
 		Species species;
 };
 
+
+bool operator==(const Animal& lhs, const Animal& rhs);
+bool operator!=(const Animal& lhs, const Animal& rhs);
+bool operator<(const Animal& lhs, const Animal& rhs);
+bool operator>(const Animal& lhs, const Animal& rhs);
+bool operator<=(const Animal& lhs, const Animal& rhs);
+bool operator>=(const Animal& lhs, const Animal& rhs);
 #endif
