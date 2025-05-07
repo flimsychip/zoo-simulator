@@ -16,7 +16,7 @@ struct Employee : public Person {
     public:
         Employee();
         Employee(
-            std::string name = "", 
+            std::string name, 
             int age = -1, 
             Jobs job = Unemployed, 
             double wage = -1, 
@@ -25,6 +25,8 @@ struct Employee : public Person {
 
         void clockIn(time_t startTime);
         time_t clockOut(time_t endTime);    // returns time worked
+
+        virtual void print() const;
 
         // Getters
         Jobs getJob() const;

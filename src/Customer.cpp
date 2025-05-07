@@ -1,33 +1,29 @@
 #include "Customer.h"
+#include <iostream>
+
+using namespace std;
 
 Customer::Customer() {
-    // FIXME: should call Person constructor?
-    this->name = "";
-    this->age = -1;
     this->ticketNum = -1;
     this->ticketType = GENERAL;
 }
 
-Customer::Customer(std::string name, int age, int ticketNum, Ticket ticketType) {
-    // FIXME: should call Person constructor?
-    this->name = name;
-    this->age = age;
+Customer::Customer(std::string name, int age, int ticketNum, Ticket ticketType) : Person(name, age) {
     this->ticketNum = ticketNum;
     this->ticketType = ticketType;
 }
 
-int Customer::getTicketNum() const {
-    return this->ticketNum;
+void Customer::print() const {
+    cout << "Name: " << name 
+        << ", Age: " << age
+        << ", Ticket Num: " << ticketNum 
+        << ", Ticket: " << ticketType << endl;
 }
 
-Ticket Customer::getTicketType() const {
-    return this->ticketType;
-}
+// GETTERS
+int Customer::getTicketNum() const { return this->ticketNum;}
+Ticket Customer::getTicketType() const { return this->ticketType;}
 
-void Customer::setTicketNum(int num) {
-    this->ticketNum = num;
-}
-
-void Customer::setTicketType(Ticket type) {
-    this->ticketType = type;
-}
+// SETTERS
+void Customer::setTicketNum(int num) { this->ticketNum = num;}
+void Customer::setTicketType(Ticket type) { this->ticketType = type;}
