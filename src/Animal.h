@@ -15,7 +15,8 @@ enum Species {
 	Elephant,
 	Penguin,
 	Toucan,
-	Hamster
+	Hamster,
+	Gorilla
 };
 
 struct Animal {

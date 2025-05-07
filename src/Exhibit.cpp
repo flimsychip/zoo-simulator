@@ -1,4 +1,6 @@
 #include "Exhibit.h"
+#include "Animal.h"
+#include "Employee.h"
 
 Exhibit::Exhibit() {
     this->animals = new LinkedList<Animal>();
@@ -24,6 +26,7 @@ bool Exhibit::rmAnimal(const Animal &animal){
     // FIXME: remove only takes in Node
     // this->animals->remove(animal);
     // FIXME: Should return if remove was succesful
+    
     return false;
 }
 void Exhibit::addCaretaker(const Employee& caretaker) {

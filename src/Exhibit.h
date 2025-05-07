@@ -8,9 +8,7 @@
 struct Exhibit {
     public:
         Exhibit();
-
         // FIXME: missing rule of three
-
         
         ~Exhibit();
 
@@ -18,6 +16,7 @@ struct Exhibit {
         bool rmAnimal(const Animal& animal);
         void addCaretaker(const Employee& caretaker);
         bool rmCaretaker(const Employee& caretaker);
+        double getDailyCost() const; 
 
         LinkedList<Animal>* getAnimals();
         LinkedList<Employee>* getEmployees();

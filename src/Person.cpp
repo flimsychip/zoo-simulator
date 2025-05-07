@@ -3,18 +3,20 @@
 
 using namespace std;
 
-string Person::getName() const {
-    return this->name;
+Person::Person() {
+    this->name = "N/A";
+    this->age = -1;
 }
 
-int Person::getAge() const {
-    return this->age;
-}
-
-void Person::setName(string newName) {
+Person::Person(const std::string& newName, const int newAge) {
     this->name = newName;
-}
-
-void Person::setAge(int newAge) {
     this->age = newAge;
 }
+
+// GETTERS
+string Person::getName() const { return this->name; }
+int Person::getAge() const { return this->age; }
+
+// SETTERS
+void Person::setName(string newName) { this->name = newName; }
+void Person::setAge(int newAge) { this->age = newAge; }
