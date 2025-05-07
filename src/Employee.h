@@ -41,7 +41,6 @@ struct Employee : public Person {
         Jobs job;
         double hourlyWage;
         time_t startTime;
-        time_t clockedInTime;
 };
 
 #endif

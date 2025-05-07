@@ -24,7 +24,6 @@ struct Person {
         void setName(std::string newName);
         void setAge(int newAge);
 
-        void print() const;
 };
 
 #endif

@@ -27,8 +27,7 @@ void writeTestOutputToFile(const string& filename) {
         outputFile << "Added customer '" << customer->getName() << "' to the zoo." << endl;
         delete zoo;
         zoo = nullptr;
-        delete customer;
-        customer = nullptr;
+        
 
         outputFile << "Testing Completed" << endl;
         outputFile.close();
@@ -43,6 +42,8 @@ int main() {
 
     // Call the function to write output to a file
     writeTestOutputToFile("output.txt");
+    
+
 
     cout << "Testing Completed" << endl;
     return 0;

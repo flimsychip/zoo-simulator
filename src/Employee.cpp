@@ -9,7 +9,6 @@ Employee::Employee() {
     this->job = Unemployed;
     this->hourlyWage = -1;
     this->startTime = 0;
-    this->clockedInTime  = 0;
 }
 
 Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime) : Person(name, age) {
@@ -19,7 +18,6 @@ Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime
 }
 
 void Employee::clockIn(time_t startTime) {
-    this->clockedInTime = startTime;
     time_t now = time(0);
     tm* ltm = localtime(&now);
     cout << getName() << " clocked in at ";
@@ -27,12 +25,12 @@ void Employee::clockIn(time_t startTime) {
 }
 // returns time worked
 time_t Employee::clockOut(time_t endTime) {
-    if (clockedInTime == 0) {
+    if (startTime == 0) {
         cout << getName() << " cannot clock out because they haven't clocked in yet." << endl;
         return 0;
     }
-    time_t timeWorked = endTime - clockedInTime;
-    clockedInTime = 0; // Reset clock-in time after clocking out
+    time_t timeWorked = endTime - startTime;
+    startTime = 0; // Reset clock-in time after clocking out
     double hoursWorked = static_cast<double>(timeWorked) / 3600.0;
     cout << getName() << " clocked out. Time worked: " << fixed << setprecision(2) << hoursWorked << " hours." << endl;
     return timeWorked;
