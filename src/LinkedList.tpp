@@ -54,7 +54,7 @@ bool LinkedList<T>::remove(const T& rmName) {
    Node<T>* curr = this->getHead();
    
    while (curr) {
-      if (curr->getName().getName() == rmName.getName()) {   
+      if (curr->getData().getName() == rmName.getName()) {   
          this->remove(curr);
          cout << rmName.getName() << " has been deleted." << endl;
          
@@ -355,13 +355,13 @@ void LinkedList<T>::print(bool reverse) {
    if (reverse) {
       curr = this->tail;
       while (curr) {
-         cout << curr->getName().getName() << endl;
+         cout << curr->getData().getName() << endl;
          curr = curr->prev;
       }
    }
    else {
       while (curr) {
-         cout << curr->getName().getName() << endl;
+         cout << curr->getData().getName() << endl;
          curr = curr->next;
       }
    }
@@ -371,7 +371,7 @@ template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0) {
     Node<T>* curr = other.head;
     while (curr) {
-        push_back(curr->getName()); // Assuming Node has a proper copy mechanism
+        push_back(curr); // Assuming Node has a proper copy mechanism
         curr = curr->getNext();
     }
 }
@@ -387,7 +387,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 
     Node<T>* curr = rhs.head;
     while (curr) {
-        push_back(curr->getName()); // Assuming Node has a proper copy mechanism
+        push_back(curr); // Assuming Node has a proper copy mechanism
         curr = curr->getNext();
     }
 

@@ -18,7 +18,7 @@ int main() {
     welcomeMsg();
 
     Zoo* zoo = new Zoo();
-    // Exhibit* testCage = new Exhibit;
+    Exhibit* testCage = new Exhibit;
 
     // Animal* animal1 = new Animal();     
     // cout << animal1->getSpecies() << endl;
@@ -48,7 +48,7 @@ int main() {
     zoo->sortCustomers();
     zoo->getCustomers()->print();
 
-    
+
 
     delete zoo;     
     // delete animal1;     
