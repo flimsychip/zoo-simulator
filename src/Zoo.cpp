@@ -23,11 +23,9 @@ void Zoo::addCustomer(const Customer& addCustomer) {
     this->customers->push_back(addCustomer);
 }
 
-bool Zoo::rmCustomer(const Customer& rmCustomer) {
-    // FIXME: remove only takes in Node
-    // this->customers->remove(rmCustomer);
+bool Zoo::rmCustomer(const Customer& rmCustomer) {   
     // FIXME: Should return if remove was succesful
-    return false;
+    return this->customers->remove(rmCustomer);;
 }
 
 void Zoo::addEmployee(const Employee& addEmployee) {
@@ -35,10 +33,8 @@ void Zoo::addEmployee(const Employee& addEmployee) {
 }
 
 bool Zoo::rmEmployee(const Employee& rmEmployee) {
-    // FIXME: remove only takes in Node
-    // this->employees->remove(rmEmployee);
     // FIXME: Should return if remove was succesful
-    return false;
+    return this->employees->remove(rmEmployee);;
 }
 
 LinkedList<Customer>* Zoo::getCustomers() const {

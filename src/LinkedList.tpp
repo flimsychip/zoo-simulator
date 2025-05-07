@@ -40,7 +40,7 @@ void LinkedList<T>::clear() {
    
     while (curr) {
         Node<T>* temp = curr;
-        curr = curr->getnext();
+        curr = curr->getNext();
         delete temp;
     }
 
@@ -50,18 +50,20 @@ void LinkedList<T>::clear() {
 }
 
 template <typename T>
-void LinkedList<T>::remove(const T& rmName) {
+bool LinkedList<T>::remove(const T& rmName) {
    Node<T>* curr = this->getHead();
    
    while (curr) {
-      if (curr->getData() == rmName) {   
+      if (curr->getName().getName() == rmName.getName()) {   
          this->remove(curr);
-         cout << rmName << " has been deleted." << endl;
+         cout << rmName.getName() << " has been deleted." << endl;
          
-         return;
+         return true;
       }
       curr = curr->getNext();
    }
+
+   return false;
 }
 
 template <typename T>
@@ -69,7 +71,7 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
    Node<T>* toDelete = rmNode;
 
    if (rmNode == head) {         // DELETE HEAD
-      this->setHead(rmNode->getnext());
+      this->setHead(rmNode->getNext());
            
       if (this->head != nullptr) {
          (this->head)->setPrev(nullptr);
@@ -78,7 +80,7 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
       }
    }   
    else if (rmNode == this->tail) {    // DELETE TAIL
-      this->setTail(rmNode->getprev());
+      this->setTail(rmNode->getPrev());
             
       if (this->tail != nullptr) {
          (this->tail)->setNext(nullptr);
