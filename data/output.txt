@@ -1,6 +1,7 @@
 Starting the test run...
 Created Animal: 0
 Created Customer: Shakira
+Created Exhbit: N/A
 Calculated Zoo Expenses: -1.00
 Added customer 'Shakira' to the zoo.
 Testing Completed

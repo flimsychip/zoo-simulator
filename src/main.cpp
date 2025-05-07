@@ -8,7 +8,7 @@
 using namespace std;  
 
 void writeTestOutputToFile(const string& filename) {
-    ofstream outputFile(filename);
+    ofstream outputFile("./data/" + filename);
 
     if (outputFile.is_open()) {
         outputFile << "Starting the test run..." << endl;
@@ -20,6 +20,11 @@ void writeTestOutputToFile(const string& filename) {
 
         Customer* customer = new Customer("Shakira");
         outputFile << "Created Customer: " << customer->getName() << endl;
+
+        Exhibit *exhibit = new Exhibit();
+        outputFile << "Created Exhbit: " << exhibit->getName() << endl;
+        delete exhibit;
+        exhibit = nullptr;
 
         Zoo* zoo = new Zoo();
         outputFile << "Calculated Zoo Expenses: " << fixed << setprecision(2) << zoo->calcExpenses() << endl;
