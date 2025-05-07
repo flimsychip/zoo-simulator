@@ -4,7 +4,7 @@
 
 Ex format: [time] [start text] [end text]
 -----------------------------------------------------------------------------------
-[start text]
+start text
 end text    | executed                          | cout
 -----------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ Ex interaction:
 0800 animal harry hamster wakes
 0800 employee milo clocksin
 
-0900 customer elijah 19 0001 general visits
+0900 customer elijah 20 0001 general visits
 0900 customer rosa 23 0002 general visits
 1300 customer rosa leaves
 1700 animal hammy hamster dies
