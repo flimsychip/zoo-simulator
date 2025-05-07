@@ -19,11 +19,11 @@ struct Node {
       Node();
       Node(const T& value);
       
-      void setName(const T& value);
+      void setData(const T& value);
       void setNext(Node<T>* node);
       void setPrev(Node<T>* node);
       
-      T getName() const;
+      T getData() const;
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
 
