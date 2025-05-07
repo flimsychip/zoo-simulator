@@ -11,10 +11,9 @@ Employee::Employee() {
     this->startTime = 0;
 }
 
-Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime) : Person(name, age) {
+Employee::Employee(string name, int age, Jobs job, double wage) : Person(name, age) {
     this->job = job;
     this->hourlyWage = wage;
-    this->startTime = startTime;
 }
 
 void Employee::clockIn(time_t startTime) {
