@@ -40,7 +40,7 @@ void LinkedList<T>::clear() {
    
     while (curr) {
         Node<T>* temp = curr;
-        curr = curr->getnext();
+        curr = curr->getNext();
         delete temp;
     }
 
@@ -50,18 +50,20 @@ void LinkedList<T>::clear() {
 }
 
 template <typename T>
-void LinkedList<T>::remove(const T& rmName) {
+bool LinkedList<T>::remove(const T& rmName) {
    Node<T>* curr = this->getHead();
    
    while (curr) {
-      if (curr->getData() == rmName) {   
+      if (curr->getName().getName() == rmName.getName()) {   
          this->remove(curr);
-         cout << rmName << " has been deleted." << endl;
+         cout << rmName.getName() << " has been deleted." << endl;
          
-         return;
+         return true;
       }
       curr = curr->getNext();
    }
+
+   return false;
 }
 
 template <typename T>
@@ -69,7 +71,7 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
    Node<T>* toDelete = rmNode;
 
    if (rmNode == head) {         // DELETE HEAD
-      this->setHead(rmNode->getnext());
+      this->setHead(rmNode->getNext());
            
       if (this->head != nullptr) {
          (this->head)->setPrev(nullptr);
@@ -78,7 +80,7 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
       }
    }   
    else if (rmNode == this->tail) {    // DELETE TAIL
-      this->setTail(rmNode->getprev());
+      this->setTail(rmNode->getPrev());
             
       if (this->tail != nullptr) {
          (this->tail)->setNext(nullptr);
@@ -103,6 +105,128 @@ void LinkedList<T>::mergeSort() {
    }
    
    mergeSort(this);
+}
+
+template <typename T>
+void LinkedList<T>::mergeLists(LinkedList<T>* listB) {
+   Node<T>* currA = this->head;
+   Node<T>* currB = listB->head;
+
+   Node<T>* mergedHead = nullptr;
+   Node<T>* mergedTail = nullptr;
+   int newCount = 0;
+
+   while (currA != nullptr && currB != nullptr) {
+      Node<T>* nextA = currA->getNext();
+      Node<T>* nextB = currB->getNext();
+
+      if (*currA < *currB) {       // inserting currA first
+         currA->setPrev(nullptr);
+         currA->setNext(nullptr);
+
+         if (mergedHead == nullptr) { // merging to empty list
+            mergedHead = mergedTail = currA;
+         } 
+         else {
+            mergedTail->setNext(currA);
+            currA->setPrev(mergedTail);
+            
+            mergedTail = currA;
+         }
+
+         newCount++;
+         currA = nextA;
+      }
+
+      else if (*currA > *currB) {  // inserting currB first
+         currB->setPrev(nullptr);
+         currB->setNext(nullptr);
+
+         if (mergedHead == nullptr) {        // merging to empty list
+            mergedHead = mergedTail = currB;
+         }
+         else {
+            mergedTail->setNext(currB);
+            currB->setPrev(mergedTail);
+            
+            mergedTail = currB;
+         }
+
+         newCount++;
+         currB = nextB;
+      }
+
+      else {                      // for duplicate word; keep currA & delete currB
+         currA->setPrev(nullptr);
+         currA->setNext(nullptr);
+
+         if (mergedHead == nullptr) {        // merging to empty list
+            mergedHead = mergedTail = currA;
+         } 
+         else {
+            mergedTail->setNext(currA);
+            currA->setPrev(mergedTail);
+            
+            mergedTail = currA;
+         }
+
+         newCount++;
+         delete currB;
+         
+         currA = nextA;
+         currB = nextB;
+      }
+   } // end 1st while()
+
+   while (currA != nullptr) {       // append all remaining nodes from listA
+      Node<T>* next = currA->getNext();
+
+      currA->setPrev(nullptr);
+      currA->setNext(nullptr);
+
+      if (mergedHead == nullptr) {        // merging to empty list
+         mergedHead = mergedTail = currA;
+      } 
+      else {
+         mergedTail->setNext(currA);
+         currA->setPrev(mergedTail);
+         
+         mergedTail = currA;
+      }
+
+      newCount++;
+      currA = next;
+   }
+
+   while (currB != nullptr) {      // append all remaining nodes from listB
+     Node<T>* next = currB->getNext();
+
+      currB->setPrev(nullptr);
+      currB->setNext(nullptr);
+
+      if (mergedHead == nullptr) {        // merging to empty list
+         mergedHead = mergedTail = currB;
+      } 
+      else {
+         mergedTail->setNext(currB);
+         currB->setPrev(mergedTail);
+         
+         mergedTail = currB;
+      }
+
+      newCount++;
+      currB = next;
+   }
+
+   // setting new head, tail, and size for listA
+   this->head = mergedHead;
+   this->tail = mergedTail;
+   this->count = newCount;
+
+   // clearing listB
+   listB->head = nullptr;
+   listB->tail = nullptr;
+   listB->count = 0;
 }
 
 template <typename T>
@@ -144,12 +268,12 @@ void LinkedList<T>::mergeSort(LinkedList<T>* topListPtr) {
    topListPtr->tail = nullptr;
    topListPtr->count = 0;
 
-   Node<T>* currLeft = left->head;
-   Node<T>* currRight = right->head;
+   //Node<T>* currLeft = left->head;
+   //Node<T>* currRight = right->head;
    
    // append all sorted nodes ...
-   topListPtr->mergeDicts(left);   
-   topListPtr->mergeDicts(right);
+   topListPtr->mergeLists(left);   
+   topListPtr->mergeLists(right);
    
    delete left;
    delete right;
@@ -206,33 +330,6 @@ void LinkedList<T>::push_back(Node<T>* addNode) {
    count++;
 }
 
-/*
-void LinkedList::operator+= (LinkedList& list2) {
-   // head of list2 now points to tail of [this]
-   if (list2.head == nullptr) { return; } // nothing to add
-
-   Node* list2Head = list2.head;
-
-   if (this->tail == nullptr) {
-      // this list is empty — adopt list2 directly
-      this->head = list2Head;
-      this->tail = list2.tail;
-   } else {
-      // link this list's tail to list2's head
-      this->tail->setNext(list2Head);
-      list2Head->setPrev(this->tail);
-      this->tail = list2.tail;
-   }
-
-   this->count += list2.size();
-
-   // clear list2 without deleting nodes
-   list2.setHead(nullptr);
-   list2.setTail(nullptr);
-   list2.count = 0;
-}
-*/
-
 // GETTERS
 template <typename T>
 int LinkedList<T>::size() const { return count; }
@@ -258,13 +355,13 @@ void LinkedList<T>::print(bool reverse) {
    if (reverse) {
       curr = this->tail;
       while (curr) {
-         cout << curr->getData() << endl;
+         cout << curr->getName().getName() << endl;
          curr = curr->prev;
       }
    }
    else {
       while (curr) {
-         cout << curr->getData() << endl;
+         cout << curr->getName().getName() << endl;
          curr = curr->next;
       }
    }
@@ -274,7 +371,7 @@ template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0) {
     Node<T>* curr = other.head;
     while (curr) {
-        push_back(curr->getData()); // Assuming Node has a proper copy mechanism
+        push_back(curr->getName()); // Assuming Node has a proper copy mechanism
         curr = curr->getNext();
     }
 }
@@ -290,7 +387,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 
     Node<T>* curr = rhs.head;
     while (curr) {
-        push_back(curr->getData()); // Assuming Node has a proper copy mechanism
+        push_back(curr->getName()); // Assuming Node has a proper copy mechanism
         curr = curr->getNext();
     }
 

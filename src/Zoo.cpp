@@ -23,11 +23,9 @@ void Zoo::addCustomer(const Customer& addCustomer) {
     this->customers->push_back(addCustomer);
 }
 
-bool Zoo::rmCustomer(const Customer& rmCustomer) {
-    // FIXME: remove only takes in Node
-    // this->customers->remove(rmCustomer);
+bool Zoo::rmCustomer(const Customer& rmCustomer) {   
     // FIXME: Should return if remove was succesful
-    return false;
+    return this->customers->remove(rmCustomer);;
 }
 
 void Zoo::addEmployee(const Employee& addEmployee) {
@@ -35,15 +33,25 @@ void Zoo::addEmployee(const Employee& addEmployee) {
 }
 
 bool Zoo::rmEmployee(const Employee& rmEmployee) {
-    // FIXME: remove only takes in Node
-    // this->employees->remove(rmEmployee);
     // FIXME: Should return if remove was succesful
-    return false;
+    return this->employees->remove(rmEmployee);;
+}
+
+LinkedList<Customer>* Zoo::getCustomers() const {
+    return this->customers;
+}
+
+LinkedList<Employee>* Zoo::getEmployees() const {
+    return this->employees;
 }
 
 void Zoo::addExhibit(const Exhibit& addExhibit) {
     // this->exhibits.push_back(addExhibit);
     cout << "Zoo::addExhibit not yet implemented" << endl;
+}
+
+void Zoo::sortCustomers() {
+    (this->customers)->mergeSort();
 }
 
 double Zoo::calcExpenses() {

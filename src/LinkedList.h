@@ -26,10 +26,11 @@ struct LinkedList {
       void push_back(Node<T>* addNode);
       Node<T>* insert_before(const T& value, Node<T>* knownNode);
 
+      void mergeLists(LinkedList<T>* listB);
       void mergeSort(LinkedList<T>* topListPtr);
       void mergeSort();
 
-      void remove(const T& rmName);
+      bool remove(const T& rmName);
       void remove(Node<T>* rmNode);
       void clear();
       

@@ -1,0 +1,81 @@
+** time in 24h format
+** all lowercase
+** parse with spaces
+
+Ex format: [time] [start text] [end text]
+-----------------------------------------------------------------------------------
+start text
+end text    | executed                          | cout
+-----------------------------------------------------------------------------------
+
+zoo
+opens       | new zoo                           | 00:00 zoo is open!
+closes      | delete zoo                        | 00:00 zoo is closed!
+profit      | zoo.calcProfit()                  | 00:00 zoo has made profitamt today
+
+customer [name] [age] [ticketnum] [tickettype]
+visits      | new customer; zoo.addCustomer()   | 00:00 customername is visiting zoo
+leaves      | zoo.rmCustomer()                  | 00:00 customername is leaving zoo
+
+employee [name]
+clocksin    | employee.clockIn()                | 00:00 job employeename has clocked in at exhibitname
+clocksout   | employee.clockOut()               | 00:00 job employeename has clocked out at exhibitname
+
+exhibit [name]
+opens       | new exhibit                       | 00:00 exhibitname has opened!
+closes      | delete exhibit                    | 00:00 exhibitname has closed!
+
+animal [name] [species]
+wakes       | new animal; exhibit.addAnimal()   | 00:00 species animalname has come out to play in exhibitname
+dies        | exhibit.rmAnimal()                | 00:00 species animalname has died in exhibitname
+sayshi      | animal.makeSound()                | cout handled in func
+
+------------------------------------------------------------------------------------
+
+Ex interaction:
+
+[input txt file]
+0800 zoo opens
+0800 exhibit penguins opens
+0800 animal penny penguin wakes
+0800 animal perry penguin wakes
+0800 exhibit hamsters opens
+0800 animal hammy hamster wakes
+0800 animal hammy hamster sayshi
+0800 animal harry hamster wakes
+0800 employee milo clocksin
+
+0900 customer elijah 20 0001 general visits
+0900 customer rosa 23 0002 general visits
+1300 customer rosa leaves
+1700 animal hammy hamster dies
+1700 customer elijah leaves
+
+1800 exhibit penguins closes
+1800 exhibit hamsters closes
+1800 employee milo clocksout
+1800 zoo profit
+1800 zoo closes
+
+[cout]
+8:00 zoo is open!
+8:00 penguins has opened!
+8:00 penguin penny has come out to play in penguins!
+8:00 penguin perry has come out to play in penguins!
+8:00 hamsters has opened!
+8:00 hamster hammy has come out to play in hamsters!
+8:00 hammy: squeak
+8:00 hamster harry has come out to play in hamsters!
+8:00 [job] milo has clocked in at [exhibit]            // get data from calling exhibit
+
+9:00 elijah is visiting zoo
+9:00 rosa is visiting zoo
+1:00 rosa is leaving zoo
+5:00 hamster hammy has died in hamsters
+5:00 elijah is leaving zoo
+
+6:00 penguins has closed!
+6:00 hamsters has closed!
+6:00 [job] milo has clocked out at [exhibit]            // get data from calling exhibit
+6:00 zoo has made [profitamt] today                     // get data from func
+6:00 zoo is closed!

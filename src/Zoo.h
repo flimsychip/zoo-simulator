@@ -23,7 +23,13 @@ struct Zoo {
         bool rmCustomer(const Customer& rmCustomer);
         void addEmployee(const Employee& addEmployee);
         bool rmEmployee(const Employee& rmEmployee);
+
         void addExhibit(const Exhibit& addExhibit);
+
+        void sortCustomers();
+
+        LinkedList<Customer>* getCustomers() const;
+        LinkedList<Employee>* getEmployees() const;
 
         double calcExpenses();
         double calcRevenue();
