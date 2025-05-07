@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-enum Species {
+enum Species { // TEST COMMENT
 	None,
 	Chimpanzee,
 	Red_Panda,
