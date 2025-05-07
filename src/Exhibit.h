@@ -8,9 +8,7 @@
 struct Exhibit {
     public:
         Exhibit();
-
         // FIXME: missing rule of three
-
         
         ~Exhibit();
 

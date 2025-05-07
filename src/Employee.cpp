@@ -43,21 +43,11 @@ void Employee::print() const {
          << ", startTime: " << startTime << endl;
 }
 
-// Getters
-Jobs Employee::getJob() const {
-    return this->job;
-}
-double Employee::getWage() const {
-    return this->hourlyWage;
-}
-time_t Employee::getStart() const {
-    return this->startTime;
-}
+// GETTERS
+Jobs Employee::getJob() const { return this->job; }
+double Employee::getWage() const { return this->hourlyWage; }
+time_t Employee::getStart() const { return this->startTime; }
 
-// Setters
-void Employee::setJob(Jobs job) {
-    this->job = job;
-}
-void Employee::setWage(double wage) {
-    this->hourlyWage = wage;
-}
+// SETTERS
+void Employee::setJob(Jobs job) { this->job = job; }
+void Employee::setWage(double wage) { this->hourlyWage = wage; }

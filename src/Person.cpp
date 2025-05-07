@@ -13,22 +13,10 @@ Person::Person(const std::string& newName, const int newAge) {
     this->age = newAge;
 }
 
-string Person::getName() const {
-    return this->name;
-}
+// GETTERS
+string Person::getName() const { return this->name; }
+int Person::getAge() const { return this->age; }
 
-int Person::getAge() const {
-    return this->age;
-}
-
-void Person::setName(string newName) {
-    this->name = newName;
-}
-
-void Person::setAge(int newAge) {
-    this->age = newAge;
-}
-
-void Person::print() const {
-    cout << "Name: " << this->name << ", Age: " << this->age << endl;
-}
+// SETTERS
+void Person::setName(string newName) { this->name = newName; }
+void Person::setAge(int newAge) { this->age = newAge; }

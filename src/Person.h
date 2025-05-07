@@ -23,7 +23,6 @@ struct Person {
         // SETTERS
         void setName(std::string newName);
         void setAge(int newAge);
-
 };
 
 #endif

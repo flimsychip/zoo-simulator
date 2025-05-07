@@ -19,8 +19,7 @@ struct Employee : public Person {
             std::string name, 
             int age = -1, 
             Jobs job = Unemployed, 
-            double wage = -1, 
-            time_t startTime = -1
+            double wage = -1
         );
 
         void clockIn(time_t startTime);
