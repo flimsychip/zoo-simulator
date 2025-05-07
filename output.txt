@@ -1,0 +1,6 @@
+Starting the test run...
+Created Animal: 0
+Created Customer: Shakira
+Calculated Zoo Expenses: -1.00
+Added customer 'Shakira' to the zoo.
+Testing Completed

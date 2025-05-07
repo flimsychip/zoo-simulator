@@ -7,25 +7,43 @@
 
 using namespace std;  
 
+void writeTestOutputToFile(const string& filename) {
+    ofstream outputFile(filename);
+
+    if (outputFile.is_open()) {
+        outputFile << "Starting the test run..." << endl;
+
+        Animal* animal = new Animal();
+        outputFile << "Created Animal: " << animal->getSpecies() << endl;
+        delete animal;
+        animal = nullptr;
+
+        Customer* customer = new Customer("Shakira");
+        outputFile << "Created Customer: " << customer->getName() << endl;
+
+        Zoo* zoo = new Zoo();
+        outputFile << "Calculated Zoo Expenses: " << fixed << setprecision(2) << zoo->calcExpenses() << endl;
+        zoo->addCustomer(*customer);
+        outputFile << "Added customer '" << customer->getName() << "' to the zoo." << endl;
+        delete zoo;
+        zoo = nullptr;
+        delete customer;
+        customer = nullptr;
+
+        outputFile << "Testing Completed" << endl;
+        outputFile.close();
+        cout << "Results written to " << filename << endl;
+    } else {
+        cerr << "Unable to open " << filename << " for writing." << endl;
+    }
+}
+
 int main() {     
     cout << "Testing..." << endl;
 
-    Animal* animal = new Animal();     
-    cout << animal->getSpecies() << endl;     
-    delete animal;     
-    animal = nullptr;      
+    // Call the function to write output to a file
+    writeTestOutputToFile("output.txt");
 
-    Customer* customer = new Customer("Shakira");     
-    cout << customer->getName() << endl;     
-
-    Zoo* zoo = new Zoo();     
-    cout << zoo->calcExpenses() << endl;     // Is this be pushing back deep copies?     
-    zoo->addCustomer(*customer);     
-    delete zoo;     
-    zoo = nullptr;   
-    delete customer;     
-    customer = nullptr;      
-
-    cout << "Testing Completed" << endl;     
-    return 0; 
+    cout << "Testing Completed" << endl;
+    return 0;
 }
