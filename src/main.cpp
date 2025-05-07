@@ -10,36 +10,7 @@ using namespace std;
 enum ZooInfo {QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO};
 
 void welcomeMsg();
-
-void writeTestOutputToFile(const string& filename) {
-    ofstream outputFile(filename);
-
-    if (outputFile.is_open()) {
-        outputFile << "Starting the test run..." << endl;
-
-        Animal* animal = new Animal();
-        outputFile << "Created Animal: " << animal->getSpecies() << endl;
-        delete animal;
-        animal = nullptr;
-
-        Customer* customer = new Customer("Shakira");
-        outputFile << "Created Customer: " << customer->getName() << endl;
-
-        Zoo* zoo = new Zoo();
-        outputFile << "Calculated Zoo Expenses: " << fixed << setprecision(2) << zoo->calcExpenses() << endl;
-        zoo->addCustomer(*customer);
-        outputFile << "Added customer '" << customer->getName() << "' to the zoo." << endl;
-        delete zoo;
-        zoo = nullptr;
-        
-
-        outputFile << "Testing Completed" << endl;
-        outputFile.close();
-        cout << "Results written to " << filename << endl;
-    } else {
-        cerr << "Unable to open " << filename << " for writing." << endl;
-    }
-}
+void writeTestOutputToFile(const string& filename);
 
 int main() {     
     cout << "Testing..." << endl;
@@ -82,10 +53,11 @@ int main() {
     // delete animal2;
     // delete animal3;
     // delete customer;     
+    // Call the function to write output to a file
+    writeTestOutputToFile("output.txt");
     
-
-    cout << "Testing Completed" << endl;     
-    return 0; 
+    cout << "Testing Completed" << endl;
+    return 0;
 }
 
 void welcomeMsg() {
@@ -102,11 +74,33 @@ void welcomeMsg() {
     cout << EMPLOYEES <<") View Employee info" << endl; 
 
 }
-    // Call the function to write output to a file
-    writeTestOutputToFile("output.txt");
     
+void writeTestOutputToFile(const string& filename) {
+    ofstream outputFile(filename);
 
+    if (outputFile.is_open()) {
+        outputFile << "Starting the test run..." << endl;
 
-    cout << "Testing Completed" << endl;
-    return 0;
+        Animal* animal = new Animal();
+        outputFile << "Created Animal: " << animal->getSpecies() << endl;
+        delete animal;
+        animal = nullptr;
+
+        Customer* customer = new Customer("Shakira");
+        outputFile << "Created Customer: " << customer->getName() << endl;
+
+        Zoo* zoo = new Zoo();
+        outputFile << "Calculated Zoo Expenses: " << fixed << setprecision(2) << zoo->calcExpenses() << endl;
+        zoo->addCustomer(*customer);
+        outputFile << "Added customer '" << customer->getName() << "' to the zoo." << endl;
+        delete zoo;
+        zoo = nullptr;
+        
+
+        outputFile << "Testing Completed" << endl;
+        outputFile.close();
+        cout << "Results written to " << filename << endl;
+    } else {
+        cerr << "Unable to open " << filename << " for writing." << endl;
+    }
 }

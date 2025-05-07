@@ -23,6 +23,14 @@ Species Animal::getSpecies() const {
     return this->species;
 }
 
+string Animal::getName() const {
+    return this->name;
+}
+
 void Animal::setSpecies(Species toSpecies) {
     this->species = toSpecies;
+}
+
+void Animal::setName(string toName) {
+    this->name = toName;
 }

@@ -32,11 +32,11 @@ struct Animal {
 
 		// Setters
 		void setSpecies(Species toSpecies);
-		//void setName(std::string name);
+		void setName(std::string name);
 
 	private:
 		Species species;
-		//std::string name;
+		std::string name;
 };
 
 #endif
