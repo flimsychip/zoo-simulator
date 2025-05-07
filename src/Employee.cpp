@@ -6,19 +6,13 @@
 using namespace std;
 
 Employee::Employee() {
-    // FIXME: should call Person constructor?
-    this->name = "";
-    this->age = -1;
     this->job = Unemployed;
     this->hourlyWage = -1;
     this->startTime = 0;
     this->clockedInTime  = 0;
 }
 
-Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime) {
-    // FIXME: should call Person constructor?
-    this->name = name;
-    this->age = age;
+Employee::Employee(string name, int age, Jobs job, double wage, time_t startTime) : Person(name, age) {
     this->job = job;
     this->hourlyWage = wage;
     this->startTime = startTime;
@@ -44,6 +38,13 @@ time_t Employee::clockOut(time_t endTime) {
     return timeWorked;
 }
 
+void Employee::print() const {
+    cout << "Name: " << name
+         << ", Age: " << age
+         << ", Job: " << job
+         << ", Wage: " << hourlyWage
+         << ", startTime: " << startTime << endl;
+}
 
 // Getters
 Jobs Employee::getJob() const {

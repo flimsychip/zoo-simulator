@@ -3,6 +3,16 @@
 
 using namespace std;
 
+Person::Person() {
+    this->name = "N/A";
+    this->age = -1;
+}
+
+Person::Person(const std::string& newName, const int newAge) {
+    this->name = newName;
+    this->age = newAge;
+}
+
 string Person::getName() const {
     return this->name;
 }
