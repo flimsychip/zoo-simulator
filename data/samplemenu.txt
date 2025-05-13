@@ -24,7 +24,7 @@ Animals Menu:
 
 
 //SAMPLE OF CONSOLE 
-// INPUT 2, 1, 3, 1
+// INPUT 2, 1,2 ,1,3, 1
 
 -------------------
 // maybe all the tickets will be written to somewhere and can calcualte the total amount made/ tickets bought 
@@ -40,16 +40,40 @@ Zoo Menu:
 -------------------
 1. monkey exhibit
 2. penguin cove 
-3. 
-
-
-
+3. carnivore cave 
+4. bird house
+5. jaguar heights 
+-------------------
+Zoo Menu:
+1. List exhibits
+2. enter exhibits (Exhibit menu)
+3. leave Zoo (exits program )
 -------------------
 Exhibit Menu: 
 1. List Animals 
 2. Sort Animals
 3. Get Animals (Will lead to animal menu)
 4. Leave Exhibit (Zoo Menu)
+-------------------
+0. None
+1. Chimpanzees
+2. Red Pandas
+3. Otters
+4. Wolves
+5. Bears
+6. Lions
+7. Elephants 
+8. Penguins
+9. Toucans
+10. Hamsters
+-------------------
+Exhibit Menu: 
+1. List Animals 
+2. Sort Animals
+3. Get Animals (Will lead to animal menu)
+4. Leave Exhibit (Zoo Menu)
+-------------------
+type a number 1-10 to select animal (0 to go back)
 -------------------
 Animals Menu:
 1. list info 
