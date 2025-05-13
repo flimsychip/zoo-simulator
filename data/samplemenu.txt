@@ -8,7 +8,7 @@
 Zoo Menu:
 1. List exhibits
 2. enter exhibits (Exhibit menu)
-3. leave Zoo (exits program )
+3. leave Zoo (exits program)
 -------------------
 Exhibit Menu: 
 1. List Animals 
