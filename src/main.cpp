@@ -7,15 +7,38 @@
 
 using namespace std; 
 
-enum ZooInfo {QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO};
+enum ZooInfo { QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO };
+enum ZooMenu { LEAVE_ZOO, LIST_EXS, ENTER, SORT };
+enum ExhibitMenu { LEAVE_EX, LIST_ANIMALS, INTERACT };
+enum AnimalMenu { LEAVE_ANIMAL, INFO, FEED, AGGRO };
 
 void welcomeMsg();
+int menuChoice();
+int exhibitChoice();
+int animalChoice();
 void writeTestOutputToFile(const string& filename);
 
 int main() {     
-    cout << "Testing..." << endl;
+    int choice = menuChoice();
+    string temp;
 
-    welcomeMsg();
+    switch(choice) {
+        case LIST_EXS:
+        case ENTER:
+            cout << "Enter name of exhibit: ";
+            cin >> temp;
+            // validate exhibit exists with search func
+            // call exhibitChoice()
+            // do stuff with choice
+            break;
+        case SORT:
+        default:
+            break;
+    } while(choice != LEAVE_ZOO);
+
+/*    cout << "Testing..." << endl;
+
+    // welcomeMsg();
 
     Zoo* zoo = new Zoo();
     Exhibit* testCage = new Exhibit;
@@ -60,6 +83,7 @@ int main() {
     
     cout << "Testing Completed" << endl;
     return 0;
+*/
 }
 
 void welcomeMsg() {
@@ -75,6 +99,62 @@ void welcomeMsg() {
     cout << CUSTOMERS <<") View Customer info" << endl;
     cout << EMPLOYEES <<") View Employee info" << endl; 
 
+}
+
+int menuChoice() {
+    int choice;
+    do {
+        cout << "--------------------------------------------" << endl;
+        cout << "Zoo Menu:" << endl;
+        cout << "(" << LEAVE_ZOO << ") Leave zoo" << endl;
+        cout << "(" << LIST_EXS << ") List exhibits" << endl;
+        cout << "(" << ENTER << ") Enter an exhibit" << endl;
+        cout << "(" << SORT << ") Sort exhibits" << endl;
+        cout << "Enter an option: ";
+        
+        cin >> choice;
+        if(choice < LEAVE_ZOO || choice > SORT) {
+           cout << "Error! Input must be a number between " << LEAVE_ZOO << " and " << SORT << "." << endl;
+        }
+     } while(choice < LEAVE_ZOO || choice > SORT);
+    return choice;
+}
+
+int exhibitChoice() {
+    int choice;
+    do {
+        cout << "--------------------------------------------" << endl;
+        cout << "Exhibit Menu:" << endl;
+        cout << "(" << LEAVE_EX << ") Leave exhibit" << endl;
+        cout << "(" << LIST_ANIMALS << ") List animals in exhibit" << endl;
+        cout << "(" << INTERACT << ") Interact with animal" << endl;
+        cout << "Enter an option: ";
+        
+        cin >> choice;
+        if(choice < LEAVE_EX || choice > INTERACT) {
+           cout << "Error! Input must be a number between " << LEAVE_EX << " and " << INTERACT << "." << endl;
+        }
+     } while(choice < LEAVE_EX || choice > INTERACT);
+    return choice;
+}
+
+int animalChoice() {
+    int choice;
+    do {
+        cout << "--------------------------------------------" << endl;
+        cout << "Animal Menu:" << endl;
+        cout << "(" << LEAVE_ANIMAL << ") Let animal rest" << endl;
+        cout << "(" << INFO << ") View info plaque" << endl;
+        cout << "(" << FEED << ") Feed" << endl;
+        cout << "(" << AGGRO << ") Provoke" << endl;
+        cout << "Enter an option: ";
+        
+        cin >> choice;
+        if(choice < LEAVE_ANIMAL || choice > AGGRO) {
+           cout << "Error! Input must be a number between " << LEAVE_ANIMAL << " and " << AGGRO << "." << endl;
+        }
+     } while(choice < LEAVE_ANIMAL || choice > AGGRO);
+    return choice;
 }
     
 void writeTestOutputToFile(const string& filename) {
