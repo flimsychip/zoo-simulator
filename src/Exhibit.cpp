@@ -11,11 +11,9 @@ Exhibit::Exhibit() {
     this->employees = new LinkedList<Employee>();
 }
 
-Exhibit::Exhibit(
-    double cost, 
-    string name, 
-    LinkedList<Animal> *animals, 
-    LinkedList<Employee> *employees)
+Exhibit::Exhibit(double cost, string name, 
+                 LinkedList<Animal> *animals, 
+                 LinkedList<Employee> *employees)
 {
     this->dailyCost = cost;
     this->name = name;
@@ -32,6 +30,17 @@ Exhibit::Exhibit(const Exhibit &copyExhibit) {
 
 Exhibit::~Exhibit() {
     this->clear();
+}
+
+Exhibit& Exhibit::operator=(const Exhibit &rhs) {
+    if (this == &rhs) { return *this; }
+
+    this->clear();
+
+    this->animals = rhs.animals;
+    this->employees = rhs.employees;
+
+    return *this;
 }
 
 void Exhibit::clear() {
@@ -63,15 +72,9 @@ bool Exhibit::rmCaretaker(const Employee& caretaker) {
     return this->employees->remove(caretaker);
 }
 
-Exhibit& Exhibit::operator=(const Exhibit &rhs) {
-    if (this == &rhs) { return *this; }
-
-    this->clear();
-
-    this->animals = rhs.animals;
-    this->employees = rhs.employees;
-
-    return *this;
+void Exhibit::sort() {
+    this->animals->mergeSort();
+    this->employees->mergeSort();
 }
 
 // GETTERS

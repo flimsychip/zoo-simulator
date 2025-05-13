@@ -37,7 +37,7 @@ struct Exhibit {
         LinkedList<Animal>* getAnimals();
         LinkedList<Employee>* getEmployees();
 
-        //void sort();
+        void sort();
 
     private:
         double dailyCost;

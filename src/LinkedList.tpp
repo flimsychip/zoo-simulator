@@ -19,6 +19,34 @@ LinkedList<T>::LinkedList(const T& value) {
 }
 
 template <typename T>
+LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0) {
+    Node<T>* curr = other.head;
+    while (curr) {
+        push_back(curr); // Assuming Node has a proper copy mechanism
+        curr = curr->getNext();
+    }
+}
+
+// Assignment Operator
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
+    if (this == &rhs) {
+        return *this; // Handle self-assignment
+    }
+
+    clear(); // Clear existing data
+
+    Node<T>* curr = rhs.head;
+    while (curr) {
+        push_back(curr); // Assuming Node has a proper copy mechanism
+        curr = curr->getNext();
+    }
+
+    return *this;
+}
+
+
+template <typename T>
 LinkedList<T>::~LinkedList() {
     Node<T>* curr = head;
    
@@ -267,9 +295,6 @@ void LinkedList<T>::mergeSort(LinkedList<T>* topListPtr) {
    topListPtr->head = nullptr;
    topListPtr->tail = nullptr;
    topListPtr->count = 0;
-
-   //Node<T>* currLeft = left->head;
-   //Node<T>* currRight = right->head;
    
    // append all sorted nodes ...
    topListPtr->mergeLists(left);   
@@ -338,6 +363,20 @@ Node<T>* LinkedList<T>::getHead() const { return head; }
 template <typename T>
 Node<T>* LinkedList<T>::getTail() const { return tail; }
 
+template <typename T>
+Node<T>* LinkedList<T>::search(const T& value) const {
+   Node<T>* curr = this->head;
+   
+   while (curr) {
+      if (curr->getData().getName() == value.getName()) {
+         return curr;
+      }
+      curr = curr->getNext();
+   }
+   
+   return nullptr;
+}
+
 // SETTERS
 template <typename T>
 void LinkedList<T>::setHead (Node<T>* newHead) {
@@ -365,31 +404,4 @@ void LinkedList<T>::print(bool reverse) {
          curr = curr->next;
       }
    }
-}
-
-template <typename T>
-LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0) {
-    Node<T>* curr = other.head;
-    while (curr) {
-        push_back(curr); // Assuming Node has a proper copy mechanism
-        curr = curr->getNext();
-    }
-}
-
-// Assignment Operator
-template <typename T>
-LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
-    if (this == &rhs) {
-        return *this; // Handle self-assignment
-    }
-
-    clear(); // Clear existing data
-
-    Node<T>* curr = rhs.head;
-    while (curr) {
-        push_back(curr); // Assuming Node has a proper copy mechanism
-        curr = curr->getNext();
-    }
-
-    return *this;
 }
