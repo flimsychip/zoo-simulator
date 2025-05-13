@@ -1,0 +1,58 @@
+-------------------
+// maybe all the tickets will be written to somewhere and can calcualte the total amount made/ tickets bought 
+//which ticket? (all will lead to zoo menu ) 
+1. child - $25 
+2. Senior - $30
+3. General - $40
+-------------------
+Zoo Menu:
+1. List exhibits
+2. enter exhibits (Exhibit menu)
+3. leave Zoo (exits program )
+-------------------
+Exhibit Menu: 
+1. List Animals 
+2. Sort Animals
+3. Get Animals (Will lead to animal menu)
+4. Leave Exhibit (Zoo Menu)
+-------------------
+Animals Menu:
+1. list info 
+2. Feed 
+3. Aggro 
+4. exit (will go back to exhinit menu)
+
+
+//SAMPLE OF CONSOLE 
+// INPUT 2, 1, 3, 1
+
+-------------------
+// maybe all the tickets will be written to somewhere and can calcualte the total amount made/ tickets bought 
+//which ticket? (all will lead to zoo menu ) 
+1. child - $25 
+2. Senior - $30
+3. General - $40
+-------------------
+Zoo Menu:
+1. List exhibits
+2. enter exhibits (Exhibit menu)
+3. leave Zoo (exits program )
+-------------------
+1. monkey exhibit
+2. penguin cove 
+3. 
+
+
+
+-------------------
+Exhibit Menu: 
+1. List Animals 
+2. Sort Animals
+3. Get Animals (Will lead to animal menu)
+4. Leave Exhibit (Zoo Menu)
+-------------------
+Animals Menu:
+1. list info 
+2. Feed 
+3. Aggro 
+4. exit (will go back to exhinit menu)
