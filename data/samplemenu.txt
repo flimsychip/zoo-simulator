@@ -1,6 +1,6 @@
 -------------------
 // maybe all the tickets will be written to somewhere and can calcualte the total amount made/ tickets bought 
-//which ticket? (all will lead to zoo menu ) 
+// which ticket? (all will lead to zoo menu) 
 1. child - $25 
 2. Senior - $30
 3. General - $40
@@ -28,7 +28,7 @@ Animals Menu:
 
 -------------------
 // maybe all the tickets will be written to somewhere and can calcualte the total amount made/ tickets bought 
-//which ticket? (all will lead to zoo menu ) 
+//which ticket? (all will lead to zoo menu) 
 1. child - $25 
 2. Senior - $30
 3. General - $40
@@ -36,7 +36,7 @@ Animals Menu:
 Zoo Menu:
 1. List exhibits
 2. enter exhibits (Exhibit menu)
-3. leave Zoo (exits program )
+3. leave Zoo (exits program)
 -------------------
 1. monkey exhibit
 2. penguin cove 
@@ -47,7 +47,7 @@ Zoo Menu:
 Zoo Menu:
 1. List exhibits
 2. enter exhibits (Exhibit menu)
-3. leave Zoo (exits program )
+3. leave Zoo (exits program)
 -------------------
 Exhibit Menu: 
 1. List Animals 
