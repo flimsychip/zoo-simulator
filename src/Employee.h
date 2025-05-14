@@ -41,6 +41,9 @@ struct Employee : public Person {
         double hourlyWage;
         time_t startTime;
 };
+
+std::ostream& operator<<(std::ostream& os, const Employee& toPrint);
+
 bool operator==(const Employee& lhs, const Employee& rhs);
 bool operator!=(const Employee& lhs, const Employee& rhs);
 bool operator<(const Employee& lhs, const Employee& rhs);

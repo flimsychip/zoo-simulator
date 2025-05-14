@@ -29,6 +29,7 @@ struct Animal {
 		// Getters
 		Species getSpecies() const;
 		std::string getName() const;
+		void print();
 
 		// Setters
 		void setSpecies(Species toSpecies);
@@ -39,6 +40,7 @@ struct Animal {
 		std::string name;
 };
 
+std::ostream& operator<<(std::ostream& os, const Animal& toPrint);
 
 bool operator==(const Animal& lhs, const Animal& rhs);
 bool operator!=(const Animal& lhs, const Animal& rhs);

@@ -34,6 +34,19 @@ void Animal::setSpecies(Species toSpecies) {
 void Animal::setName(string toName) {
     this->name = toName;
 }
+
+void Animal::print() {
+    cout << "Species: " << this->getSpecies() << endl;
+    cout << "Name: " << this->getName() << endl;
+}
+
+std::ostream& operator<<(std::ostream& os, const Animal& toPrint) {
+    os << "Species: " << toPrint.getSpecies() << "\n";
+    os << "Name: " << toPrint.getName();
+
+    return os;
+}
+
 // Operator overloads
 bool operator==(const Animal& lhs, const Animal& rhs) {
     return (lhs.getSpecies() == rhs.getSpecies() && lhs.getName() == rhs.getName());
