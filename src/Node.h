@@ -18,6 +18,7 @@ struct Node {
    public:
       Node();
       Node(const T& value);
+      Node(const Node<T>& copyNode);
       
       void setData(const T& value);
       void setNext(Node<T>* node);
@@ -49,6 +50,9 @@ bool operator<=(const Node<T>& lhs, const Node<T>& rhs);
 
 template <typename T>
 bool operator>=(const Node<T>& lhs, const Node<T>& rhs);
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Node<T>& toPrint);
 
 #include "Node.tpp"
 #endif

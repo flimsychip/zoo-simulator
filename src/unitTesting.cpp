@@ -59,9 +59,14 @@ void testNodeTypes() {
     imp1->print();
 
     Node<Employee>* testNode = new Node<Employee> ();
-    cout << "Node data: " << testNode->getData() << endl;
+    cout << "Node data: " << *testNode << endl;
     cout << "Node next: " << testNode->getNext() << endl;
     cout << "Node prev: " << testNode->getPrev() << endl;
+
+    Node<Animal>* testNode2 = new Node<Animal>;
+    cout << "Node data: " << testNode2->getData() << endl;
+    cout << "Node next: " << testNode2->getNext() << endl;
+    cout << "Node prev: " << testNode2->getPrev() << endl;
 
     delete testNode;
 }

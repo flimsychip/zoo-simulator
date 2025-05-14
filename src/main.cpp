@@ -1,6 +1,7 @@
 #include "Animal.h" 
 #include "Customer.h" 
 #include "Zoo.h" 
+#include "unitTesting.h"
 #include <iostream> 
 #include <iomanip> // make output pretty 
 #include <fstream>
@@ -51,8 +52,13 @@ int main() {
     string exName;
     string animalName;
 
-    Node<Exhibit>* tempExPtr;
-    Node<Animal>* tempAnimalPtr;
+    Node<Animal> b;
+    Node<Animal>* c = new Node<Animal>;
+
+    Node<Exhibit>* tempExPtr = nullptr;
+    Node<Animal>* tempAnimalPtr = nullptr;
+
+    testNodeTypes();
 
     // WE WILL CLEAN THIS UP AND PUT EVERYTHING IN FUNCTIONS :sob::skull:
     do {
@@ -81,11 +87,21 @@ int main() {
                             case INFO_EX:
                                 tempExPtr->getData().print(); // REPLACE WITH OVERLOADED COUT FOR CONSISTENCY
                                 break;
-                            // SEGFAULT HAPPENING HERE -- list_animals and interact, probably tempexptr->getData()
+                            // SEGFAULT HAPPENING HERE -- list_animals and interact
                             case LIST_ANIMALS:
                                 cout << "List of animals:" << endl;
-                                tempAnimalPtr = tempExPtr->getData().getAnimals()->getHead();
+                                tempAnimalPtr = (tempExPtr->getData().getAnimals())->getHead();
                                 cout << "after getanimals get head" << endl;
+                                // cout << "tempAnimalPtr address is " << tempAnimalPtr << endl;
+                                cout << "thing to be assigned is " << (tempExPtr->getData().getAnimals()->getHead())->getData() << endl;
+                                // cout << "c get data prints " << c->getData() << endl;
+                                cout << "tempAnimalPtr.getData is " << tempAnimalPtr->getData() << endl;
+                                // cout << "*tempAnimalPtr is " << *tempAnimalPtr << endl;
+                                // cout << "c address is " << c << ". now assigning tempAnimalPtr to c..." << endl;
+                                // c = tempAnimalPtr;
+                                // cout << "after c";
+                                // b = *tempAnimalPtr;
+                                // cout << "after b";
                                 while(tempAnimalPtr != nullptr) {
                                     Animal a = tempAnimalPtr->getData();
                                     cout << "after a" << endl;
