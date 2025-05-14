@@ -22,7 +22,7 @@ template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), count(0) {
     Node<T>* curr = other.head;
     while (curr) {
-        push_back(curr); // Assuming Node has a proper copy mechanism
+        push_back(curr->getData()); // Assuming Node has a proper copy mechanism
         curr = curr->getNext();
     }
 }
@@ -38,7 +38,7 @@ LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& rhs) {
 
     Node<T>* curr = rhs.head;
     while (curr) {
-        push_back(curr); // Assuming Node has a proper copy mechanism
+        push_back(curr->getData()); // Assuming Node has a proper copy mechanism
         curr = curr->getNext();
     }
 
@@ -366,9 +366,32 @@ Node<T>* LinkedList<T>::getTail() const { return tail; }
 template <typename T>
 Node<T>* LinkedList<T>::search(const T& value) const {
    Node<T>* curr = this->head;
+   if(curr == nullptr) {
+      cout << "list empty" << endl;
+      return nullptr;
+   }
    
    while (curr) {
       if (curr->getData().getName() == value.getName()) {
+         return curr;
+      }
+      curr = curr->getNext();
+   }
+   
+   return nullptr;
+}
+
+// search using name (str)
+template <typename T>
+Node<T>* LinkedList<T>::search(const string str) const {
+   Node<T>* curr = this->head;
+   if(curr == nullptr) {
+      cout << "list empty" << endl;
+      return nullptr;
+   }
+   
+   while (curr != nullptr) {
+      if (curr->getData().getName() == str) {
          return curr;
       }
       curr = curr->getNext();

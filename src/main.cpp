@@ -10,72 +10,120 @@ using namespace std;
 
 enum ZooInfo { QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO };
 enum ZooMenu { LEAVE_ZOO, LIST_EXS, ENTER, SORT };
-enum ExhibitMenu { LEAVE_EX, LIST_ANIMALS, INTERACT };
-enum AnimalMenu { LEAVE_ANIMAL, INFO, FEED, AGGRO };
+enum ExhibitMenu { LEAVE_EX, INFO_EX, LIST_ANIMALS, INTERACT };
+enum AnimalMenu { LEAVE_ANIMAL, INFO_ANIMAL, FEED, AGGRO };
 
 void welcomeMsg();
 int zooMenu();
-int exhibitMenu();
-int animalMenu();
+int exhibitMenu(string name);
+int animalMenu(string name);
 void writeTestOutputToFile(const string& filename);
 
 int main() { 
+    // THIS WILL BE REPLACED WITH READING IN FROM JSON
     Zoo* testZoo = new Zoo;
+    // Exhibit* testExhibit = new Exhibit(100.00, "party city (the whole gang is here)", nullptr, nullptr);
     Exhibit* testExhibit = new Exhibit;
-    Animal* testAnimal = new Animal;
-    testAnimal->setName("hammy");
-    testExhibit->setName("hamsters");
+    testExhibit->setName("party");
+    Animal* testAni1 = new Animal;
+    testAni1->setName("hammy");
+    // Animal* testAni1 = new Animal(Hamster, "hammy");
+    // Animal* testAni2 = new Animal(Chimpanzee, "cody");
+    // Animal* testAni3 = new Animal(Otter, "oscar");
+    // Animal* testAni4 = new Animal(Wolf, "william");
+    // Animal* testAni5 = new Animal(Bear, "barry");
+    // Animal* testAni6 = new Animal(Lion, "larry");
+    // Animal* testAni7 = new Animal(Toucan, "thomas");
+    // Animal* testAni8 = new Animal(Gorilla, "gary");
+    testExhibit->addAnimal(*testAni1);
+    // testExhibit->addAnimal(*testAni2);
+    // testExhibit->addAnimal(*testAni3);
+    // testExhibit->addAnimal(*testAni4);
+    // testExhibit->addAnimal(*testAni5);
+    // testExhibit->addAnimal(*testAni6);
+    // testExhibit->addAnimal(*testAni7);
+    // testExhibit->addAnimal(*testAni8);
     testZoo->addExhibit(*testExhibit);
     
     int choice;
     int exChoice;
     int animalChoice;
-    string temp;
+    string exName;
+    string animalName;
 
-    Node<Exhibit>* tempEx;
+    Node<Exhibit>* tempExPtr;
+    Node<Animal>* tempAnimalPtr;
 
+    // WE WILL CLEAN THIS UP AND PUT EVERYTHING IN FUNCTIONS :sob::skull:
     do {
         choice = zooMenu();
         switch(choice) {
             case LIST_EXS:
                 cout << "List of exhibits:" << endl;
-                tempEx = testZoo->getExhibits()->getHead();
-                while(tempEx != nullptr) {
-                    cout << "- " << tempEx->getData().getName() << endl;
-                    tempEx = tempEx->getNext();
+                tempExPtr = testZoo->getExhibits()->getHead();
+                while(tempExPtr != nullptr) {
+                    cout << "- " << tempExPtr->getData().getName() << endl;
+                    tempExPtr = tempExPtr->getNext();
                 }
                 break;
             case ENTER:
                 cout << "Enter name of exhibit: ";
-                cin >> temp;
-                // FIXME: validate exhibit exists with search func
-                do {
-                    exChoice = exhibitMenu();
-                    switch(exChoice) {
-                        case LIST_ANIMALS:
-                            // stuff
-                            break;
-                        case INTERACT:
-                            do {
-                                animalChoice = animalMenu();
-                                switch(animalChoice) {
-                                    case INFO:
-                                        // stuff
-                                        break;
-                                    case FEED:
-                                        // stuff
-                                        break;
-                                    case AGGRO:
-                                        // stuff
-                                        break;
-                                } 
-                            } while(animalChoice != LEAVE_ANIMAL);
-                            break;
-                    }
-                } while(exChoice != LEAVE_EX);
+                cin.ignore(10000, '\n');
+                getline(cin, exName);
+                tempExPtr = testZoo->getExhibits()->search(exName);
+                if(tempExPtr == nullptr) {
+                    cout << "Exhibit does not exist!" << endl;
+                } else {
+                    do {
+                        exChoice = exhibitMenu(tempExPtr->getData().getName());
+                        // SWITCH HERE
+                        switch(exChoice) {
+                            case INFO_EX:
+                                tempExPtr->getData().print(); // REPLACE WITH OVERLOADED COUT FOR CONSISTENCY
+                                break;
+                            // SEGFAULT HAPPENING HERE -- list_animals and interact, probably tempexptr->getData()
+                            case LIST_ANIMALS:
+                                cout << "List of animals:" << endl;
+                                tempAnimalPtr = tempExPtr->getData().getAnimals()->getHead();
+                                cout << "after getanimals get head" << endl;
+                                while(tempAnimalPtr != nullptr) {
+                                    Animal a = tempAnimalPtr->getData();
+                                    cout << "after a" << endl;
+                                    cout << "- " << a.getName() << " the " << a.getSpeciesStr() << endl;
+                                    tempAnimalPtr = tempAnimalPtr->getNext();
+                                }
+                                break;
+                            case INTERACT:
+                                cout << "Enter name of animal: ";
+                                cin >> animalName;
+                                tempAnimalPtr = tempExPtr->getData().getAnimals()->search(animalName);
+                                if(tempAnimalPtr == nullptr) {
+                                    cout << "There is no animal named that!" << endl;
+                                } else {
+                                    do {
+                                        animalChoice = animalMenu(tempAnimalPtr->getData().getName());
+                                        // SWITCH HERE
+                                        switch(animalChoice) {
+                                            case INFO_ANIMAL:
+                                                cout << tempAnimalPtr->getData();
+                                                break;
+                                            case FEED:
+                                                tempAnimalPtr->getData().eat();
+                                                break;
+                                            case AGGRO:
+                                                tempAnimalPtr->getData().makeSound();
+                                                break;
+                                        } 
+                                    } while(animalChoice != LEAVE_ANIMAL);
+                                }
+                                break;
+                        }
+                    } while(exChoice != LEAVE_EX);
+                }
                 break;
             case SORT:
-                // stuff
+                // IMPLEMENT
+                cout << "sort not yet implemented" << endl;
                 break;
         }
     } while(choice != LEAVE_ZOO);
@@ -164,12 +212,13 @@ int zooMenu() {
     return choice;
 }
 
-int exhibitMenu() {
+int exhibitMenu(string name) {
     int choice;
     do {
         cout << "\n--------------------------------------------" << endl;
-        cout << "Exhibit Menu:" << endl;
+        cout << "Exhibit Menu: "  << name << endl;
         cout << "(" << LEAVE_EX << ") Leave exhibit" << endl;
+        cout << "(" << INFO_EX << ") View info plaque" << endl;
         cout << "(" << LIST_ANIMALS << ") List animals in exhibit" << endl;
         cout << "(" << INTERACT << ") Interact with animal" << endl;
         cout << "Enter an option: ";
@@ -182,13 +231,13 @@ int exhibitMenu() {
     return choice;
 }
 
-int animalMenu() {
+int animalMenu(string name) {
     int choice;
     do {
         cout << "\n--------------------------------------------" << endl;
-        cout << "Animal Menu:" << endl;
+        cout << "Animal Menu: " << name << endl;
         cout << "(" << LEAVE_ANIMAL << ") Let animal rest" << endl;
-        cout << "(" << INFO << ") View info plaque" << endl;
+        cout << "(" << INFO_ANIMAL << ") View info plaque" << endl;
         cout << "(" << FEED << ") Feed" << endl;
         cout << "(" << AGGRO << ") Provoke" << endl;
         cout << "Enter an option: ";

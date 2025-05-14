@@ -40,6 +40,7 @@ struct LinkedList {
       Node<T>* getTail() const;
 
       Node<T>* search(const T& value) const; // linear search
+      Node<T>* search(const string str) const;
 
       // Setters
       void setTail(Node<T> *newTail);
