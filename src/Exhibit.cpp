@@ -84,3 +84,13 @@ string Exhibit::getName() const { return this->name; }
 // SETTERS
 void Exhibit::setDailyCost(double newCost) { this->dailyCost = newCost; }
 void Exhibit::setName(string newName) { this->name = newName; }
+
+void Exhibit::print() {
+    cout << "Exhibit Name: " << this->getName() << endl;
+    cout << "Daily Cost: $" << this->getDailyCost() << endl;
+    cout << "Animals in Exhibit: " << endl;
+    
+    this->animals->print();
+    cout << "Employees in Exhibit: " << endl;
+    this->employees->print();
+}

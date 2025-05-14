@@ -53,11 +53,41 @@ void testingPriv() {
     delete zoo;
 }
 
-void testNodeBasic();
-void testLinkedListBasic ();
-void testNodeCompOperators ();
-void testLinkedListCompOperator ();
+void testNodeTypes() {
+    cout << "Testing Node for Employee/Animal/Customer/Exhibit..." << endl;
+    Employee* imp1 = new Employee("joe shmoe", 18, Janitor, 7.50);
+    imp1->print();
+
+    Node<Employee>* testNode = new Node<Employee> ();
+    cout << "Node data: " << testNode->getData() << endl;
+    cout << "Node next: " << testNode->getNext() << endl;
+    cout << "Node prev: " << testNode->getPrev() << endl;
+
+    delete testNode;
+}
+void testLinkedListBasic() {
+    cout << "Testing LinkedList..." << endl;
+    LinkedList<Employee>* testList = new LinkedList<Employee>();
+    Employee* emp1 = new Employee("morticia", 18, Janitor, 7.50);
+    Employee* emp2 = new Employee("alejandro", 19, Caretaker, 8.50);
+    Employee* emp3 = new Employee("ugly", 20, Security, 9.50);
+
+    testList->push_back(*emp1);
+    testList->push_back(*emp2);
+    testList->push_back(*emp3);
+
+    cout << "Linked List Size: " << testList->size() << endl;
+    testList->print();
+
+    delete testList;
+}
+void testNodeCompOperators () {
+
+}
+
 //int getTestMenuChoice ();
-//void promptUnitTest();
+void promptUnitTest() {
+
+}
 
 void outputList ();

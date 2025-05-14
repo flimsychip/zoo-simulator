@@ -3,10 +3,9 @@
 
 #include <string>
 
-void testNodeBasic();
-void testLinkedListBasic();
+void testNodeTypes();
+void testLinkedListTypes();
 void testNodeCompOperators();
-void testLinkedListCompOperator();
 //int getTestMenuChoice();
 //void promptUnitTest();
 

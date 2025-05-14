@@ -38,6 +38,7 @@ struct Exhibit {
         LinkedList<Employee>* getEmployees();
 
         void sort();
+        void print();
 
     private:
         double dailyCost;
