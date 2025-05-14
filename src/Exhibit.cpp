@@ -24,8 +24,8 @@ Exhibit::Exhibit(double cost, string name,
 Exhibit::Exhibit(const Exhibit &copyExhibit) {
     this->dailyCost = copyExhibit.dailyCost;
     this->name = copyExhibit.name;
-    this->animals = copyExhibit.animals;
-    this->employees = copyExhibit.employees;
+    this->animals = new LinkedList<Animal>(*copyExhibit.getAnimals());
+    this->employees = new LinkedList<Employee>(*copyExhibit.getEmployees());
 }
 
 Exhibit::~Exhibit() {
@@ -34,12 +34,11 @@ Exhibit::~Exhibit() {
 
 Exhibit& Exhibit::operator=(const Exhibit &rhs) {
     if (this == &rhs) { return *this; }
-
     this->clear();
-
-    this->animals = rhs.animals;
-    this->employees = rhs.employees;
-
+    this->name = rhs.getName();
+    this->dailyCost = rhs.getDailyCost();
+    this->animals = new LinkedList<Animal>(*rhs.getAnimals());
+    this->employees = new LinkedList<Employee>(*rhs.getEmployees());
     return *this;
 }
 
@@ -48,11 +47,11 @@ void Exhibit::clear() {
     delete this->employees;
 }
 
-LinkedList<Animal>* Exhibit::getAnimals() {
+LinkedList<Animal>* Exhibit::getAnimals() const {
     return this->animals;
 }
 
-LinkedList<Employee>* Exhibit::getEmployees() {
+LinkedList<Employee>* Exhibit::getEmployees() const {
     return this->employees;
 }
 

@@ -49,9 +49,9 @@ struct LinkedList {
       
    private:
       // Members
-      int count;
       Node<T>* head;
       Node<T>* tail;
+      int count;
 };
 
 #include "LinkedList.tpp"

@@ -34,8 +34,8 @@ struct Exhibit {
         void setDailyCost(double newCost);
         void setName(std::string newName);
 
-        LinkedList<Animal>* getAnimals();
-        LinkedList<Employee>* getEmployees();
+        LinkedList<Animal>* getAnimals() const;
+        LinkedList<Employee>* getEmployees() const;
 
         void sort();
         void print();

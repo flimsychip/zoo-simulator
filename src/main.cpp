@@ -25,9 +25,7 @@ int main() {
     Animal* testAnimal = new Animal;
     testAnimal->setName("hammy");
     testExhibit->setName("hamsters");
-    cout << testZoo->getExhibits()->getHead() << endl;
     testZoo->addExhibit(*testExhibit);
-    cout << testZoo->getExhibits()->getHead() << endl;
     
     int choice;
     int exChoice;
@@ -37,51 +35,49 @@ int main() {
     Node<Exhibit>* tempEx;
 
     do {
+        choice = zooMenu();
         switch(choice) {
             case LIST_EXS:
-                // SEGFAULT HERE
-
-                // cout << "List of exhibits:" << endl;
-                // tempEx = testZoo->getExhibits()->getHead();
-                // while(tempEx != nullptr) {
-                //     cout << "- " << tempEx->getData().getName() << endl;
-                //     if(tempEx->getNext() == nullptr) {
-                //         cout << "next is null" << endl;
-                //     }
-                //     tempEx = tempEx->getNext();
-                // }
-                // cout << "after while";
+                cout << "List of exhibits:" << endl;
+                tempEx = testZoo->getExhibits()->getHead();
+                while(tempEx != nullptr) {
+                    cout << "- " << tempEx->getData().getName() << endl;
+                    tempEx = tempEx->getNext();
+                }
                 break;
             case ENTER:
                 cout << "Enter name of exhibit: ";
                 cin >> temp;
                 // FIXME: validate exhibit exists with search func
-                exChoice = exhibitMenu();
-                switch(exChoice) {
-                    case LIST_ANIMALS:
-                        // stuff
-                        break;
-                    case INTERACT:
-                        animalChoice = animalMenu();
-                        switch(animalChoice) {
-                            case INFO:
-                                // stuff
-                                break;
-                            case FEED:
-                                // stuff
-                                break;
-                            case AGGRO:
-                                // stuff
-                                break;
-                        } while(animalChoice != LEAVE_ANIMAL);
-                        break;
+                do {
+                    exChoice = exhibitMenu();
+                    switch(exChoice) {
+                        case LIST_ANIMALS:
+                            // stuff
+                            break;
+                        case INTERACT:
+                            do {
+                                animalChoice = animalMenu();
+                                switch(animalChoice) {
+                                    case INFO:
+                                        // stuff
+                                        break;
+                                    case FEED:
+                                        // stuff
+                                        break;
+                                    case AGGRO:
+                                        // stuff
+                                        break;
+                                } 
+                            } while(animalChoice != LEAVE_ANIMAL);
+                            break;
+                    }
                 } while(exChoice != LEAVE_EX);
                 break;
             case SORT:
                 // stuff
                 break;
         }
-        choice = zooMenu();
     } while(choice != LEAVE_ZOO);
 
 /*    cout << "Testing..." << endl;
