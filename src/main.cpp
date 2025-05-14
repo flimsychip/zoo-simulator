@@ -89,11 +89,11 @@ int main() {
                                 while(tempAnimalPtr != nullptr) {
                                     Animal a = tempAnimalPtr->getData();
                                     cout << "after a" << endl;
-                                    cout << "- " << a.getName() << " the " << a.getSpeciesStr() << endl;
+                                    cout << "- " << a.getName() << " the " << a.getSpecies() << endl;
                                     tempAnimalPtr = tempAnimalPtr->getNext();
                                 }
                                 break;
-                            case INTERACT:
+                            case INTERACT:3
                                 cout << "Enter name of animal: ";
                                 cin >> animalName;
                                 tempAnimalPtr = tempExPtr->getData().getAnimals()->search(animalName);
