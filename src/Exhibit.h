@@ -47,4 +47,6 @@ struct Exhibit {
         LinkedList<Employee>* employees;
 };
 
+std::ostream& operator<<(std::ostream& os, const Exhibit& toPrint);
+
 #endif

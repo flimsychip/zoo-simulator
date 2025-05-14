@@ -8,7 +8,7 @@
 Zoo Menu:
 1. List exhibits
 2. enter exhibits (Exhibit menu)
-3. leave Zoo (exits program )
+3. leave Zoo (exits program)
 -------------------
 Exhibit Menu: 
 1. List Animals 
@@ -24,7 +24,7 @@ Animals Menu:
 
 
 //SAMPLE OF CONSOLE 
-// INPUT 2, 1,2 ,1,3, 1
+// INPUT 2,1,2,1,3,4,1
 
 -------------------
 // maybe all the tickets will be written to somewhere and can calcualte the total amount made/ tickets bought 
@@ -36,7 +36,8 @@ Animals Menu:
 Zoo Menu:
 1. List exhibits
 2. enter exhibits (Exhibit menu)
-3. leave Zoo (exits program)
+3. Sort exhibits
+4. leave Zoo (exits program)
 -------------------
 1. monkey exhibit
 2. penguin cove 
@@ -51,9 +52,8 @@ Zoo Menu:
 -------------------
 Exhibit Menu: 
 1. List Animals 
-2. Sort Animals
-3. Get Animals (Will lead to animal menu)
-4. Leave Exhibit (Zoo Menu)
+2. Get Animals (Will lead to animal menu)
+3. Leave Exhibit (Zoo Menu)
 -------------------
 0. None
 1. Chimpanzees
@@ -80,3 +80,6 @@ Animals Menu:
 2. Feed 
 3. Aggro 
 4. exit (will go back to exhinit menu)
+-------------------
+Wolves info:
+1. weight: 
