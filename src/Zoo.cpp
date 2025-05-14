@@ -6,6 +6,7 @@ using namespace std;
 Zoo::Zoo() {
     this->customers = new LinkedList<Customer>;
     this->employees = new LinkedList<Employee>;
+    this->exhibits = new LinkedList<Exhibit>;
 }
 
 Zoo::Zoo(const Zoo& copyZoo) {
@@ -57,9 +58,12 @@ LinkedList<Employee>* Zoo::getEmployees() const {
     return this->employees;
 }
 
+LinkedList<Exhibit>* Zoo::getExhibits() const {
+    return this->exhibits;
+}
+
 void Zoo::addExhibit(const Exhibit& addExhibit) {
-    this->exhibits.push_back(addExhibit);
-    cout << "Zoo::addExhibit not yet implemented" << endl;
+    this->exhibits->push_back(addExhibit);
 }
 
 void Zoo::sortCustomers() {

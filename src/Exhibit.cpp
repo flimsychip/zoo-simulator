@@ -23,7 +23,7 @@ Exhibit::Exhibit(double cost, string name,
 
 Exhibit::Exhibit(const Exhibit &copyExhibit) {
     this->dailyCost = copyExhibit.dailyCost;
-    this->name = copyExhibit.dailyCost;
+    this->name = copyExhibit.name;
     this->animals = copyExhibit.animals;
     this->employees = copyExhibit.employees;
 }

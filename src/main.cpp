@@ -4,6 +4,7 @@
 #include <iostream> 
 #include <iomanip> // make output pretty 
 #include <fstream>
+#include <iterator>
 
 using namespace std; 
 
@@ -13,27 +14,74 @@ enum ExhibitMenu { LEAVE_EX, LIST_ANIMALS, INTERACT };
 enum AnimalMenu { LEAVE_ANIMAL, INFO, FEED, AGGRO };
 
 void welcomeMsg();
-int menuChoice();
-int exhibitChoice();
-int animalChoice();
+int zooMenu();
+int exhibitMenu();
+int animalMenu();
 void writeTestOutputToFile(const string& filename);
 
-int main() {     
-    int choice = menuChoice();
+int main() { 
+    Zoo* testZoo = new Zoo;
+    Exhibit* testExhibit = new Exhibit;
+    Animal* testAnimal = new Animal;
+    testAnimal->setName("hammy");
+    testExhibit->setName("hamsters");
+    cout << testZoo->getExhibits()->getHead() << endl;
+    testZoo->addExhibit(*testExhibit);
+    cout << testZoo->getExhibits()->getHead() << endl;
+    
+    int choice;
+    int exChoice;
+    int animalChoice;
     string temp;
 
-    switch(choice) {
-        case LIST_EXS:
-        case ENTER:
-            cout << "Enter name of exhibit: ";
-            cin >> temp;
-            // validate exhibit exists with search func
-            // call exhibitChoice()
-            // do stuff with choice
-            break;
-        case SORT:
-        default:
-            break;
+    Node<Exhibit>* tempEx;
+
+    do {
+        switch(choice) {
+            case LIST_EXS:
+                // SEGFAULT HERE
+
+                // cout << "List of exhibits:" << endl;
+                // tempEx = testZoo->getExhibits()->getHead();
+                // while(tempEx != nullptr) {
+                //     cout << "- " << tempEx->getData().getName() << endl;
+                //     if(tempEx->getNext() == nullptr) {
+                //         cout << "next is null" << endl;
+                //     }
+                //     tempEx = tempEx->getNext();
+                // }
+                // cout << "after while";
+                break;
+            case ENTER:
+                cout << "Enter name of exhibit: ";
+                cin >> temp;
+                // FIXME: validate exhibit exists with search func
+                exChoice = exhibitMenu();
+                switch(exChoice) {
+                    case LIST_ANIMALS:
+                        // stuff
+                        break;
+                    case INTERACT:
+                        animalChoice = animalMenu();
+                        switch(animalChoice) {
+                            case INFO:
+                                // stuff
+                                break;
+                            case FEED:
+                                // stuff
+                                break;
+                            case AGGRO:
+                                // stuff
+                                break;
+                        } while(animalChoice != LEAVE_ANIMAL);
+                        break;
+                } while(exChoice != LEAVE_EX);
+                break;
+            case SORT:
+                // stuff
+                break;
+        }
+        choice = zooMenu();
     } while(choice != LEAVE_ZOO);
 
 /*    cout << "Testing..." << endl;
@@ -101,10 +149,10 @@ void welcomeMsg() {
 
 }
 
-int menuChoice() {
+int zooMenu() {
     int choice;
     do {
-        cout << "--------------------------------------------" << endl;
+        cout << "\n--------------------------------------------" << endl;
         cout << "Zoo Menu:" << endl;
         cout << "(" << LEAVE_ZOO << ") Leave zoo" << endl;
         cout << "(" << LIST_EXS << ") List exhibits" << endl;
@@ -120,10 +168,10 @@ int menuChoice() {
     return choice;
 }
 
-int exhibitChoice() {
+int exhibitMenu() {
     int choice;
     do {
-        cout << "--------------------------------------------" << endl;
+        cout << "\n--------------------------------------------" << endl;
         cout << "Exhibit Menu:" << endl;
         cout << "(" << LEAVE_EX << ") Leave exhibit" << endl;
         cout << "(" << LIST_ANIMALS << ") List animals in exhibit" << endl;
@@ -138,10 +186,10 @@ int exhibitChoice() {
     return choice;
 }
 
-int animalChoice() {
+int animalMenu() {
     int choice;
     do {
-        cout << "--------------------------------------------" << endl;
+        cout << "\n--------------------------------------------" << endl;
         cout << "Animal Menu:" << endl;
         cout << "(" << LEAVE_ANIMAL << ") Let animal rest" << endl;
         cout << "(" << INFO << ") View info plaque" << endl;
