@@ -1,55 +1,93 @@
-// #include "Animal.h" 
-// #include "Customer.h" 
-// #include "Zoo.h" 
-// #include <iostream> 
-// #include <iomanip> // make output pretty 
-// #include <fstream>
+#include "Zoo.h" 
+#include "unitTesting.h"
 
-// using namespace std; 
+#include <iostream> 
+#include <iomanip>
+#include <fstream>
+#include <string>
 
-// enum ZooInfo {QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO};
+using namespace std; 
 
-// void welcomeMsg();
-// void writeTestOutputToFile(const string& filename);
+enum ZooInfo {QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO};
 
-// int main() {     
-//     cout << "Testing..." << endl;
+//void welcomeMsg();
+//void writeTestOutputToFile(const string& filename);
 
-//     welcomeMsg();
+void testingPriv() {     
+    cout << "Testing..." << endl;
 
-//     Zoo* zoo = new Zoo();
-//     // Exhibit* testCage = new Exhibit;
+    //welcomeMsg();
 
-//     // Animal* animal1 = new Animal();     
-//     // cout << animal1->getSpecies() << endl;
-//     // Animal* animal2 = new Animal(Chimpanzee);   
-//     // Animal* animal3 = new Animal(Hamster);      
+    Zoo* zoo = new Zoo();
+    Exhibit* testCage = new Exhibit;
+
+    Animal* animal1 = new Animal();     
+    cout << animal1->getSpecies() << endl;
+    Animal* animal2 = new Animal(Chimpanzee);   
+    Animal* animal3 = new Animal(Hamster);      
          
-//     // testCage->addAnimal(*animal1);
-//     // testCage->addAnimal(*animal2);
-//     // testCage->addAnimal(*animal3);
+    testCage->addAnimal(*animal1);
+    testCage->addAnimal(*animal2);
+    testCage->addAnimal(*animal3);
 
-//     // testCage->sort();
-//     // testCage->getEmployees()->print();
+    testCage->sort();
+    testCage->getEmployees()->print();
+    testCage->getAnimals()->print();
 
-//     //zoo->addExhibit(*testCage);
+    zoo->addExhibit(*testCage);
 
-//     Customer* customer = new Customer("Shakira");     
-//     cout << customer->getName() << endl;   
-//     Customer* customer2 = new Customer("Joe"); 
-//     Customer* customer3 = new Customer("Shmoe");   
+    Customer* customer = new Customer("Shakira");     
+    cout << customer->getName() << endl;   
+    Customer* customer2 = new Customer("Joe"); 
+    Customer* customer3 = new Customer("Shmoe");   
     
          
-//     cout << zoo->calcExpenses() << endl;     // Is this be pushing back deep copies?     
-//     zoo->addCustomer(*customer);   
-//     zoo->addCustomer(*customer2);   
-//     zoo->addCustomer(*customer3); 
+    cout << zoo->calcExpenses() << endl;     // Is this be pushing back deep copies?     
+    zoo->addCustomer(*customer);   
+    zoo->addCustomer(*customer2);   
+    zoo->addCustomer(*customer3); 
     
-//     zoo->sortCustomers();
-//     zoo->getCustomers()->print();
+    zoo->sortCustomers();
+    zoo->getCustomers()->print();
 
-//     delete zoo;
-//     return 0;
-// }
+    delete zoo;
+}
 
- 
+void testNodeTypes() {
+    cout << "Testing Node for Employee/Animal/Customer/Exhibit..." << endl;
+    Employee* imp1 = new Employee("joe shmoe", 18, Janitor, 7.50);
+    imp1->print();
+
+    Node<Employee>* testNode = new Node<Employee> ();
+    cout << "Node data: " << testNode->getData() << endl;
+    cout << "Node next: " << testNode->getNext() << endl;
+    cout << "Node prev: " << testNode->getPrev() << endl;
+
+    delete testNode;
+}
+void testLinkedListBasic() {
+    cout << "Testing LinkedList..." << endl;
+    LinkedList<Employee>* testList = new LinkedList<Employee>();
+    Employee* emp1 = new Employee("morticia", 18, Janitor, 7.50);
+    Employee* emp2 = new Employee("alejandro", 19, Caretaker, 8.50);
+    Employee* emp3 = new Employee("ugly", 20, Security, 9.50);
+
+    testList->push_back(*emp1);
+    testList->push_back(*emp2);
+    testList->push_back(*emp3);
+
+    cout << "Linked List Size: " << testList->size() << endl;
+    testList->print();
+
+    delete testList;
+}
+void testNodeCompOperators () {
+
+}
+
+//int getTestMenuChoice ();
+void promptUnitTest() {
+
+}
+
+void outputList ();

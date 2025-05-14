@@ -29,6 +29,8 @@ struct Customer : public Person {
         void setTicketType(Ticket type);
 };
 
+std::ostream& operator<<(std::ostream& os, const Customer& toPrint);
+
 bool operator==(const Customer& lhs, const Customer& rhs);
 bool operator!=(const Customer& lhs, const Customer& rhs);
 bool operator<(const Customer& lhs, const Customer& rhs);

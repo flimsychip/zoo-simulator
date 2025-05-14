@@ -44,6 +44,15 @@ void Employee::print() const {
          << ", startTime: " << startTime << endl;
 }
 
+std::ostream& operator<<(std::ostream& os, const Employee& toPrint) {
+    os << "Name: " << toPrint.getName() << "\n";
+    os << "Hourly: $" << toPrint.getWage() << "\n";
+    os << "Job: " << toPrint.getJob() << "\n";
+    os << "Start Time: " << toPrint.getStart();
+
+    return os;
+}
+
 // GETTERS
 Jobs Employee::getJob() const { return this->job; }
 double Employee::getWage() const { return this->hourlyWage; }
@@ -55,7 +64,7 @@ void Employee::setWage(double wage) { this->hourlyWage = wage; }
 
 bool operator==(const Employee& lhs, const Employee& rhs) {
     return  lhs.getJob()         == rhs.getJob()
-         && lhs.getWage()  == rhs.getWage()
+         && lhs.getWage()        == rhs.getWage()
          && lhs.getName()        == rhs.getName()
          && lhs.getAge()         == rhs.getAge();
 }

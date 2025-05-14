@@ -11,11 +11,9 @@ Exhibit::Exhibit() {
     this->employees = new LinkedList<Employee>();
 }
 
-Exhibit::Exhibit(
-    double cost, 
-    string name, 
-    LinkedList<Animal> *animals, 
-    LinkedList<Employee> *employees)
+Exhibit::Exhibit(double cost, string name, 
+                 LinkedList<Animal> *animals, 
+                 LinkedList<Employee> *employees)
 {
     this->dailyCost = cost;
     this->name = name;
@@ -25,13 +23,23 @@ Exhibit::Exhibit(
 
 Exhibit::Exhibit(const Exhibit &copyExhibit) {
     this->dailyCost = copyExhibit.dailyCost;
-    this->name = copyExhibit.dailyCost;
-    this->animals = copyExhibit.animals;
-    this->employees = copyExhibit.employees;
+    this->name = copyExhibit.name;
+    this->animals = new LinkedList<Animal>(*copyExhibit.getAnimals());
+    this->employees = new LinkedList<Employee>(*copyExhibit.getEmployees());
 }
 
 Exhibit::~Exhibit() {
     this->clear();
+}
+
+Exhibit& Exhibit::operator=(const Exhibit &rhs) {
+    if (this == &rhs) { return *this; }
+    this->clear();
+    this->name = rhs.getName();
+    this->dailyCost = rhs.getDailyCost();
+    this->animals = new LinkedList<Animal>(*rhs.getAnimals());
+    this->employees = new LinkedList<Employee>(*rhs.getEmployees());
+    return *this;
 }
 
 void Exhibit::clear() {
@@ -39,11 +47,11 @@ void Exhibit::clear() {
     delete this->employees;
 }
 
-LinkedList<Animal>* Exhibit::getAnimals() {
+LinkedList<Animal>* Exhibit::getAnimals() const {
     return this->animals;
 }
 
-LinkedList<Employee>* Exhibit::getEmployees() {
+LinkedList<Employee>* Exhibit::getEmployees() const {
     return this->employees;
 }
 
@@ -63,15 +71,9 @@ bool Exhibit::rmCaretaker(const Employee& caretaker) {
     return this->employees->remove(caretaker);
 }
 
-Exhibit& Exhibit::operator=(const Exhibit &rhs) {
-    if (this == &rhs) { return *this; }
-
-    this->clear();
-
-    this->animals = rhs.animals;
-    this->employees = rhs.employees;
-
-    return *this;
+void Exhibit::sort() {
+    this->animals->mergeSort();
+    this->employees->mergeSort();
 }
 
 // GETTERS
@@ -81,3 +83,15 @@ string Exhibit::getName() const { return this->name; }
 // SETTERS
 void Exhibit::setDailyCost(double newCost) { this->dailyCost = newCost; }
 void Exhibit::setName(string newName) { this->name = newName; }
+
+void Exhibit::print() {
+    cout << "Exhibit Name: " << this->getName() << endl;
+    cout << "Daily Cost: $" << this->getDailyCost() << endl;
+    cout << "Animals in Exhibit: " << endl;
+    
+    this->animals->print();
+    cout << "Employees in Exhibit: " << endl;
+    this->employees->print();
+}
+
+// ADD OVERLOADED COUT

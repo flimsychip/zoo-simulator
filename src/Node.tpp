@@ -9,7 +9,7 @@ Node<T>::Node() {
    this->prev = nullptr;
 }
 template <typename T>
-Node<T>::Node(const T& value) : data(value) {
+Node<T>::Node(const T& value) {
    this->data = value;
    this->next = nullptr;
    this->prev = nullptr;
@@ -27,7 +27,7 @@ void Node<T>::setPrev(Node<T>* node) { this->prev = node; }
 
 // GETTERS
 template <typename T>
-T Node<T>::getData() const { return data; }
+T Node<T>::getData() const { return this->data; }
 template <typename T>
 Node<T>* Node<T>::getNext() const { return next; }
 template <typename T>

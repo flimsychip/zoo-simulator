@@ -1,7 +1,6 @@
 #ifndef ZOO_H
 #define ZOO_H
 
-#include <vector>
 #include "Customer.h"
 #include "Employee.h"
 #include "Exhibit.h"
@@ -28,6 +27,7 @@ struct Zoo {
 
         LinkedList<Customer>* getCustomers() const;
         LinkedList<Employee>* getEmployees() const;
+        LinkedList<Exhibit>* getExhibits() const;
 
         double calcExpenses();
         double calcRevenue();
@@ -36,7 +36,7 @@ struct Zoo {
     private:
         LinkedList<Customer>* customers;
         LinkedList<Employee>* employees;
-        std::vector<Exhibit> exhibits;
+        LinkedList<Exhibit>* exhibits;
 };
 
 #endif

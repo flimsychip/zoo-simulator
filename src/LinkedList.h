@@ -16,8 +16,7 @@ struct LinkedList {
    public:
       LinkedList();
       LinkedList(const T& value);
-      // FIXME: Rule of three: missing assignment operator and copy constructor
-        
+
       LinkedList(const LinkedList<T>& other);            // Copy constructor
       LinkedList<T>& operator=(const LinkedList<T>& rhs); // Copy assignment
       
@@ -40,6 +39,9 @@ struct LinkedList {
       Node<T>* getHead() const;
       Node<T>* getTail() const;
 
+      Node<T>* search(const T& value) const; // linear search
+      Node<T>* search(const string str) const;
+
       // Setters
       void setTail(Node<T> *newTail);
       void setHead(Node<T> *newHead);
@@ -48,9 +50,9 @@ struct LinkedList {
       
    private:
       // Members
-      int count;
       Node<T>* head;
       Node<T>* tail;
+      int count;
 };
 
 #include "LinkedList.tpp"
