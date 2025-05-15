@@ -419,3 +419,14 @@ void LinkedList<T>::print(bool reverse) {
       }
    }
 }
+
+template <typename T>
+ostream& operator<<(ostream &os, const LinkedList<T> &toPrint) {
+   Node<T>* temp = toPrint.getHead();
+   while(temp) {
+      os << temp->getData().getName();                   // careful -- everything must have a getName()
+      if(temp->getNext() != nullptr) { os << ", "; }
+      temp = temp->getNext();
+   }
+   return os;
+}

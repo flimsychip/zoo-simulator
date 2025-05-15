@@ -10,6 +10,7 @@ void testNodeCompOperators();
 //void promptUnitTest();
 
 void outputList ();
+void movedFromMain();
 
 #endif
 // UNITTESTING_H

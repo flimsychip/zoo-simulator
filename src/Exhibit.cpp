@@ -63,12 +63,12 @@ bool Exhibit::rmAnimal(const Animal &animal){
     //Should return if remove was succesful
     return this->animals->remove(animal);
 }
-void Exhibit::addCaretaker(const Employee& caretaker) {
-    this->employees->push_back(caretaker);
+void Exhibit::addEmployee(const Employee& employee) {
+    this->employees->push_back(employee);
 }
-bool Exhibit::rmCaretaker(const Employee& caretaker) {
+bool Exhibit::rmEmployee(const Employee& employee) {
     // Should return if remove was succesful
-    return this->employees->remove(caretaker);
+    return this->employees->remove(employee);
 }
 
 void Exhibit::sort() {
@@ -94,15 +94,13 @@ void Exhibit::print() {
     this->employees->print();
 }
 
-// ADD OVERLOADED COUT
 ostream& operator<<(ostream& os, const Exhibit& toPrint) {
     os << "Exhibit Name: " << toPrint.getName() << "\n";
     os << "Daily Cost: $" << toPrint.getDailyCost() << "\n";
-    os << "Animals in Exhibit: " << "\n";
-    
-    os << toPrint.getAnimals();
-    os << "Employees in Exhibit: \n";
-    os << toPrint.getEmployees();
+    os << "Animals in Exhibit: ";
+    os << *(toPrint.getAnimals()) << "\n";
+    os << "Employees in Exhibit: ";
+    os << *(toPrint.getEmployees());
 
     return os;
 }

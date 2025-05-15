@@ -5,7 +5,7 @@
 #include <ctime>
 
 enum Jobs {
-    Unemployed,
+    Chopping_Block,
     Caretaker,
     Director,
     Security,
@@ -18,7 +18,7 @@ struct Employee : public Person {
         Employee(
             std::string name, 
             int age = -1, 
-            Jobs job = Unemployed, 
+            Jobs job = Chopping_Block, 
             double wage = -1
         );
 
@@ -29,6 +29,7 @@ struct Employee : public Person {
 
         // Getters
         Jobs getJob() const;
+        std::string getJobStr() const;
         double getWage() const;
         time_t getStart() const;
 

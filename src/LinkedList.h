@@ -55,5 +55,8 @@ struct LinkedList {
       int count;
 };
 
+template <typename T>
+ostream& operator<<(ostream &os, const LinkedList<T> &toPrint);
+
 #include "LinkedList.tpp"
 #endif

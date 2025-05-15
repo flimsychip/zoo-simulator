@@ -23,8 +23,8 @@ struct Exhibit {
 
         void addAnimal(const Animal& animal);
         bool rmAnimal(const Animal& animal);
-        void addCaretaker(const Employee& caretaker);
-        bool rmCaretaker(const Employee& caretaker);
+        void addEmployee(const Employee& employee);
+        bool rmEmployee(const Employee& employee);
 
         // GETTERS
         double getDailyCost() const;

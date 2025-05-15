@@ -10,42 +10,54 @@
 using namespace std; 
 
 enum ZooInfo { QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO };
-enum ZooMenu { LEAVE_ZOO, LIST_EXS, ENTER, SORT };
-enum ExhibitMenu { LEAVE_EX, INFO_EX, LIST_ANIMALS, INTERACT };
+enum ZooMenu { LEAVE_ZOO, LIST_EXS, SORT_EXS, ENTER };
+enum ExhibitMenu { LEAVE_EX, INFO_EX, LIST_EMPS, LIST_ANIMALS, SORT_ANIMALS, INTERACT };
 enum AnimalMenu { LEAVE_ANIMAL, INFO_ANIMAL, FEED, AGGRO };
 
-void welcomeMsg();
 int zooMenu();
 int exhibitMenu(string name);
 int animalMenu(string name);
+void welcomeMsg();
 void writeTestOutputToFile(const string& filename);
 
 int main() { 
-    // THIS WILL BE REPLACED WITH READING IN FROM JSON
+    // will be replaced by reading in from json
     Zoo* testZoo = new Zoo;
-    // Exhibit* testExhibit = new Exhibit(100.00, "party city (the whole gang is here)", nullptr, nullptr);
-    Exhibit* testExhibit = new Exhibit;
-    testExhibit->setName("party");
-    Animal* testAni1 = new Animal;
-    testAni1->setName("hammy");
-    // Animal* testAni1 = new Animal(Hamster, "hammy");
-    // Animal* testAni2 = new Animal(Chimpanzee, "cody");
-    // Animal* testAni3 = new Animal(Otter, "oscar");
-    // Animal* testAni4 = new Animal(Wolf, "william");
-    // Animal* testAni5 = new Animal(Bear, "barry");
-    // Animal* testAni6 = new Animal(Lion, "larry");
-    // Animal* testAni7 = new Animal(Toucan, "thomas");
-    // Animal* testAni8 = new Animal(Gorilla, "gary");
+    Exhibit* testExhibit = new Exhibit(100, "party city", new LinkedList<Animal>, new LinkedList<Employee>);
+    Animal* testAni1 = new Animal(Hamster, "hammy");
+    Animal* testAni2 = new Animal(Chimpanzee, "cody");
+    Animal* testAni3 = new Animal(Otter, "oscar");
+    Animal* testAni4 = new Animal(Wolf, "william");
+    Animal* testAni5 = new Animal(Bear, "barry");
+    Animal* testAni6 = new Animal(Lion, "larry");
+    Animal* testAni7 = new Animal(Toucan, "thomas");
+    Animal* testAni8 = new Animal(Gorilla, "gary");
     testExhibit->addAnimal(*testAni1);
-    // testExhibit->addAnimal(*testAni2);
-    // testExhibit->addAnimal(*testAni3);
-    // testExhibit->addAnimal(*testAni4);
-    // testExhibit->addAnimal(*testAni5);
-    // testExhibit->addAnimal(*testAni6);
-    // testExhibit->addAnimal(*testAni7);
-    // testExhibit->addAnimal(*testAni8);
+    testExhibit->addAnimal(*testAni2);
+    testExhibit->addAnimal(*testAni3);
+    testExhibit->addAnimal(*testAni4);
+    testExhibit->addAnimal(*testAni5);
+    testExhibit->addAnimal(*testAni6);
+    testExhibit->addAnimal(*testAni7);
+    testExhibit->addAnimal(*testAni8);
+    Employee* testEmp = new Employee("milo", 22, Chopping_Block, 0);
+    Employee* testEmp2 = new Employee("rosa", 23, Security, 100);
+    Employee* testEmp3 = new Employee("elijah", 20, Janitor, 25);
+    testExhibit->addEmployee(*testEmp);
+    testExhibit->addEmployee(*testEmp2);
+    testExhibit->addEmployee(*testEmp3);
+    Node<Employee>* tempEmpLoopPtr = testExhibit->getEmployees()->getHead();
+    while(tempEmpLoopPtr != nullptr) {      // monster chains for testing and clarity
+        testExhibit->setDailyCost(testExhibit->getDailyCost() + tempEmpLoopPtr->getData().getWage());
+        tempEmpLoopPtr = tempEmpLoopPtr->getNext();
+    }
     testZoo->addExhibit(*testExhibit);
-    
+
+    // FIXME: data isn't being modified after pushing back
+    Exhibit* testExhibit2 = new Exhibit(100, "the bad ones", new LinkedList<Animal>, new LinkedList<Employee>);
+    testZoo->addExhibit(*testExhibit2);
+    testExhibit2->setName("funhouse (not a jail)"); // [FROM ZOO MANAGER] TOP PRIORITY. COVER TRACKS!!!
+
     int choice;
     int exChoice;
     int animalChoice;
@@ -54,10 +66,12 @@ int main() {
 
     Node<Exhibit>* tempExPtr = nullptr;
     Node<Animal>* tempAnimalPtr = nullptr;
+    Node<Employee>* tempEmpPtr = nullptr;
 
-    // WE WILL CLEAN THIS UP AND PUT EVERYTHING IN FUNCTIONS :sob::skull:
+    // clean up and put in funcs :sob::skull:
     do {
         choice = zooMenu();
+        cout << endl;
         switch(choice) {
             case LIST_EXS:
                 cout << "List of exhibits:" << endl;
@@ -67,54 +81,62 @@ int main() {
                     tempExPtr = tempExPtr->getNext();
                 }
                 break;
+            case SORT_EXS:
+                cout << "sorting by alphabetical order..." << endl;
+                testZoo->getExhibits()->mergeSort();
+                cout << "sorted!" << endl;
+                break;
             case ENTER:
                 cout << "Enter name of exhibit: ";
                 cin.ignore(10000, '\n');
                 getline(cin, exName);
-                // cout << "tempExPtr is " << tempExPtr << " at 77 (before ex search/asmt)" << endl;
                 tempExPtr = testZoo->getExhibits()->search(exName);
-                // cout << "tempExPtr is " << tempExPtr << " at 79 (after ex search/asmt)" << endl;
                 if(tempExPtr == nullptr) {
                     cout << "Exhibit does not exist!" << endl;
                 } else {
                     do {
                         exChoice = exhibitMenu(tempExPtr->getData().getName());
-                        // cout << "tempExPtr is " << tempExPtr << " at 85 (after passing into exMenu)" << endl;
+                        cout << endl;
                         // SWITCH HERE
                         switch(exChoice) {
                             case INFO_EX:
-                                tempExPtr->getData().print(); // REPLACE WITH OVERLOADED COUT FOR CONSISTENCY
+                                cout << tempExPtr->getData() << endl;
+                                break;
+                            case LIST_EMPS:
+                                cout << "List of employees:" << endl;
+                                tempEmpPtr = tempExPtr->getData().getEmployees()->getHead();
+                                while(tempEmpPtr != nullptr) {
+                                    cout << "- " << *tempEmpPtr << endl;
+                                    tempEmpPtr = tempEmpPtr->getNext();
+                                }
                                 break;
                             case LIST_ANIMALS:
                                 cout << "List of animals:" << endl;
-                                // cout << "tempExPtr is " << tempExPtr << " at 98 (before monster tempAnimalPtr asmt)" << endl;
-                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 99 (before monster tempAnimalPtr asmt)" << endl;
                                 tempAnimalPtr = tempExPtr->getData().getAnimals()->getHead();
-                                // cout << "tempExPtr is " << tempExPtr << " at 101 (after monster tempAnimalPtr asmt)" << endl;
-                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 102 (after monster tempAnimalPtr asmt)" << endl;
                                 while(tempAnimalPtr != nullptr) {
-                                    Animal a = tempAnimalPtr->getData();
-                                    cout << "- " << a.getName() << " the " << a.getSpecies() << endl;
+                                    cout << "- " << tempAnimalPtr->getData().getName() << " the " << tempAnimalPtr->getData().getSpeciesStr() << endl;
                                     tempAnimalPtr = tempAnimalPtr->getNext();
                                 }
+                                break;
+                            case SORT_ANIMALS:
+                                cout << "sorting by alphabetical order..." << endl;
+                                tempExPtr->getData().getAnimals()->mergeSort();
+                                cout << "sorted!" << endl;
                                 break;
                             case INTERACT:
                                 cout << "Enter name of animal: ";
                                 cin >> animalName;
-                                // cout << "tempExPtr is " << tempExPtr << " at 125 (before monster search)" << endl;
-                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 126 (before monster search)" << endl;
                                 tempAnimalPtr = tempExPtr->getData().getAnimals()->search(animalName);
-                                // cout << "tempExPtr is " << tempExPtr << " at 128 (after monster chain)" << endl;
-                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 129 (after monster chain)" << endl;
                                 if(tempAnimalPtr == nullptr) {
                                     cout << "There is no animal named that!" << endl;
                                 } else {
                                     do {
                                         animalChoice = animalMenu(tempAnimalPtr->getData().getName());
+                                        cout << endl;
                                         // SWITCH HERE
                                         switch(animalChoice) {
                                             case INFO_ANIMAL:
-                                                cout << tempAnimalPtr->getData();
+                                                cout << tempAnimalPtr->getData() << endl;
                                                 break;
                                             case FEED:
                                                 tempAnimalPtr->getData().eat();
@@ -130,76 +152,10 @@ int main() {
                     } while(exChoice != LEAVE_EX);
                 }
                 break;
-            case SORT:
-                // IMPLEMENT
-                cout << "sort not yet implemented" << endl;
-                break;
         }
     } while(choice != LEAVE_ZOO);
 
-/*    cout << "Testing..." << endl;
-
-    // welcomeMsg();
-
-    Zoo* zoo = new Zoo();
-    Exhibit* testCage = new Exhibit;
-
-    // Animal* animal1 = new Animal();     
-    // cout << animal1->getSpecies() << endl;
-    // Animal* animal2 = new Animal(Chimpanzee);   
-    // Animal* animal3 = new Animal(Hamster);      
-         
-    // testCage->addAnimal(*animal1);
-    // testCage->addAnimal(*animal2);
-    // testCage->addAnimal(*animal3);
-
-    // testCage->sort();
-    // testCage->getEmployees()->print();
-
-    //zoo->addExhibit(*testCage);
-
-    Customer* customer = new Customer("Shakira");     
-    cout << customer->getName() << endl;   
-    Customer* customer2 = new Customer("Joe"); 
-    Customer* customer3 = new Customer("Shmoe");   
-    
-         
-    cout << zoo->calcExpenses() << endl;     // Is this be pushing back deep copies?     
-    zoo->addCustomer(*customer);   
-    zoo->addCustomer(*customer2);   
-    zoo->addCustomer(*customer3); 
-    
-    zoo->sortCustomers();
-    zoo->getCustomers()->print();
-
-
-
-    delete zoo;     
-    // delete animal1;     
-    // delete animal2;
-    // delete animal3;
-    // delete customer;     
-    // Call the function to write output to a file
-    writeTestOutputToFile("output.txt");
-    
-    cout << "Testing Completed" << endl;
-    return 0;
-*/
-}
-
-void welcomeMsg() {
-    cout << "Welcome to Zoo Simulator!" << endl;
-
-    cout << "." << endl;
-    cout << "." << endl;
-    cout << "." << endl;
-
-    cout << "Enter '1' to start the day\n" << endl;
-    cout << "Or, select any of the following to view more information about the zoo:" << endl;
-    cout << EXHIBITS <<") View Exhibit list" << endl;
-    cout << CUSTOMERS <<") View Customer info" << endl;
-    cout << EMPLOYEES <<") View Employee info" << endl; 
-
+    // make sure to add deletes
 }
 
 int zooMenu() {
@@ -209,15 +165,15 @@ int zooMenu() {
         cout << "Zoo Menu:" << endl;
         cout << "(" << LEAVE_ZOO << ") Leave zoo" << endl;
         cout << "(" << LIST_EXS << ") List exhibits" << endl;
+        cout << "(" << SORT_EXS << ") Sort exhibits" << endl;
         cout << "(" << ENTER << ") Enter an exhibit" << endl;
-        cout << "(" << SORT << ") Sort exhibits" << endl;
         cout << "Enter an option: ";
         
         cin >> choice;
-        if(choice < LEAVE_ZOO || choice > SORT) {
-           cout << "Error! Input must be a number between " << LEAVE_ZOO << " and " << SORT << "." << endl;
+        if(choice < LEAVE_ZOO || choice > ENTER) {
+           cout << "Error! Input must be a number between " << LEAVE_ZOO << " and " << ENTER << "." << endl;
         }
-     } while(choice < LEAVE_ZOO || choice > SORT);
+     } while(choice < LEAVE_ZOO || choice > ENTER);
     return choice;
 }
 
@@ -228,7 +184,9 @@ int exhibitMenu(string name) {
         cout << "Exhibit Menu: "  << name << endl;
         cout << "(" << LEAVE_EX << ") Leave exhibit" << endl;
         cout << "(" << INFO_EX << ") View info plaque" << endl;
+        cout << "(" << LIST_EMPS << ") List employees in exhibit" << endl;
         cout << "(" << LIST_ANIMALS << ") List animals in exhibit" << endl;
+        cout << "(" << SORT_ANIMALS << ") Sort animals in exhibit" << endl;
         cout << "(" << INTERACT << ") Interact with animal" << endl;
         cout << "Enter an option: ";
         
@@ -259,6 +217,21 @@ int animalMenu(string name) {
     return choice;
 }
     
+// void welcomeMsg() {
+//     cout << "Welcome to Zoo Simulator!" << endl;
+
+//     cout << "." << endl;
+//     cout << "." << endl;
+//     cout << "." << endl;
+
+//     cout << "Enter '1' to start the day\n" << endl;
+//     cout << "Or, select any of the following to view more information about the zoo:" << endl;
+//     cout << EXHIBITS <<") View Exhibit list" << endl;
+//     cout << CUSTOMERS <<") View Customer info" << endl;
+//     cout << EMPLOYEES <<") View Employee info" << endl; 
+
+// }
+
 void writeTestOutputToFile(const string& filename) {
     ofstream outputFile("./data/" + filename);
 

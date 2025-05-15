@@ -6,7 +6,7 @@
 using namespace std;
 
 Employee::Employee() {
-    this->job = Unemployed;
+    this->job = Chopping_Block;
     this->hourlyWage = -1;
     this->startTime = 0;
 }
@@ -45,16 +45,31 @@ void Employee::print() const {
 }
 
 std::ostream& operator<<(std::ostream& os, const Employee& toPrint) {
-    os << "Name: " << toPrint.getName() << "\n";
-    os << "Hourly: $" << toPrint.getWage() << "\n";
-    os << "Job: " << toPrint.getJob() << "\n";
-    os << "Start Time: " << toPrint.getStart();
+    os << toPrint.getName() << ") ";
+    os << "job: " << toPrint.getJobStr() << ", ";
+    os << "age: " << toPrint.getAge() << ", ";
+    os << "hourly: $" << toPrint.getWage() << ", ";
+    os << "start time: " << toPrint.getStart();
 
     return os;
 }
 
 // GETTERS
 Jobs Employee::getJob() const { return this->job; }
+string Employee::getJobStr() const { 
+    switch(this->job) {
+        case Chopping_Block:
+            return "on the chopping block";
+        case Caretaker:
+            return "caretaker";
+        case Director:
+            return "director"; 
+        case Security:
+            return "security";
+        case Janitor:
+            return "janitor";
+    }
+}
 double Employee::getWage() const { return this->hourlyWage; }
 time_t Employee::getStart() const { return this->startTime; }
 
