@@ -60,6 +60,8 @@ int main() {
 
     testNodeTypes();
 
+    Exhibit tempEx;
+
     // WE WILL CLEAN THIS UP AND PUT EVERYTHING IN FUNCTIONS :sob::skull:
     do {
         choice = zooMenu();
@@ -76,7 +78,11 @@ int main() {
                 cout << "Enter name of exhibit: ";
                 cin.ignore(10000, '\n');
                 getline(cin, exName);
-                tempExPtr = testZoo->getExhibits()->search(exName);
+                // tempExPtr = testZoo->getExhibits()->search(exName);
+                tempEx = Exhibit();
+                tempEx.addAnimal(Animal(None, "Rosy"));
+                cout << "Rosy added first time" << endl;
+                tempExPtr = new Node<Exhibit>(tempEx);
                 if(tempExPtr == nullptr) {
                     cout << "Exhibit does not exist!" << endl;
                 } else {
@@ -89,19 +95,22 @@ int main() {
                                 break;
                             // SEGFAULT HAPPENING HERE -- list_animals and interact
                             case LIST_ANIMALS:
-                                cout << "List of animals:" << endl;
-                                tempAnimalPtr = (tempExPtr->getData().getAnimals())->getHead();
-                                cout << "after getanimals get head" << endl;
-                                // cout << "tempAnimalPtr address is " << tempAnimalPtr << endl;
-                                cout << "thing to be assigned is " << (tempExPtr->getData().getAnimals()->getHead())->getData() << endl;
-                                // cout << "c get data prints " << c->getData() << endl;
-                                cout << "tempAnimalPtr.getData is " << tempAnimalPtr->getData() << endl;
-                                // cout << "*tempAnimalPtr is " << *tempAnimalPtr << endl;
-                                // cout << "c address is " << c << ". now assigning tempAnimalPtr to c..." << endl;
-                                // c = tempAnimalPtr;
-                                // cout << "after c";
-                                // b = *tempAnimalPtr;
-                                // cout << "after b";
+                            cout << "List of animals:" << endl;
+                            tempEx = tempExPtr->getData();
+                            cout << "BETWEEN" << endl;
+                            tempAnimalPtr = tempEx.getAnimals()->getHead();
+                            cout << "after getanimals get head" << endl;
+                            // cout << "tempAnimalPtr address is " << tempAnimalPtr << endl;
+                            cout << "thing to be assigned is " << tempExPtr->getData().getAnimals()->getHead()->getData() << endl;
+                            // cout << "c get data prints " << c->getData() << endl;
+                            cout << "tempAnimalPtr.getData is " << tempAnimalPtr->getData() << endl;
+                            // cout << "*tempAnimalPtr is " << *tempAnimalPtr << endl;
+                            // cout << "c address is " << c << ". now assigning tempAnimalPtr to c..." << endl;
+                            c = tempAnimalPtr;
+                            cout << "c value: " << c->getData() << endl;
+                            // cout << "after c";
+                            // b = *tempAnimalPtr;
+                            // cout << "after b";
                                 while(tempAnimalPtr != nullptr) {
                                     Animal a = tempAnimalPtr->getData();
                                     cout << "after a" << endl;
@@ -109,7 +118,7 @@ int main() {
                                     tempAnimalPtr = tempAnimalPtr->getNext();
                                 }
                                 break;
-                            case INTERACT:3
+                            case INTERACT:
                                 cout << "Enter name of animal: ";
                                 cin >> animalName;
                                 tempAnimalPtr = tempExPtr->getData().getAnimals()->search(animalName);

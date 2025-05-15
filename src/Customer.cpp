@@ -29,6 +29,13 @@ Ticket Customer::getTicketType() const { return this->ticketType;}
 void Customer::setTicketNum(int num) { this->ticketNum = num;}
 void Customer::setTicketType(Ticket type) { this->ticketType = type;}
 
+std::ostream& operator<<(std::ostream& os, const Customer& toPrint) {
+    cout << "Need to implement print person members";
+    os << toPrint.getTicketNum();
+    os << toPrint.getTicketType();
+    return os;
+}
+
 // Assignment Operator
 // Operator overloads
 bool operator==(const Customer& lhs, const Customer& rhs) {

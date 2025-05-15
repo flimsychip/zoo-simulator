@@ -7,7 +7,7 @@ This project will simulate a Zoo by using OOP and File IO to go through simulate
 enter the project directory in terminal
 
 execute `make` in terminal
-- this will execute the makefile and create an exectuable named "main" in a build folder
+- this will execute the makefile and create an executable named "main" in a build folder
 - all generated build files (.o and .d) will be in build folder as well
   
 execute `./build/main` in terminal 

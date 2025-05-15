@@ -324,17 +324,20 @@ Node<T>* LinkedList<T>::insert_before(const T& value, Node<T>* knownNode) {
 
 template <typename T>
 void LinkedList<T>::push_back(const T& value) {
-   Node<T>* newNode = new Node<T>(value);
-   if (!head) {
-      head = tail = newNode;
-   }
-   else {
-      tail->next = newNode;
-      newNode->prev = tail;
-      tail = newNode;
-   }
+   // Node<T>* newNode = new Node<T>(value);
+   // if (!head) {
+   //    head = newNode;
+   //    tail = newNode;
+   // }
+   // else {
+   //    tail->next = newNode;
+   //    newNode->prev = tail;
+   //    tail = newNode;
+   // }
    
-   count++;
+   // count++;
+   cout << "Pushing back - " << value << endl;
+   this->push_back(new Node<T>(value));
 }
 template <typename T>
 void LinkedList<T>::push_back(Node<T>* addNode) {
@@ -365,6 +368,7 @@ Node<T>* LinkedList<T>::getTail() const { return tail; }
 
 template <typename T>
 Node<T>* LinkedList<T>::search(const T& value) const {
+
    Node<T>* curr = this->head;
    if(curr == nullptr) {
       cout << "list empty" << endl;
@@ -384,6 +388,9 @@ Node<T>* LinkedList<T>::search(const T& value) const {
 // search using name (str)
 template <typename T>
 Node<T>* LinkedList<T>::search(const string str) const {
+
+   cout << "Search entered" << endl;
+
    Node<T>* curr = this->head;
    if(curr == nullptr) {
       cout << "list empty" << endl;
@@ -392,10 +399,13 @@ Node<T>* LinkedList<T>::search(const string str) const {
    
    while (curr != nullptr) {
       if (curr->getData().getName() == str) {
+         cout << "node found -> " << curr->getData() << endl;
          return curr;
       }
       curr = curr->getNext();
    }
+   
+   cout << "node not found" << endl;
    
    return nullptr;
 }

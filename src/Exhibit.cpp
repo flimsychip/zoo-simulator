@@ -24,7 +24,9 @@ Exhibit::Exhibit(double cost, string name,
 Exhibit::Exhibit(const Exhibit &copyExhibit) {
     this->dailyCost = copyExhibit.dailyCost;
     this->name = copyExhibit.name;
+    cout << "before" << endl;
     this->animals = new LinkedList<Animal>(*copyExhibit.getAnimals());
+    cout << "after" << endl;
     this->employees = new LinkedList<Employee>(*copyExhibit.getEmployees());
 }
 
@@ -33,6 +35,7 @@ Exhibit::~Exhibit() {
 }
 
 Exhibit& Exhibit::operator=(const Exhibit &rhs) {
+    cout << "Exhibit::operator= called" << endl;
     if (this == &rhs) { return *this; }
     this->clear();
     this->name = rhs.getName();
