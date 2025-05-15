@@ -17,7 +17,6 @@ Node<T>::Node(const T& value) {
 
 template<typename T>
 Node<T>::Node(const Node<T>& copyNode) {
-   cout << "inside node copy constructor" << endl;
    this->data = copyNode.getData();
    this->next = copyNode.getNext();
    this->prev = copyNode.getPrev();
@@ -35,7 +34,9 @@ void Node<T>::setPrev(Node<T>* node) { this->prev = node; }
 
 // GETTERS
 template <typename T>
-T Node<T>::getData() const { return this->data; }
+T& Node<T>::getData() { return this->data; }
+template <typename T>
+const T& Node<T>::getData() const { return this->data; }
 template <typename T>
 Node<T>* Node<T>::getNext() const { return next; }
 template <typename T>
@@ -70,9 +71,6 @@ bool operator>=(const Node<T>& lhs, const Node<T>& rhs) {
 
 template<typename T>
 ostream& operator<<(ostream& os, const Node<T>& toPrint) {
-   std::cout << "control is now in ostream overload" << endl;
-   std::cout << "toPrint address is " << &toPrint << endl;
    os << toPrint.getData();
-   std::cout << "control is exiting ostream overload" << endl;
    return os;
 }

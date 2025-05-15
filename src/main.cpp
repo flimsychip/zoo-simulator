@@ -52,15 +52,8 @@ int main() {
     string exName;
     string animalName;
 
-    Node<Animal> b;
-    Node<Animal>* c = new Node<Animal>;
-
     Node<Exhibit>* tempExPtr = nullptr;
     Node<Animal>* tempAnimalPtr = nullptr;
-
-    testNodeTypes();
-
-    Exhibit tempEx;
 
     // WE WILL CLEAN THIS UP AND PUT EVERYTHING IN FUNCTIONS :sob::skull:
     do {
@@ -78,42 +71,29 @@ int main() {
                 cout << "Enter name of exhibit: ";
                 cin.ignore(10000, '\n');
                 getline(cin, exName);
-                // tempExPtr = testZoo->getExhibits()->search(exName);
-                tempEx = Exhibit();
-                tempEx.addAnimal(Animal(None, "Rosy"));
-                cout << "Rosy added first time" << endl;
-                tempExPtr = new Node<Exhibit>(tempEx);
+                // cout << "tempExPtr is " << tempExPtr << " at 77 (before ex search/asmt)" << endl;
+                tempExPtr = testZoo->getExhibits()->search(exName);
+                // cout << "tempExPtr is " << tempExPtr << " at 79 (after ex search/asmt)" << endl;
                 if(tempExPtr == nullptr) {
                     cout << "Exhibit does not exist!" << endl;
                 } else {
                     do {
                         exChoice = exhibitMenu(tempExPtr->getData().getName());
+                        // cout << "tempExPtr is " << tempExPtr << " at 85 (after passing into exMenu)" << endl;
                         // SWITCH HERE
                         switch(exChoice) {
                             case INFO_EX:
                                 tempExPtr->getData().print(); // REPLACE WITH OVERLOADED COUT FOR CONSISTENCY
                                 break;
-                            // SEGFAULT HAPPENING HERE -- list_animals and interact
                             case LIST_ANIMALS:
-                            cout << "List of animals:" << endl;
-                            tempEx = tempExPtr->getData();
-                            cout << "BETWEEN" << endl;
-                            tempAnimalPtr = tempEx.getAnimals()->getHead();
-                            cout << "after getanimals get head" << endl;
-                            // cout << "tempAnimalPtr address is " << tempAnimalPtr << endl;
-                            cout << "thing to be assigned is " << tempExPtr->getData().getAnimals()->getHead()->getData() << endl;
-                            // cout << "c get data prints " << c->getData() << endl;
-                            cout << "tempAnimalPtr.getData is " << tempAnimalPtr->getData() << endl;
-                            // cout << "*tempAnimalPtr is " << *tempAnimalPtr << endl;
-                            // cout << "c address is " << c << ". now assigning tempAnimalPtr to c..." << endl;
-                            c = tempAnimalPtr;
-                            cout << "c value: " << c->getData() << endl;
-                            // cout << "after c";
-                            // b = *tempAnimalPtr;
-                            // cout << "after b";
+                                cout << "List of animals:" << endl;
+                                // cout << "tempExPtr is " << tempExPtr << " at 98 (before monster tempAnimalPtr asmt)" << endl;
+                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 99 (before monster tempAnimalPtr asmt)" << endl;
+                                tempAnimalPtr = tempExPtr->getData().getAnimals()->getHead();
+                                // cout << "tempExPtr is " << tempExPtr << " at 101 (after monster tempAnimalPtr asmt)" << endl;
+                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 102 (after monster tempAnimalPtr asmt)" << endl;
                                 while(tempAnimalPtr != nullptr) {
                                     Animal a = tempAnimalPtr->getData();
-                                    cout << "after a" << endl;
                                     cout << "- " << a.getName() << " the " << a.getSpecies() << endl;
                                     tempAnimalPtr = tempAnimalPtr->getNext();
                                 }
@@ -121,7 +101,11 @@ int main() {
                             case INTERACT:
                                 cout << "Enter name of animal: ";
                                 cin >> animalName;
+                                // cout << "tempExPtr is " << tempExPtr << " at 125 (before monster search)" << endl;
+                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 126 (before monster search)" << endl;
                                 tempAnimalPtr = tempExPtr->getData().getAnimals()->search(animalName);
+                                // cout << "tempExPtr is " << tempExPtr << " at 128 (after monster chain)" << endl;
+                                // cout << "tempAnimalPtr is " << tempAnimalPtr << " at 129 (after monster chain)" << endl;
                                 if(tempAnimalPtr == nullptr) {
                                     cout << "There is no animal named that!" << endl;
                                 } else {

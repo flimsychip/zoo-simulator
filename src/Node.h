@@ -24,7 +24,8 @@ struct Node {
       void setNext(Node<T>* node);
       void setPrev(Node<T>* node);
       
-      T getData() const;
+      T& getData(); // sometimes we be modify :shrug:
+      const T& getData() const; // needed bc other const funcs call getData()
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
 
