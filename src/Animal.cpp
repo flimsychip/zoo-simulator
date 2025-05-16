@@ -16,21 +16,6 @@ Animal::Animal(Species species, string name) {
     this->setName(name);
 }
 
-Animal::Animal(const Animal &copyAnimal) {
-    this->setSpecies(copyAnimal.getSpecies());
-    this->setName(copyAnimal.getName());
-}
-
-Animal::~Animal() {
-}
-
-Animal& Animal::operator=(const Animal &rhs) {
-    if (this == &rhs) { return *this; }
-    this->setSpecies(rhs.getSpecies());
-    this->setName(rhs.getName());
-    return *this;
-}
-
 void Animal::makeSound() const{
     switch(this->getSpecies()) {
         case Chimpanzee:

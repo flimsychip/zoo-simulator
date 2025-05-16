@@ -1,3 +1,11 @@
+/*
+    TO DO: 
+    - !!! filei for loading in objects !!!!!
+    - fileo -- honestly we can just write everything we write in the console to a file :sob: make sure we include user inputs
+    - bug: can't modify data after pushing back (line 65)
+    - clean up unused functionality in all files (only one shows up in output, hit that first -- food inventory)
+*/
+
 #include "Animal.h" 
 #include "Customer.h" 
 #include "Zoo.h" 
@@ -17,7 +25,8 @@ enum AnimalMenu { LEAVE_ANIMAL, INFO_ANIMAL, FEED, AGGRO };
 int zooMenu();
 int exhibitMenu(string name);
 int animalMenu(string name);
-void welcomeMsg();
+void exhibitInteract(Node<Exhibit>* ptr);
+void animalInteract(Node<Animal>* ptr);
 void writeTestOutputToFile(const string& filename);
 
 int main() { 
@@ -58,17 +67,11 @@ int main() {
     testZoo->addExhibit(*testExhibit2);
     testExhibit2->setName("funhouse (not a jail)"); // [FROM ZOO MANAGER] TOP PRIORITY. COVER TRACKS!!!
 
+    // cleaned up and put in funcs :yippee::bloom::steamhappy:
     int choice;
-    int exChoice;
-    int animalChoice;
     string exName;
-    string animalName;
-
     Node<Exhibit>* tempExPtr = nullptr;
-    Node<Animal>* tempAnimalPtr = nullptr;
-    Node<Employee>* tempEmpPtr = nullptr;
 
-    // clean up and put in funcs :sob::skull:
     do {
         choice = zooMenu();
         cout << endl;
@@ -91,71 +94,13 @@ int main() {
                 cin.ignore(10000, '\n');
                 getline(cin, exName);
                 tempExPtr = testZoo->getExhibits()->search(exName);
-                if(tempExPtr == nullptr) {
-                    cout << "Exhibit does not exist!" << endl;
-                } else {
-                    do {
-                        exChoice = exhibitMenu(tempExPtr->getData().getName());
-                        cout << endl;
-                        // SWITCH HERE
-                        switch(exChoice) {
-                            case INFO_EX:
-                                cout << tempExPtr->getData() << endl;
-                                break;
-                            case LIST_EMPS:
-                                cout << "List of employees:" << endl;
-                                tempEmpPtr = tempExPtr->getData().getEmployees()->getHead();
-                                while(tempEmpPtr != nullptr) {
-                                    cout << "- " << *tempEmpPtr << endl;
-                                    tempEmpPtr = tempEmpPtr->getNext();
-                                }
-                                break;
-                            case LIST_ANIMALS:
-                                cout << "List of animals:" << endl;
-                                tempAnimalPtr = tempExPtr->getData().getAnimals()->getHead();
-                                while(tempAnimalPtr != nullptr) {
-                                    cout << "- " << tempAnimalPtr->getData().getName() << " the " << tempAnimalPtr->getData().getSpeciesStr() << endl;
-                                    tempAnimalPtr = tempAnimalPtr->getNext();
-                                }
-                                break;
-                            case SORT_ANIMALS:
-                                cout << "sorting by alphabetical order..." << endl;
-                                tempExPtr->getData().getAnimals()->mergeSort();
-                                cout << "sorted!" << endl;
-                                break;
-                            case INTERACT:
-                                cout << "Enter name of animal: ";
-                                cin >> animalName;
-                                tempAnimalPtr = tempExPtr->getData().getAnimals()->search(animalName);
-                                if(tempAnimalPtr == nullptr) {
-                                    cout << "There is no animal named that!" << endl;
-                                } else {
-                                    do {
-                                        animalChoice = animalMenu(tempAnimalPtr->getData().getName());
-                                        cout << endl;
-                                        // SWITCH HERE
-                                        switch(animalChoice) {
-                                            case INFO_ANIMAL:
-                                                cout << tempAnimalPtr->getData() << endl;
-                                                break;
-                                            case FEED:
-                                                tempAnimalPtr->getData().eat();
-                                                break;
-                                            case AGGRO:
-                                                tempAnimalPtr->getData().makeSound();
-                                                break;
-                                        } 
-                                    } while(animalChoice != LEAVE_ANIMAL);
-                                }
-                                break;
-                        }
-                    } while(exChoice != LEAVE_EX);
-                }
+                exhibitInteract(tempExPtr);
                 break;
         }
     } while(choice != LEAVE_ZOO);
 
     // make sure to add deletes
+    delete testZoo;
 }
 
 int zooMenu() {
@@ -216,21 +161,76 @@ int animalMenu(string name) {
      } while(choice < LEAVE_ANIMAL || choice > AGGRO);
     return choice;
 }
-    
-// void welcomeMsg() {
-//     cout << "Welcome to Zoo Simulator!" << endl;
 
-//     cout << "." << endl;
-//     cout << "." << endl;
-//     cout << "." << endl;
+void exhibitInteract(Node<Exhibit>* ptr) {
+    int choice;
+    string animalName;
+    Node<Animal>* tempAnimalPtr = nullptr;
+    Node<Employee>* tempEmpPtr = nullptr;
+    if(ptr == nullptr) {
+        cout << "Exhibit does not exist!" << endl;
+    } else {
+        do {
+            choice = exhibitMenu(ptr->getData().getName());
+            cout << endl;
+            switch(choice) {
+                case INFO_EX:
+                    cout << ptr->getData() << endl;
+                    break;
+                case LIST_EMPS:
+                    cout << "List of employees:" << endl;
+                    tempEmpPtr = ptr->getData().getEmployees()->getHead();
+                    while(tempEmpPtr != nullptr) {
+                        cout << "- " << *tempEmpPtr << endl;
+                        tempEmpPtr = tempEmpPtr->getNext();
+                    }
+                    break;
+                case LIST_ANIMALS:
+                    cout << "List of animals:" << endl;
+                    tempAnimalPtr = ptr->getData().getAnimals()->getHead();
+                    while(tempAnimalPtr != nullptr) {
+                        cout << "- " << tempAnimalPtr->getData().getName() << " the " << tempAnimalPtr->getData().getSpeciesStr() << endl;
+                        tempAnimalPtr = tempAnimalPtr->getNext();
+                    }
+                    break;
+                case SORT_ANIMALS:
+                    cout << "sorting by alphabetical order..." << endl;
+                    ptr->getData().getAnimals()->mergeSort();
+                    cout << "sorted!" << endl;
+                    break;
+                case INTERACT:
+                    cout << "Enter name of animal: ";
+                    cin >> animalName;
+                    tempAnimalPtr = ptr->getData().getAnimals()->search(animalName);
+                    animalInteract(tempAnimalPtr);
+                    break;
+            }
+        } while(choice != LEAVE_EX);
+    }
+}
 
-//     cout << "Enter '1' to start the day\n" << endl;
-//     cout << "Or, select any of the following to view more information about the zoo:" << endl;
-//     cout << EXHIBITS <<") View Exhibit list" << endl;
-//     cout << CUSTOMERS <<") View Customer info" << endl;
-//     cout << EMPLOYEES <<") View Employee info" << endl; 
-
-// }
+void animalInteract(Node<Animal>* ptr) {
+    int choice;
+    if(ptr == nullptr) {
+        cout << "There is no animal named that!" << endl;
+    } else {
+        do {
+            choice = animalMenu(ptr->getData().getName());
+            cout << endl;
+            switch(choice) {
+                case INFO_ANIMAL:
+                    cout << ptr->getData() << endl;
+                    break;
+                case FEED:
+                    ptr->getData().eat();
+                    break;
+                case AGGRO:
+                    ptr->getData().makeSound();
+                    break;
+            } 
+        } while(choice != LEAVE_ANIMAL);
+    }
+}
 
 void writeTestOutputToFile(const string& filename) {
     ofstream outputFile("./data/" + filename);

@@ -22,6 +22,7 @@ Zoo::~Zoo() {
 void Zoo::clear() {
     delete this->customers;
     delete this->employees;
+    delete this->exhibits;
 }
 
 Zoo& Zoo::operator=(const Zoo &rhs) {

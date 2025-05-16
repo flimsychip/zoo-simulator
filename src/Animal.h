@@ -21,11 +21,8 @@ struct Animal {
 		Animal();
 		Animal(Species species);
 		Animal(Species species, std::string name);
-		Animal(const Animal &copyAnimal);
-		~Animal();
 		void makeSound() const;
 		void eat() const;
-		Animal& operator=(const Animal &rhs); // need rule of 3 if being pushed_back in linkedlist
 
 		// Getters
 		Species getSpecies() const;
@@ -50,4 +47,5 @@ bool operator<(const Animal& lhs, const Animal& rhs);
 bool operator>(const Animal& lhs, const Animal& rhs);
 bool operator<=(const Animal& lhs, const Animal& rhs);
 bool operator>=(const Animal& lhs, const Animal& rhs);
+
 #endif
