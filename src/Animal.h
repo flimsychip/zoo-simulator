@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "../deps/nlohmann/json.hpp"
 
 enum Species { // TEST COMMENT
 	None,
@@ -33,6 +34,9 @@ struct Animal {
 		// Setters
 		void setSpecies(Species toSpecies);
 		void setName(std::string name);
+
+		// MACRO to convert/actuate object to/from json
+		NLOHMANN_DEFINE_TYPE_INTRUSIVE(Animal, species, name)
 
 	private:
 		Species species;
