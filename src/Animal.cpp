@@ -50,7 +50,6 @@ void Animal::makeSound() const{
 }
 
 void Animal::eat() const {
-    cout << "food inventory not yet implemented" << endl;
     switch(this->getSpecies()) {
         case Chimpanzee:
             cout << "yum berries" << endl;

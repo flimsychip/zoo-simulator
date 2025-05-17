@@ -8,82 +8,43 @@
 
 using namespace std; 
 
-enum ZooInfo {QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO};
-
-//void welcomeMsg();
-//void writeTestOutputToFile(const string& filename);
-
-void testingPriv() {     
-    cout << "Testing..." << endl;
-
-    //welcomeMsg();
-
-    Zoo* zoo = new Zoo();
-    Exhibit* testCage = new Exhibit;
-
-    Animal* animal1 = new Animal();     
-    cout << animal1->getSpecies() << endl;
-    Animal* animal2 = new Animal(Chimpanzee);   
-    Animal* animal3 = new Animal(Hamster);      
-         
-    testCage->addAnimal(*animal1);
-    testCage->addAnimal(*animal2);
-    testCage->addAnimal(*animal3);
-
-    testCage->sort();
-    testCage->getEmployees()->print();
-    testCage->getAnimals()->print();
-
-    zoo->addExhibit(*testCage);
-
-    Customer* customer = new Customer("Shakira");     
-    cout << customer->getName() << endl;   
-    Customer* customer2 = new Customer("Joe"); 
-    Customer* customer3 = new Customer("Shmoe");   
-    
-         
-    cout << zoo->calcExpenses() << endl;     // Is this be pushing back deep copies?     
-    zoo->addCustomer(*customer);   
-    zoo->addCustomer(*customer2);   
-    zoo->addCustomer(*customer3); 
-    
-    zoo->sortCustomers();
-    zoo->getCustomers()->print();
-
-    delete zoo;
-}
-
 void testNodeTypes() {
     cout << "Testing Node for Employee/Animal/Customer/Exhibit..." << endl;
-    Employee* imp1 = new Employee("joe shmoe", 18, Janitor, 7.50);
-    imp1->print();
 
     cout << "Accessing Employee data..." << endl;
     Node<Employee>* testNode = new Node<Employee> ();
     cout << "Node data: \n" << *testNode << endl;
-    cout << "Node next: " << testNode->getNext() << endl;
-    cout << "Node prev: " << testNode->getPrev() << endl;
 
     cout << "Setting Employee data..." << endl;
+    Employee* imp1 = new Employee("joe shmoe", 18, Janitor, 7.50);
     testNode->setData(*imp1);
     cout << "Node data: \n" << *testNode << endl;
 
     cout << "Accessing Animal data..." << endl;
     Node<Animal>* testNode2 = new Node<Animal>;
     cout << "Node data: \n" << *testNode2 << endl;
-    cout << "Node next: " << testNode2->getNext() << endl;
-    cout << "Node prev: " << testNode2->getPrev() << endl;
+
+    cout << "Setting Animal data..." << endl;
+    Animal* animal1 = new Animal(Chimpanzee);
+    testNode2->setData(*animal1);
+    cout << "Node data: \n" << *testNode2 << endl;
+
 
     cout << "Getting Customer data..." << endl;
     Node<Customer>* testNode3 = new Node<Customer>;
     cout << "Node data: \n" << *testNode3 << endl;
-    cout << "Node next: " << testNode3->getNext() << endl;
-    cout << "Node prev: " << testNode3->getPrev() << endl;
+
+    cout << "Setting Customer data..." << endl;
+    Customer* cust1 = new Customer("Shakira", 18);
+    testNode3->setData(*cust1);
+    cout << "Node data: \n" << *testNode3 << endl;
+
+
+
 
     delete testNode;
     delete testNode2;
     delete testNode3;
-    
 }
 
 void testLinkedListBasic() {
@@ -109,9 +70,11 @@ void testNodeCompOperators () {
 //int getTestMenuChoice ();
 void promptUnitTest() {
 
+
 }
 
 void outputList ();
+
 
 void movedFromMain() {
     Zoo* zoo = new Zoo();
@@ -160,4 +123,42 @@ void movedFromMain() {
     //writeTestOutputToFile("output.txt");
     
     cout << "Testing Completed" << endl;
+}
+
+void Main2() {
+    Zoo* testZoo = new Zoo;
+    Exhibit* testExhibit = new Exhibit(100, "party city", new LinkedList<Animal>, new LinkedList<Employee>);
+    Animal* testAni1 = new Animal(Hamster, "hammy");
+    Animal* testAni2 = new Animal(Chimpanzee, "cody");
+    Animal* testAni3 = new Animal(Otter, "oscar");
+    Animal* testAni4 = new Animal(Wolf, "william");
+    Animal* testAni5 = new Animal(Bear, "barry");
+    Animal* testAni6 = new Animal(Lion, "larry");
+    Animal* testAni7 = new Animal(Toucan, "thomas");
+    Animal* testAni8 = new Animal(Gorilla, "gary");
+    testExhibit->addAnimal(*testAni1);
+    testExhibit->addAnimal(*testAni2);
+    testExhibit->addAnimal(*testAni3);
+    testExhibit->addAnimal(*testAni4);
+    testExhibit->addAnimal(*testAni5);
+    testExhibit->addAnimal(*testAni6);
+    testExhibit->addAnimal(*testAni7);
+    testExhibit->addAnimal(*testAni8);
+    Employee* testEmp = new Employee("milo", 22, Chopping_Block, 0);
+    Employee* testEmp2 = new Employee("rosa", 23, Security, 100);
+    Employee* testEmp3 = new Employee("elijah", 20, Janitor, 25);
+    testExhibit->addEmployee(*testEmp);
+    testExhibit->addEmployee(*testEmp2);
+    testExhibit->addEmployee(*testEmp3);
+    Node<Employee>* tempEmpLoopPtr = testExhibit->getEmployees()->getHead();
+    while(tempEmpLoopPtr != nullptr) {      // monster chains for testing and clarity
+        testExhibit->setDailyCost(testExhibit->getDailyCost() + tempEmpLoopPtr->getData().getWage());
+        tempEmpLoopPtr = tempEmpLoopPtr->getNext();
+    }
+    testZoo->addExhibit(*testExhibit);
+
+    // FIXME: data isn't being modified after pushing back
+    Exhibit* testExhibit2 = new Exhibit(100, "the bad ones", new LinkedList<Animal>, new LinkedList<Employee>);
+    testZoo->addExhibit(*testExhibit2);
+    testExhibit2->setName("funhouse (not a jail)"); // [FROM ZOO MANAGER] TOP PRIORITY. COVER TRACKS!!!
 }

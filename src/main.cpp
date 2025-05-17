@@ -65,7 +65,7 @@ int main() {
     testZoo->addExhibit(*testExhibit);
 
     // FIXME: data isn't being modified after pushing back
-    Exhibit* testExhibit2 = new Exhibit(100, "the bad ones", new LinkedList<Animal>, new LinkedList<Employee>);
+    Exhibit* testExhibit2 = new Exhibit(100, "bad dogs", new LinkedList<Animal>, new LinkedList<Employee>);
     testZoo->addExhibit(*testExhibit2);
     testExhibit2->setName("funhouse (not a jail)"); // [FROM ZOO MANAGER] TOP PRIORITY. COVER TRACKS!!!
 
@@ -116,7 +116,6 @@ int zooMenu() {
     do {
         cout << "\n--------------------------------------------\n" << endl;
         cout << "Zoo Menu:" << endl;
-        cout << endl;
         cout << "(" << LEAVE_ZOO << ") Leave zoo" << endl;
         cout << "(" << LIST_EXS << ") List exhibits" << endl;
         cout << "(" << SORT_EXS << ") Sort exhibits" << endl;
@@ -136,15 +135,14 @@ int exhibitMenu(string name) {
     int choice;
     do {
         cout << "\n--------------------------------------------\n" << endl;
-        cout << endl;
         cout << "Exhibit Menu: "  << name << endl;
-        cout << endl;
         cout << "(" << LEAVE_EX << ") Leave exhibit" << endl;
         cout << "(" << INFO_EX << ") View info plaque" << endl;
         cout << "(" << LIST_EMPS << ") List employees in exhibit" << endl;
         cout << "(" << LIST_ANIMALS << ") List animals in exhibit" << endl;
         cout << "(" << SORT_ANIMALS << ") Sort animals in exhibit" << endl;
         cout << "(" << INTERACT << ") Interact with animal" << endl;
+        cout << endl;
         cout << "Enter an option: ";
         
         cin >> choice;
@@ -159,12 +157,12 @@ int animalMenu(string name) {
     int choice;
     do {
         cout << "\n--------------------------------------------\n" << endl;
-        cout << endl;
         cout << "Animal Menu: " << name << endl;
         cout << "(" << LEAVE_ANIMAL << ") Let animal rest" << endl;
         cout << "(" << INFO_ANIMAL << ") View info plaque" << endl;
         cout << "(" << FEED << ") Feed" << endl;
         cout << "(" << AGGRO << ") Provoke" << endl;
+        cout << endl;
         cout << "Enter an option: ";
         
         cin >> choice;
