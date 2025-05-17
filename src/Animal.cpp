@@ -121,14 +121,13 @@ void Animal::setName(string toName) {
 }
 
 void Animal::print() {
-    cout << "Species: " << this->getSpeciesStr() << endl;
-    cout << "Name: " << this->getName() << endl;
+    cout << "Species: " << this->getSpeciesStr() << ", "
+         << "Name: " << this->getName() << endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Animal& toPrint) {
-    os << "Species: " << toPrint.getSpeciesStr() << "\n";
-    os << "Name: " << toPrint.getName();
-
+    os << "Species: " << toPrint.getSpeciesStr() << ", "
+       << "Name: " << toPrint.getName();
     return os;
 }
 

@@ -15,24 +15,40 @@ Customer::Customer(std::string name, int age, int ticketNum, Ticket ticketType) 
 }
 
 void Customer::print() const {
-    cout << "Name: " << name 
-        << ", Age: " << age
-        << ", Ticket Num: " << ticketNum 
-        << ", Ticket: " << ticketType << endl;
+    cout << "Name: " << this->name 
+         << ", Age: " << this->age
+         << ", Ticket Num: " << this->ticketNum 
+         << ", Ticket: " << this->getTicketStr() << endl;
 }
 
 // GETTERS
-int Customer::getTicketNum() const { return this->ticketNum;}
-Ticket Customer::getTicketType() const { return this->ticketType;}
+int Customer::getTicketNum() const { return this->ticketNum; }
+Ticket Customer::getTicketType() const { return this->ticketType; }
+
+string Customer::getTicketStr() const {
+    switch(this->ticketType) {
+        case SENIOR:
+            return "Senior";
+        case KIDS:
+            return "Kids";
+        case YEARLY:   
+            return "Yearly";
+        case GENERAL:
+            return "General";
+    }
+}
+
 
 // SETTERS
-void Customer::setTicketNum(int num) { this->ticketNum = num;}
-void Customer::setTicketType(Ticket type) { this->ticketType = type;}
+void Customer::setTicketNum(int num) { this->ticketNum = num; }
+void Customer::setTicketType(Ticket type) { this->ticketType = type; }
 
 std::ostream& operator<<(std::ostream& os, const Customer& toPrint) {
-    cout << "Need to implement print person members";
-    os << toPrint.getTicketNum();
-    os << toPrint.getTicketType();
+    os << "Name: " << toPrint.getName() << ", "
+       << "Age: " << toPrint.getAge() << ", "
+       << "Ticket Num: " << toPrint.getTicketNum() << ", "
+       << "Ticket: " << toPrint.getTicketStr(); 
+
     return os;
 }
 

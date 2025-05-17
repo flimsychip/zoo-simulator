@@ -19,11 +19,12 @@ struct Customer : public Person {
         Customer();
         Customer(std::string name, int age = -1, int ticketNum = -1, Ticket ticketType = GENERAL);
 
-        virtual void print() const;
+        void print() const override; // override print from Person.h
         
         // GETTERS
         int getTicketNum() const;
         Ticket getTicketType() const;
+        std::string getTicketStr() const;
 
         // SETTERS
         void setTicketNum(int num);
