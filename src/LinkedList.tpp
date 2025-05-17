@@ -52,7 +52,7 @@ LinkedList<T>::~LinkedList() {
    
     while (curr) {
         Node<T>* temp = curr;
-        curr = curr->next;
+        curr = curr->getNext();
       
         delete temp; // dealloc each consecutive node
     }
@@ -121,7 +121,7 @@ void LinkedList<T>::remove(Node<T>* rmNode) {
       if (nextNode) { nextNode->setPrev(prevNode); }
    }
 
-   rmNode = rmNode->next; // move to next before deleting
+   rmNode = rmNode->getNext(); // move to next before deleting
    delete toDelete;
    count--;
 }
@@ -409,13 +409,13 @@ void LinkedList<T>::print(bool reverse) {
       curr = this->tail;
       while (curr) {
          cout << curr->getData().getName() << endl;
-         curr = curr->prev;
+         curr = curr->getPrev();
       }
    }
    else {
       while (curr) {
          cout << curr->getData().getName() << endl;
-         curr = curr->next;
+         curr = curr->getNext();
       }
    }
 }
