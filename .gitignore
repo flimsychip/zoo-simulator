@@ -1,5 +1,5 @@
 # zoo-simulator
-main*
+build/
 .vscode*
 
 # --- Boilerplate Below ---
