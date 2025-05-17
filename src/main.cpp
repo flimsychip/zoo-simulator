@@ -20,7 +20,7 @@
 using namespace std; 
 
 enum ZooInfo { QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO };
-enum ZooMenu { LEAVE_ZOO, LIST_EXS, SORT_EXS, ENTER };
+enum ZooMenu { LEAVE_ZOO, LIST_EXS, SORT_EXS, ENTER, TEST};
 enum ExhibitMenu { LEAVE_EX, INFO_EX, LIST_EMPS, LIST_ANIMALS, SORT_ANIMALS, INTERACT };
 enum AnimalMenu { LEAVE_ANIMAL, INFO_ANIMAL, FEED, AGGRO };
 
@@ -98,8 +98,14 @@ int main() {
                 tempExPtr = testZoo->getExhibits()->search(exName);
                 exhibitInteract(tempExPtr);
                 break;
+            case TEST:
+                cout << "Running unit tests..." << endl;
+                promptUnitTest();
+                break;
         }
     } while(choice != LEAVE_ZOO);
+
+    cout << "Thanks for visiting the zoo!" << endl;
 
     // make sure to add deletes
     delete testZoo;
@@ -108,27 +114,32 @@ int main() {
 int zooMenu() {
     int choice;
     do {
-        cout << "\n--------------------------------------------" << endl;
+        cout << "\n--------------------------------------------\n" << endl;
+        cout << endl;
         cout << "Zoo Menu:" << endl;
+        cout << endl;
         cout << "(" << LEAVE_ZOO << ") Leave zoo" << endl;
         cout << "(" << LIST_EXS << ") List exhibits" << endl;
         cout << "(" << SORT_EXS << ") Sort exhibits" << endl;
         cout << "(" << ENTER << ") Enter an exhibit" << endl;
-        cout << "Enter an option: ";
+        cout << "\nEnter an option: ";
         
         cin >> choice;
         if(choice < LEAVE_ZOO || choice > ENTER) {
            cout << "Error! Input must be a number between " << LEAVE_ZOO << " and " << ENTER << "." << endl;
         }
-     } while(choice < LEAVE_ZOO || choice > ENTER);
+    } while(choice < LEAVE_ZOO || choice > ENTER);
+
     return choice;
 }
 
 int exhibitMenu(string name) {
     int choice;
     do {
-        cout << "\n--------------------------------------------" << endl;
+        cout << "\n--------------------------------------------\n" << endl;
+        cout << endl;
         cout << "Exhibit Menu: "  << name << endl;
+        cout << endl;
         cout << "(" << LEAVE_EX << ") Leave exhibit" << endl;
         cout << "(" << INFO_EX << ") View info plaque" << endl;
         cout << "(" << LIST_EMPS << ") List employees in exhibit" << endl;
@@ -148,7 +159,8 @@ int exhibitMenu(string name) {
 int animalMenu(string name) {
     int choice;
     do {
-        cout << "\n--------------------------------------------" << endl;
+        cout << "\n--------------------------------------------\n" << endl;
+        cout << endl;
         cout << "Animal Menu: " << name << endl;
         cout << "(" << LEAVE_ANIMAL << ") Let animal rest" << endl;
         cout << "(" << INFO_ANIMAL << ") View info plaque" << endl;

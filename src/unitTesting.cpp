@@ -58,18 +58,34 @@ void testNodeTypes() {
     Employee* imp1 = new Employee("joe shmoe", 18, Janitor, 7.50);
     imp1->print();
 
+    cout << "Accessing Employee data..." << endl;
     Node<Employee>* testNode = new Node<Employee> ();
-    cout << "Node data: " << *testNode << endl;
+    cout << "Node data: \n" << *testNode << endl;
     cout << "Node next: " << testNode->getNext() << endl;
     cout << "Node prev: " << testNode->getPrev() << endl;
 
+    cout << "Setting Employee data..." << endl;
+    testNode->setData(*imp1);
+    cout << "Node data: \n" << *testNode << endl;
+
+    cout << "Accessing Animal data..." << endl;
     Node<Animal>* testNode2 = new Node<Animal>;
-    cout << "Node data: " << testNode2->getData() << endl;
+    cout << "Node data: \n" << *testNode2 << endl;
     cout << "Node next: " << testNode2->getNext() << endl;
     cout << "Node prev: " << testNode2->getPrev() << endl;
 
+    cout << "Getting Customer data..." << endl;
+    Node<Customer>* testNode3 = new Node<Customer>;
+    cout << "Node data: \n" << *testNode3 << endl;
+    cout << "Node next: " << testNode3->getNext() << endl;
+    cout << "Node prev: " << testNode3->getPrev() << endl;
+
     delete testNode;
+    delete testNode2;
+    delete testNode3;
+    
 }
+
 void testLinkedListBasic() {
     cout << "Testing LinkedList..." << endl;
     LinkedList<Employee>* testList = new LinkedList<Employee>();
@@ -98,26 +114,22 @@ void promptUnitTest() {
 void outputList ();
 
 void movedFromMain() {
-    /*    cout << "Testing..." << endl;
-
-    // welcomeMsg();
-
     Zoo* zoo = new Zoo();
     Exhibit* testCage = new Exhibit;
 
-    // Animal* animal1 = new Animal();     
-    // cout << animal1->getSpecies() << endl;
-    // Animal* animal2 = new Animal(Chimpanzee);   
-    // Animal* animal3 = new Animal(Hamster);      
+    Animal* animal1 = new Animal();     
+    cout << animal1->getSpecies() << endl;
+    Animal* animal2 = new Animal(Chimpanzee);   
+    Animal* animal3 = new Animal(Hamster);      
          
-    // testCage->addAnimal(*animal1);
-    // testCage->addAnimal(*animal2);
-    // testCage->addAnimal(*animal3);
+    testCage->addAnimal(*animal1);
+    testCage->addAnimal(*animal2);
+    testCage->addAnimal(*animal3);
 
-    // testCage->sort();
-    // testCage->getEmployees()->print();
+    testCage->sort();
+    testCage->getEmployees()->print();
 
-    //zoo->addExhibit(*testCage);
+    zoo->addExhibit(*testCage);
 
     Customer* customer = new Customer("Shakira");     
     cout << customer->getName() << endl;   
@@ -139,11 +151,13 @@ void movedFromMain() {
     // delete animal1;     
     // delete animal2;
     // delete animal3;
-    // delete customer;     
+    // delete customer; 
+    // delete customer2;
+    // delete customer3;
+    // delete testCage;
+
     // Call the function to write output to a file
-    writeTestOutputToFile("output.txt");
+    //writeTestOutputToFile("output.txt");
     
     cout << "Testing Completed" << endl;
-    return 0;
-*/
 }

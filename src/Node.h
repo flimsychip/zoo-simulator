@@ -6,7 +6,7 @@
 
 template <typename T> 
 struct Node {
-   private:    // FIXME: change to protected?
+   private: 
       T data;
       Node<T>* next;
       Node<T>* prev;
@@ -24,10 +24,7 @@ struct Node {
       const T& getData() const; // needed bc other const funcs call getData()
       Node<T>* getNext() const;
       Node<T>* getPrev() const;
-
-      template<typename U>
-      friend struct LinkedList;  // FIXME: change LL.tpp and others so this is no longer necessary
-
+      
       // MACRO to convert/actuate object to/from json
       NLOHMANN_DEFINE_TYPE_INTRUSIVE(Node, data)
 };
