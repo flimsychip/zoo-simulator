@@ -1,0 +1,50 @@
+{
+    "customers": [
+        {
+            "data": {
+                "age": -1,
+                "name": "Jeremiah",
+                "ticketNum": -1,
+                "ticketType": 0
+            }
+        }
+    ],
+    "employees": [
+        {
+            "data": {
+                "age": -1,
+                "hourlyWage": -1.0,
+                "job": 0,
+                "name": "Jeremus",
+                "startTime": 0
+            }
+        }
+    ],
+    "exhibits": [
+        {
+            "data": {
+                "animals": [
+                    {
+                        "data": {
+                            "name": "Jeremy",
+                            "species": 1
+                        }
+                    }
+                ],
+                "dailyCost": 100.0,
+                "employees": [
+                    {
+                        "data": {
+                            "age": -1,
+                            "hourlyWage": -1.0,
+                            "job": 0,
+                            "name": "Jeremus",
+                            "startTime": 0
+                        }
+                    }
+                ],
+                "name": "JEROME"
+            }
+        }
+    ]
+}

@@ -2,16 +2,13 @@
 #include <fstream>
 #include <vector>
 #include <iterator>
-#include "src/Animal.h"
-#include "src/Person.h"
-#include "src/Customer.h"
-#include "src/Employee.h"
 #include "src/LinkedList.h"
-#include "src/Node.h"
+#include "src/Exhibit.h"
+#include "src/Zoo.h"
 #include "deps/nlohmann/json.hpp"   // This library isn't very fast, but is easiest to work with
 
 // Compile and Run
-// g++ json.cpp ./src/Employee.cpp ./src/Customer.cpp ./src/Person.cpp ./src/Animal.cpp -o ./build/json_example && ./build/json_example
+// g++ json.cpp ./src/Zoo.cpp ./src/Employee.cpp ./src/Customer.cpp ./src/Person.cpp ./src/Animal.cpp ./src/Exhibit.cpp -o ./build/json_example && ./build/json_example
 
 using namespace std;
 using json = nlohmann::json;
@@ -25,25 +22,34 @@ int main() {
 
     cout << "-- JSON Test --" << endl;
 
-    string filePath = "./data/data1.json";
+    // Path to Write and Read from
+    string filePath = "./data/zoo.json";
 
-    Animal animal = Animal(Chimpanzee, "Jeremy");
     Customer customer = Customer("Jeremiah");
-    Employee object = Employee("Jeremus");
-    // LinkedList<Customer> object = LinkedList<Customer>(customer);
-    // object.push_back(customer);
-    // object.push_back(customer);
+    Animal animal = Animal(Chimpanzee, "Jeremy");
+    Employee employee = Employee("Jeremus");
+    LinkedList<Animal>* anims = new LinkedList<Animal>(animal);
+    LinkedList<Employee>* employs = new LinkedList<Employee>(employee);
+    Exhibit* exhibit = new Exhibit(100, "JEROME", anims, employs);
+    Zoo* zoo = new Zoo();
+    zoo->addCustomer(customer);
+    zoo->addEmployee(employee);
+    zoo->addExhibit(*exhibit);      // I don't think this exhibit will get deleted later
 
-    json j = object;
+    Zoo object = *zoo;
 
-    writeJson(filePath, object);
+    // writeJson(filePath, object);
 
-    readJson(filePath, object);
+    // readJson(filePath, object);
 
-    cout << object << endl;
+    cout << *object.getCustomers() << endl;
+    cout << *object.getEmployees() << endl;
+    cout << *object.getExhibits() << endl;
+
+    delete zoo;
+    // delete exhibit;
 
     cout << "-- Test Over --" << endl;
-
     return 0;
 }
 

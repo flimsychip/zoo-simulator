@@ -445,6 +445,15 @@ void from_json(const nlohmann::json &j, LinkedList<T> &ll)
 }
 
 template <typename T>
+void to_json(nlohmann::json &j, const LinkedList<T> *ll) {
+   to_json(j, *ll);
+}
+template <typename T>
+void from_json(const nlohmann::json &j, LinkedList<T> *ll) {
+   from_json(j, *ll);
+}
+
+template <typename T>
 ostream& operator<<(ostream &os, const LinkedList<T> &toPrint) {
    Node<T>* temp = toPrint.getHead();
    while(temp) {

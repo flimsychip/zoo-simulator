@@ -4,6 +4,7 @@
 #include "Animal.h"
 #include "Employee.h"
 #include "LinkedList.h"
+#include "../deps/nlohmann/json.hpp"
 
 struct Exhibit {
     public:
@@ -39,6 +40,9 @@ struct Exhibit {
 
         void sort();
         void print();
+
+        // MACRO to convert/actuate object to/from json
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Exhibit, dailyCost, name, animals, employees)
 
     private:
         double dailyCost;

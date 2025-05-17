@@ -33,6 +33,9 @@ struct Zoo {
         double calcRevenue();
         double calcProfit();
 
+        // MACRO to convert/actuate object to/from json
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Zoo, customers, employees, exhibits)
+
     private:
         LinkedList<Customer>* customers;
         LinkedList<Employee>* employees;

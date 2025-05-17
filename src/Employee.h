@@ -3,6 +3,7 @@
 
 #include "Person.h"
 #include <ctime>
+#include "../deps/nlohmann/json.hpp"
 
 enum Jobs {
     Chopping_Block,

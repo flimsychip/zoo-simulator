@@ -8,7 +8,7 @@ BUILD_DIR := ./build
 SRC_DIRS := ./src
 
 # Specifies compiler
-CXX := g++
+CXX := g++	-std=c++20
 # Specifies compilation flags
 CXXFLAGS := -Wall
 
