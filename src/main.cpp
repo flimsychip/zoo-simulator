@@ -115,7 +115,6 @@ int zooMenu() {
     int choice;
     do {
         cout << "\n--------------------------------------------\n" << endl;
-        cout << endl;
         cout << "Zoo Menu:" << endl;
         cout << endl;
         cout << "(" << LEAVE_ZOO << ") Leave zoo" << endl;
