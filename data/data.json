@@ -1,9 +1,0 @@
-{
-    "name": "Geek",
-    "age": 30,
-    "list":["item1", "item2", "item3"],
-    "animal" : {
-        "species" : 0,
-        "name" : "John"
-    }
-}

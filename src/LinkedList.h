@@ -53,11 +53,16 @@ struct LinkedList {
       int count;
 };
 
+// THESE COULD HAVE BEEN FRIENDS. god I should have realized
 template <typename T>
 void to_json(nlohmann::json &j, const LinkedList<T> &ll);
-
 template <typename T>
 void from_json(const nlohmann::json &j, LinkedList<T> &ll);
+template <typename T>
+// Overloaded with pointers as well
+void to_json(nlohmann::json &j, const LinkedList<T> *ll);
+template <typename T>
+void from_json(const nlohmann::json &j, LinkedList<T> *ll);
 
 template <typename T>
 ostream& operator<<(ostream &os, const LinkedList<T> &toPrint);
