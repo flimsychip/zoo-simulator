@@ -43,6 +43,9 @@ void Animal::makeSound() const{
         case Gorilla:
             cout << "aa aa oo oo" << endl;
             break;
+        default:
+            cout << "..." << endl;
+            break;
     }
 }
 
@@ -73,6 +76,9 @@ void Animal::eat() const {
         case Gorilla:
             cout << "yum bananas" << endl;
             break;
+        default:
+            cout << "yum void" << endl;
+            break; 
     }
 }
 
