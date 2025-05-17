@@ -6,8 +6,8 @@
 void testNodeTypes();
 void testLinkedListTypes();
 void testNodeCompOperators();
-//int getTestMenuChoice();
-//void promptUnitTest();
+int getTestMenuChoice();
+void promptUnitTest();
 
 void outputList ();
 void movedFromMain();
