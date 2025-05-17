@@ -329,7 +329,8 @@ void LinkedList<T>::push_back(const T& value) {
 template <typename T>
 void LinkedList<T>::push_back(Node<T>* addNode) {
    if (this->tail == nullptr) { // if empty list
-      this->head = this->tail = addNode;
+      this->head = addNode;
+      this->tail = addNode;
       
       addNode->setPrev(nullptr);
       addNode->setNext(nullptr);
@@ -421,10 +422,33 @@ void LinkedList<T>::print(bool reverse) {
 }
 
 template <typename T>
+void to_json(nlohmann::json &j, const LinkedList<T> &ll)
+{
+   Node<T> *curr = ll.getHead();
+   while (curr)
+   {
+      j.push_back(*curr);
+      curr = curr->getNext();
+   }
+}
+
+template <typename T>
+void from_json(const nlohmann::json &j, LinkedList<T> &ll)
+{
+   Node<T> node;
+   for (unsigned int i = 0; i < j.size(); ++i)
+   {
+      node = j.at(i).template get<Node<T>>();
+      ll.push_back(node.getData()); // FIXME: This is making new nodes twice.
+                                    // Removing .getData() causes memory issues
+   }
+}
+
+template <typename T>
 ostream& operator<<(ostream &os, const LinkedList<T> &toPrint) {
    Node<T>* temp = toPrint.getHead();
    while(temp) {
-      os << temp->getData().getName();                   // careful -- everything must have a getName()
+      os << temp->getData();
       if(temp->getNext() != nullptr) { os << ", "; }
       temp = temp->getNext();
    }

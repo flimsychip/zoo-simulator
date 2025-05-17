@@ -1,17 +1,23 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <iterator>
 #include "src/Animal.h"
+#include "src/Person.h"
+#include "src/Customer.h"
+#include "src/Employee.h"
+#include "src/LinkedList.h"
+#include "src/Node.h"
 #include "deps/nlohmann/json.hpp"   // This library isn't very fast, but is easiest to work with
 
-// Compile and run command
-// g++ json.cpp ./src/Animal.cpp -o ./build/json_example && ./build/json_example
+// Compile and Run
+// g++ json.cpp ./src/Employee.cpp ./src/Customer.cpp ./src/Person.cpp ./src/Animal.cpp -o ./build/json_example && ./build/json_example
 
 using namespace std;
 using json = nlohmann::json;
 
 template <typename T>
 void writeJson(string filePath, const T& object);
-
 template <typename T>
 void readJson(string filePath, T& object);
 
@@ -20,13 +26,23 @@ int main() {
     cout << "-- JSON Test --" << endl;
 
     string filePath = "./data/data1.json";
-    Animal object = Animal(None, "Bip");
+
+    Animal animal = Animal(Chimpanzee, "Jeremy");
+    Customer customer = Customer("Jeremiah");
+    Employee object = Employee("Jeremus");
+    // LinkedList<Customer> object = LinkedList<Customer>(customer);
+    // object.push_back(customer);
+    // object.push_back(customer);
+
+    json j = object;
 
     writeJson(filePath, object);
 
     readJson(filePath, object);
 
     cout << object << endl;
+
+    cout << "-- Test Over --" << endl;
 
     return 0;
 }
@@ -42,11 +58,6 @@ void writeJson(string filePath, const T& object) {
     if (ofs.good())
         ofs << setw(4) << j;
     ofs.close();
-
-    // Verification step
-    // conversion: json -> object
-    Animal a2 = j.template get<T>();
-
 }
 
 template <typename T>
@@ -60,6 +71,6 @@ void readJson(string filePath, T& object) {
         j = json::parse(ifs);
     ifs.close();
 
-    // Animal a3 = j2.template get<Animal>();
+    // conversion: json -> object
     object = j.template get<T>();
 }

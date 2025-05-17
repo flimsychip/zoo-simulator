@@ -1,4 +1,7 @@
 {
-    "name": "Bip",
-    "species": 0
+    "age": -1,
+    "hourlyWage": -1.0,
+    "job": 0,
+    "name": "Jeremus",
+    "startTime": 0
 }

@@ -2,6 +2,7 @@
 #define CUSTOMER_H
 
 #include "Person.h"
+#include "../deps/nlohmann/json.hpp"
 
 enum Ticket {
     GENERAL,
@@ -27,6 +28,9 @@ struct Customer : public Person {
         // SETTERS
         void setTicketNum(int num);
         void setTicketType(Ticket type);
+
+        // MACRO to convert/actuate object to/from json
+        NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE(Customer, Person, ticketNum, ticketType)
 };
 
 std::ostream& operator<<(std::ostream& os, const Customer& toPrint);

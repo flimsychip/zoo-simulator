@@ -69,6 +69,7 @@ string Employee::getJobStr() const {
         case Janitor:
             return "janitor";
     }
+    return "N/A";
 }
 double Employee::getWage() const { return this->hourlyWage; }
 time_t Employee::getStart() const { return this->startTime; }

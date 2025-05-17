@@ -45,13 +45,19 @@ struct LinkedList {
       void setHead(Node<T> *newHead);
       
       void print(bool reverse = false);
-      
+
    private:
       // Members
       Node<T>* head;
       Node<T>* tail;
       int count;
 };
+
+template <typename T>
+void to_json(nlohmann::json &j, const LinkedList<T> &ll);
+
+template <typename T>
+void from_json(const nlohmann::json &j, LinkedList<T> &ll);
 
 template <typename T>
 ostream& operator<<(ostream &os, const LinkedList<T> &toPrint);

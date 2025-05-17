@@ -36,7 +36,10 @@ struct Employee : public Person {
         // Setters
         void setJob(Jobs job);
         void setWage(double wage);
-    
+
+        // MACRO to convert/actuate object to/from json
+        NLOHMANN_DEFINE_DERIVED_TYPE_INTRUSIVE(Employee, Person, job, hourlyWage, startTime)
+
     private:
         Jobs job;
         double hourlyWage;

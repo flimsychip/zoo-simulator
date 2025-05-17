@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "../deps/nlohmann/json.hpp"
 
 // Abstract Class
 struct Person {
@@ -23,6 +24,9 @@ struct Person {
         // SETTERS
         void setName(std::string newName);
         void setAge(int newAge);
+
+        // MACRO to convert/actuate object to/from json
+        NLOHMANN_DEFINE_TYPE_INTRUSIVE(Person, name, age)
 };
 
 #endif
