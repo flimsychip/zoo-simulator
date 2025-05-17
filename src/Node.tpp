@@ -5,6 +5,7 @@ using namespace std;
 
 template <typename T>
 Node<T>::Node() {
+   // FIXME: this->data does not have a default value. Can accidentally access invalid memory
    this->next = nullptr;
    this->prev = nullptr;
 }

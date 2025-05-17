@@ -1,12 +1,8 @@
-/*
-COPY-PASTE OF NODE.H
-CHANGE TO TEMPLATE CLASS
-*/
-
 #ifndef NODE_H
 #define NODE_H
 
 #include <iostream>
+#include "../deps/nlohmann/json.hpp"
 
 template <typename T> 
 struct Node {
@@ -31,6 +27,9 @@ struct Node {
 
       template<typename U>
       friend struct LinkedList;  // FIXME: change LL.tpp and others so this is no longer necessary
+
+      // MACRO to convert/actuate object to/from json
+      NLOHMANN_DEFINE_TYPE_INTRUSIVE(Node, data)
 };
 
 // OPERATORS: ==, <, >, <=, >=, and !=
