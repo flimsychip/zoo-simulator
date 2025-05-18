@@ -33,7 +33,7 @@ string Customer::getTicketStr() const {
             return "Kids";
         case YEARLY:   
             return "Yearly";
-        case GENERAL:
+        default:
             return "General";
     }
     return "N/A";

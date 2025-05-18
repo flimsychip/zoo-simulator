@@ -120,13 +120,14 @@ int zooMenu() {
         cout << "(" << LIST_EXS << ") List exhibits" << endl;
         cout << "(" << SORT_EXS << ") Sort exhibits" << endl;
         cout << "(" << ENTER << ") Enter an exhibit" << endl;
+        cout << "(" << TEST << ") *ADMIN ONLY* Run unit tests" << endl;
         cout << "\nEnter an option: ";
         
         cin >> choice;
-        if(choice < LEAVE_ZOO || choice > ENTER) {
+        if(choice < LEAVE_ZOO || choice > TEST) {
            cout << "Error! Input must be a number between " << LEAVE_ZOO << " and " << ENTER << "." << endl;
         }
-    } while(choice < LEAVE_ZOO || choice > ENTER);
+    } while(choice < LEAVE_ZOO || choice > TEST);
 
     return choice;
 }

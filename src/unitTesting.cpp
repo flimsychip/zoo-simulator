@@ -9,38 +9,45 @@
 using namespace std; 
 
 void testNodeTypes() {
-    cout << "Testing Node for Employee/Animal/Customer/Exhibit..." << endl;
+    cout << "Testing Node for Employee/Animal/Customer/Exhibit..." << endl << endl;
 
     cout << "Accessing Employee data..." << endl;
     Node<Employee>* testNode = new Node<Employee> ();
-    cout << "Node data: \n" << *testNode << endl;
-
+    cout << left << setw(40) << "Node data: \n" << *testNode << endl << endl;
+    
     cout << "Setting Employee data..." << endl;
     Employee* imp1 = new Employee("joe shmoe", 18, Janitor, 7.50);
     testNode->setData(*imp1);
-    cout << "Node data: \n" << *testNode << endl;
+    cout << left << setw(40) << "Node data: \n" << *testNode << endl << endl;
+
+    cout << "Copying testNode to newNode..." << endl;
+    Node<Employee>* newNode = testNode;
+    cout << left << setw(40) << "Node data: \n" << *newNode << endl << endl;
+
+    cout << "Deleting newNode..." << endl;
+    delete newNode;
+
+    cout << "\n-----------------------------" << endl;
 
     cout << "Accessing Animal data..." << endl;
     Node<Animal>* testNode2 = new Node<Animal>;
-    cout << "Node data: \n" << *testNode2 << endl;
+    cout << left << setw(40) << "Node data: \n" << *testNode2 << endl << endl;
 
     cout << "Setting Animal data..." << endl;
     Animal* animal1 = new Animal(Chimpanzee);
     testNode2->setData(*animal1);
-    cout << "Node data: \n" << *testNode2 << endl;
+    cout << left << setw(40) << "Node data: \n" << *testNode2 << endl << endl;
 
+    cout << "\n-----------------------------" << endl;
 
     cout << "Getting Customer data..." << endl;
     Node<Customer>* testNode3 = new Node<Customer>;
-    cout << "Node data: \n" << *testNode3 << endl;
+    cout << left << setw(40) << "Node data: \n" << *testNode3 << endl << endl;
 
     cout << "Setting Customer data..." << endl;
-    Customer* cust1 = new Customer("Shakira", 18);
+    Customer* cust1 = new Customer("Shakira", 18, 510, SENIOR);
     testNode3->setData(*cust1);
-    cout << "Node data: \n" << *testNode3 << endl;
-
-
-
+    cout << left << setw(40) << "Node data: \n" << *testNode3 << endl << endl;
 
     delete testNode;
     delete testNode2;
@@ -63,18 +70,58 @@ void testLinkedListBasic() {
 
     delete testList;
 }
-void testNodeCompOperators () {
+void testExhibits () {
 
 }
 
-//int getTestMenuChoice ();
 void promptUnitTest() {
-
-
+    int choice;
+    do {
+        choice = getTestMenuChoice();
+        switch(choice) {
+            case TEST_NODE_TYPES:
+                testNodeTypes();
+                break;
+            case TEST_LINKED_LIST:
+                testLinkedListBasic();
+                break;
+            case TEST_EXHIBITS:
+                testExhibits();
+                break;
+            case TEST_ZOO:
+                movedFromMain();
+                break;
+            case EXIT:
+                cout << "Exiting unit testing..." << endl;
+                return;
+        }
+    } while(choice != EXIT);
 }
 
-void outputList ();
-
+int getTestMenuChoice() {
+    int choice;
+    do {
+        cout << "--------------------------------------------\n" << endl;
+        cout << "Unit Testing Menu" << endl;
+        cout << "(" << EXIT << ") Exit Unit Testing and return to Zoo Menu" << endl;
+        cout << "(" << TEST_NODE_TYPES << ") Test Node" << endl;
+        cout << "(" << TEST_LINKED_LIST << ") Test Linked List" << endl;
+        cout << "(" << TEST_EXHIBITS << ") Test Exhibit" << endl;
+        cout << "(" << TEST_ZOO << ") Test Zoo" << endl;
+        cout << endl;
+        cout << "Enter an option: ";
+        
+        cin >> choice;
+        if(choice < TEST_NODE_TYPES || choice > EXIT) {
+            cout << "Error! Input must be a number between " 
+                 << TEST_NODE_TYPES  << " and " 
+                 << EXIT  << "." 
+                 << endl;
+        }
+    } while(choice < TEST_NODE_TYPES || choice > EXIT);
+    
+    return choice;
+}
 
 void movedFromMain() {
     Zoo* zoo = new Zoo();
