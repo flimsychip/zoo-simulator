@@ -10,11 +10,10 @@ struct Exhibit {
     public:
         Exhibit();
         Exhibit(
-            double dailyCost, 
-            std::string name = "N/A", 
-            LinkedList<Animal>* animals = nullptr,
-            LinkedList<Employee>* employees = nullptr
-        );
+            double dailyCost,
+            std::string name = "N/A",
+            LinkedList<Animal> *animals = new LinkedList<Animal>(),
+            LinkedList<Employee> *employees = new LinkedList<Employee>());
         Exhibit(const Exhibit& copyExhibit);       // Copy Constructor
 
         ~Exhibit();

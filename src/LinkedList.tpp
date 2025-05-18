@@ -13,7 +13,6 @@ LinkedList<T>::LinkedList() {
 template <typename T>
 LinkedList<T>::LinkedList(const T& value) {
    this->count = 1;
-   // FIXME: should make new Node with value here
    this->head = new Node<T>(value);
    this->tail = head;
 }

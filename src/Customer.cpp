@@ -36,6 +36,7 @@ string Customer::getTicketStr() const {
         case GENERAL:
             return "General";
     }
+    return "N/A";
 }
 
 
