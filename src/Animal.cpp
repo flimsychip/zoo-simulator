@@ -126,8 +126,7 @@ void Animal::print() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Animal& toPrint) {
-    os << "Species: " << toPrint.getSpeciesStr() << ", "
-       << "Name: " << toPrint.getName();
+    os << toPrint.getName() << " (" << toPrint.getSpeciesStr() << ")";
     return os;
 }
 

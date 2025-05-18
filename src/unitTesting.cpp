@@ -85,17 +85,13 @@ void promptUnitTest() {
             case TEST_LINKED_LIST:
                 testLinkedListBasic();
                 break;
-            case TEST_EXHIBITS:
-                testExhibits();
-                break;
             case TEST_ZOO:
                 movedFromMain();
                 break;
-            case EXIT:
-                cout << "Exiting unit testing..." << endl;
-                return;
         }
     } while(choice != EXIT);
+
+    cout << "Exiting unit testing..." << endl;
 }
 
 int getTestMenuChoice() {
@@ -106,7 +102,6 @@ int getTestMenuChoice() {
         cout << "(" << EXIT << ") Exit Unit Testing and return to Zoo Menu" << endl;
         cout << "(" << TEST_NODE_TYPES << ") Test Node" << endl;
         cout << "(" << TEST_LINKED_LIST << ") Test Linked List" << endl;
-        cout << "(" << TEST_EXHIBITS << ") Test Exhibit" << endl;
         cout << "(" << TEST_ZOO << ") Test Zoo" << endl;
         cout << endl;
         cout << "Enter an option: ";

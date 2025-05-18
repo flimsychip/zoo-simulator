@@ -97,9 +97,9 @@ void Exhibit::print() {
 ostream& operator<<(ostream& os, const Exhibit& toPrint) {
     os << "Exhibit Name: " << toPrint.getName() << "\n";
     os << "Daily Cost: $" << toPrint.getDailyCost() << "\n";
-    os << "Animals in Exhibit: ";
+    os << "Animals in Exhibit: \n";
     os << *(toPrint.getAnimals()) << "\n";
-    os << "Employees in Exhibit: ";
+    os << "Employees in Exhibit: \n";
     os << *(toPrint.getEmployees());
 
     return os;

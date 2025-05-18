@@ -50,7 +50,6 @@ std::ostream& operator<<(std::ostream& os, const Employee& toPrint) {
     os << "age: " << toPrint.getAge() << ", ";
     os << "hourly: $" << toPrint.getWage() << ", ";
     os << "start time: " << toPrint.getStart();
-
     return os;
 }
 

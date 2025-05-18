@@ -408,17 +408,16 @@ void LinkedList<T>::print(bool reverse) {
    if (reverse) {
       curr = this->tail;
       while (curr) {
-         cout << curr->getData().getName() << ", ";
+         cout << curr->getData().getName() << endl;
          curr = curr->getPrev();
       }
    }
    else {
       while (curr) {
-         cout << curr->getData().getName() << ", ";
+         cout << curr->getData().getName() << endl;
          curr = curr->getNext();
       }
    }
-   cout << endl;
 }
 
 template <typename T>
@@ -461,5 +460,6 @@ ostream& operator<<(ostream &os, const LinkedList<T> &toPrint) {
       if(temp->getNext() != nullptr) { os << ", "; }
       temp = temp->getNext();
    }
+
    return os;
 }
