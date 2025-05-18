@@ -24,11 +24,105 @@
                 "hourlyWage": -1.0,
                 "job": 0,
                 "name": "Jeremus",
-                "startTime": 4376962960
+                "startTime": 94647534761026
             }
         }
     ],
     "exhibits": [
+        {
+            "data": {
+                "animals": [
+                    {
+                        "data": {
+                            "name": "hammy",
+                            "species": 7
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "cody",
+                            "species": 1
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "oscar",
+                            "species": 2
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "william",
+                            "species": 3
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "barry",
+                            "species": 4
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "larry",
+                            "species": 5
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "thomas",
+                            "species": 6
+                        }
+                    },
+                    {
+                        "data": {
+                            "name": "gary",
+                            "species": 8
+                        }
+                    }
+                ],
+                "dailyCost": 1225.0,
+                "employees": [
+                    {
+                        "data": {
+                            "age": 22,
+                            "hourlyWage": 0.0,
+                            "job": 0,
+                            "name": "MILO",
+                            "startTime": 0
+                        }
+                    },
+                    {
+                        "data": {
+                            "age": 22,
+                            "hourlyWage": 100.0,
+                            "job": 3,
+                            "name": "ROSA",
+                            "startTime": 140315167414645
+                        }
+                    },
+                    {
+                        "data": {
+                            "age": 20,
+                            "hourlyWage": 25.0,
+                            "job": 4,
+                            "name": "ELIJAH",
+                            "startTime": 140726479837744
+                        }
+                    },
+                    {
+                        "data": {
+                            "age": 19,
+                            "hourlyWage": 1000.0,
+                            "job": 2,
+                            "name": "ALLIE",
+                            "startTime": 15
+                        }
+                    }
+                ],
+                "name": "party city"
+            }
+        },
         {
             "data": {
                 "animals": [
@@ -47,7 +141,7 @@
                             "hourlyWage": -1.0,
                             "job": 0,
                             "name": "Jeremus",
-                            "startTime": 4376962960
+                            "startTime": 94647534761026
                         }
                     }
                 ],

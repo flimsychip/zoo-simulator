@@ -5,18 +5,19 @@
     - bug line 65: can't modify data after pushing back (not totally necessary, if not fixed just make sure we load in objects in the right order)
     - clean up unused functionality in all files (only one shows up in output, hit that first -- food inventory)
         - adjust uml
-        - friend stuff
 */
 
 #include "Animal.h" 
 #include "Customer.h" 
 #include "Zoo.h" 
 #include "unitTesting.h"
+
 #include <iostream> 
-#include <iomanip> // make output pretty 
+#include <iomanip> 
 #include <fstream>
 #include <iterator>
 
+using json = nlohmann::json;
 using namespace std; 
 
 enum ZooInfo { QUIT, EXHIBITS, CUSTOMERS, EMPLOYEES, END_INFO };
@@ -29,47 +30,18 @@ int exhibitMenu(string name);
 int animalMenu(string name);
 void exhibitInteract(Node<Exhibit>* ptr);
 void animalInteract(Node<Animal>* ptr);
+
+void readJson(string filePath, Zoo& object);
+void writeJson(const std::string& filePath, const Zoo& object);
 void writeTestOutputToFile(const string& filename);
 
 int main() { 
-    // will be replaced by reading in from json
-    Zoo* testZoo = new Zoo;
-    Exhibit* testExhibit = new Exhibit(100, "party city", new LinkedList<Animal>, new LinkedList<Employee>);
-    Animal* testAni1 = new Animal(Hamster, "hammy");
-    Animal* testAni2 = new Animal(Chimpanzee, "cody");
-    Animal* testAni3 = new Animal(Otter, "oscar");
-    Animal* testAni4 = new Animal(Wolf, "william");
-    Animal* testAni5 = new Animal(Bear, "barry");
-    Animal* testAni6 = new Animal(Lion, "larry");
-    Animal* testAni7 = new Animal(Toucan, "thomas");
-    Animal* testAni8 = new Animal(Gorilla, "gary");
-    testExhibit->addAnimal(*testAni1);
-    testExhibit->addAnimal(*testAni2);
-    testExhibit->addAnimal(*testAni3);
-    testExhibit->addAnimal(*testAni4);
-    testExhibit->addAnimal(*testAni5);
-    testExhibit->addAnimal(*testAni6);
-    testExhibit->addAnimal(*testAni7);
-    testExhibit->addAnimal(*testAni8);
-    Employee* testEmp = new Employee("milo", 22, Chopping_Block, 0);
-    Employee* testEmp2 = new Employee("rosa", 23, Security, 100);
-    Employee* testEmp3 = new Employee("elijah", 20, Janitor, 25);
-    testExhibit->addEmployee(*testEmp);
-    testExhibit->addEmployee(*testEmp2);
-    testExhibit->addEmployee(*testEmp3);
-    Node<Employee>* tempEmpLoopPtr = testExhibit->getEmployees()->getHead();
-    while(tempEmpLoopPtr != nullptr) {      // monster chains for testing and clarity
-        testExhibit->setDailyCost(testExhibit->getDailyCost() + tempEmpLoopPtr->getData().getWage());
-        tempEmpLoopPtr = tempEmpLoopPtr->getNext();
-    }
-    testZoo->addExhibit(*testExhibit);
+    Zoo TheZoo = Zoo();
 
-    // FIXME: data isn't being modified after pushing back
-    Exhibit* testExhibit2 = new Exhibit(100, "bad dogs", new LinkedList<Animal>, new LinkedList<Employee>);
-    testZoo->addExhibit(*testExhibit2);
-    testExhibit2->setName("funhouse (not a jail)"); // [FROM ZOO MANAGER] TOP PRIORITY. COVER TRACKS!!!
+    string filePath = "./data/zoo.json";
 
-    // cleaned up and put in funcs :yippee::bloom::steamhappy:
+    readJson(filePath, TheZoo);
+
     int choice;
     string exName;
     Node<Exhibit>* tempExPtr = nullptr;
@@ -80,7 +52,7 @@ int main() {
         switch(choice) {
             case LIST_EXS:
                 cout << "List of exhibits:" << endl;
-                tempExPtr = testZoo->getExhibits()->getHead();
+                tempExPtr = TheZoo.getExhibits()->getHead();
                 while(tempExPtr != nullptr) {
                     cout << "- " << tempExPtr->getData().getName() << endl;
                     tempExPtr = tempExPtr->getNext();
@@ -88,14 +60,14 @@ int main() {
                 break;
             case SORT_EXS:
                 cout << "sorting by alphabetical order..." << endl;
-                testZoo->getExhibits()->mergeSort();
+                TheZoo.getExhibits()->mergeSort();
                 cout << "sorted!" << endl;
                 break;
             case ENTER:
                 cout << "Enter name of exhibit: ";
                 cin.ignore(10000, '\n');
                 getline(cin, exName);
-                tempExPtr = testZoo->getExhibits()->search(exName);
+                tempExPtr = TheZoo.getExhibits()->search(exName);
                 exhibitInteract(tempExPtr);
                 break;
             case TEST:
@@ -108,7 +80,7 @@ int main() {
     cout << "Thanks for visiting the zoo!" << endl;
 
     // make sure to add deletes
-    delete testZoo;
+    TheZoo.clear();
 }
 
 int zooMenu() {
@@ -244,6 +216,30 @@ void animalInteract(Node<Animal>* ptr) {
     }
 }
 
+void readJson(string filePath, Zoo& object) {
+    json j;
+
+    ifstream ifs(filePath);
+
+    cout << "Parsing input..." << endl;
+    if (ifs.good())
+        j = json::parse(ifs);
+    ifs.close();
+
+    // conversion: json -> object
+    object = j.template get<Zoo>();   // This causes segfault with Zoo
+}
+
+void writeJson(const std::string& filePath, const Zoo& object) {
+    json j = object;
+    std::ofstream ofs(filePath);
+    if (ofs.is_open()) {
+        ofs << std::setw(4) << j;
+        ofs.close();
+    } else {
+        std::cerr << "Error: Could not open file for writing: " << filePath << std::endl;
+    }
+}
 void writeTestOutputToFile(const string& filename) {
     ofstream outputFile("./data/" + filename);
 
