@@ -8,13 +8,14 @@ using namespace std;
 Employee::Employee() {
     this->job = Chopping_Block;
     this->hourlyWage = -1;
-    this->startTime = 0;
+    this->startTime = -1;
 }
 
 // Initialization is calling the super constructor
-Employee::Employee(string name, int age, Jobs job, double wage) : Person(name, age) {
+Employee::Employee(string name, int age, Jobs job, double wage, time_t start) : Person(name, age) {
     this->job = job;
     this->hourlyWage = wage;
+    this->startTime = start;
 }
 
 void Employee::clockIn(time_t startTime) {

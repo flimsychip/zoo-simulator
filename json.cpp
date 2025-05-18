@@ -115,7 +115,7 @@ void writeJson(string filePath, const T& object) {
     ofstream ofs(filePath);
 
     if (ofs.good())
-        ofs << setw(4) << j;
+        ofs << setw(2) << j;
     ofs.close();
 }
 
@@ -131,5 +131,5 @@ void readJson(string filePath, T& object) {
     ifs.close();
 
     // conversion: json -> object
-    object = j.template get<T>();   // This causes segfault with Zoo
+    object = j.template get<T>();
 }
