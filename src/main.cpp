@@ -218,7 +218,7 @@ void readJson(string filePath, Zoo& object) {
     ifs.close();
 
     // conversion: json -> object
-    object = j.template get<Zoo>();   // This causes segfault with Zoo
+    object = j.template get<Zoo>();
 }
 
 void writeJson(const std::string& filePath, const Zoo& object) {
