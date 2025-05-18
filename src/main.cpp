@@ -1,12 +1,3 @@
-/*
-    TO DO: 
-    - !!! filei for loading in objects !!!!!
-    - fileo -- honestly we can just write everything we write in the console to a file :sob: make sure we include user inputs
-    - bug line 65: can't modify data after pushing back (not totally necessary, if not fixed just make sure we load in objects in the right order)
-    - clean up unused functionality in all files (only one shows up in output, hit that first -- food inventory)
-        - adjust uml
-*/
-
 #include "Animal.h" 
 #include "Customer.h" 
 #include "Zoo.h" 
