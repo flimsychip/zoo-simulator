@@ -28,26 +28,39 @@ int main() {
     Customer customer = Customer("Jeremiah");
     Animal animal = Animal(Chimpanzee, "Jeremy");
     Employee employee = Employee("Jeremus");
+
+    LinkedList<Customer>* customers = new LinkedList<Customer>(customer);
     LinkedList<Animal>* anims = new LinkedList<Animal>(animal);
     LinkedList<Employee>* employs = new LinkedList<Employee>(employee);
-    Exhibit* exhibit = new Exhibit(100, "JEROME", anims, employs);
-    Zoo* zoo = new Zoo();
-    zoo->addCustomer(customer);
-    zoo->addEmployee(employee);
-    zoo->addExhibit(*exhibit);      // I don't think this exhibit will get deleted later
+    LinkedList<Exhibit>* test = nullptr;
 
-    Zoo object = *zoo;
+    cout << "Making Exhibit" << endl;
+    Exhibit exhibit = Exhibit(100, "JEROME", anims, employs);
+    LinkedList<Exhibit>* exhibits = new LinkedList<Exhibit>(exhibit);
+    exhibits->push_back(exhibit);
 
-    // writeJson(filePath, object);
+    cout << "Making zoo" << endl;
+    Zoo zoo = Zoo();
+    zoo.addCustomer(customer);
+    zoo.addCustomer(customer);
+    zoo.addEmployee(employee);
+    zoo.addExhibit(exhibit);
 
-    // readJson(filePath, object);
+    Zoo object = zoo;
+    writeJson(filePath, object);
 
-    cout << *object.getCustomers() << endl;
-    cout << *object.getEmployees() << endl;
-    cout << *object.getExhibits() << endl;
+    Zoo newObject;
+    readJson(filePath, newObject);
 
-    delete zoo;
-    // delete exhibit;
+    json j = zoo;
+
+    cout << "- Output JSON -" << "\n";
+    cout << j.dump(2) << endl;
+    cout << "- Parsed Object -" << "\n";
+    cout << *newObject.getCustomers() << endl;
+    cout << *newObject.getEmployees() << endl;
+    cout << *newObject.getExhibits() << endl;
+    // cout << object << endl;
 
     cout << "-- Test Over --" << endl;
     return 0;
@@ -78,5 +91,5 @@ void readJson(string filePath, T& object) {
     ifs.close();
 
     // conversion: json -> object
-    object = j.template get<T>();
+    object = j.template get<T>();   // This causes segfault with Zoo
 }

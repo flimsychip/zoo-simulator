@@ -10,9 +10,9 @@ Zoo::Zoo() {
 }
 
 Zoo::Zoo(const Zoo& copyZoo) {
-    this->customers = copyZoo.customers;
-    this->employees = copyZoo.employees;
-    this->exhibits = copyZoo.exhibits;
+    this->customers = new LinkedList<Customer>(*copyZoo.getCustomers());
+    this->employees = new LinkedList<Employee>(*copyZoo.getEmployees());
+    this->exhibits = new LinkedList<Exhibit>(*copyZoo.getExhibits());
 }
 
 Zoo::~Zoo() {
@@ -28,9 +28,10 @@ void Zoo::clear() {
 Zoo& Zoo::operator=(const Zoo &rhs) {
     if (this == &rhs) { return *this; }
 
-    this->customers = rhs.customers;
-    this->employees = rhs.employees;
-    this->exhibits = rhs.exhibits;
+    this->clear();
+    this->customers = new LinkedList<Customer>(*rhs.getCustomers());
+    this->employees = new LinkedList<Employee>(*rhs.getEmployees());
+    this->exhibits = new LinkedList<Exhibit>(*rhs.getExhibits());
 
     return *this;
 }

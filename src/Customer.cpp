@@ -36,6 +36,7 @@ string Customer::getTicketStr() const {
         default:
             return "General";
     }
+    return "N/A";
 }
 
 
