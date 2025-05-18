@@ -14,52 +14,30 @@ using namespace std;
 using json = nlohmann::json;
 
 template <typename T>
+T makeObject();
+template <typename T>
 void writeJson(string filePath, const T& object);
 template <typename T>
 void readJson(string filePath, T& object);
 
-int main() {
-
+int main()
+{
     cout << "-- JSON Test --" << endl;
 
     // Path to Write and Read from
     string filePath = "./data/zoo.json";
 
-    Customer customer = Customer("Jeremiah");
-    Animal animal = Animal(Chimpanzee, "Jeremy");
-    Employee employee = Employee("Jeremus");
+    Zoo object = makeObject<Zoo>();
 
-    LinkedList<Customer>* customers = new LinkedList<Customer>(customer);
-    LinkedList<Animal>* anims = new LinkedList<Animal>(animal);
-    LinkedList<Employee>* employs = new LinkedList<Employee>(employee);
-    LinkedList<Exhibit>* test = nullptr;
-
-    cout << "Making Exhibit" << endl;
-    Exhibit exhibit = Exhibit(100, "JEROME", anims, employs);
-    LinkedList<Exhibit>* exhibits = new LinkedList<Exhibit>(exhibit);
-    exhibits->push_back(exhibit);
-
-    cout << "Making zoo" << endl;
-    Zoo zoo = Zoo();
-    zoo.addCustomer(customer);
-    zoo.addCustomer(customer);
-    zoo.addEmployee(employee);
-    zoo.addExhibit(exhibit);
-
-    Zoo object = zoo;
     writeJson(filePath, object);
 
-    Zoo newObject;
-    readJson(filePath, newObject);
+    readJson(filePath, object);
 
-    json j = zoo;
-
-    cout << "- Output JSON -" << "\n";
-    cout << j.dump(2) << endl;
+    // --- Printing parsed object ---
     cout << "- Parsed Object -" << "\n";
-    cout << *newObject.getCustomers() << endl;
-    cout << *newObject.getEmployees() << endl;
-    cout << *newObject.getExhibits() << endl;
+    cout << *object.getCustomers() << endl;
+    cout << *object.getEmployees() << endl;
+    cout << *object.getExhibits() << endl;
     // cout << object << endl;
 
     cout << "-- Test Over --" << endl;
@@ -67,10 +45,33 @@ int main() {
 }
 
 template <typename T>
+T makeObject() {
+    cout << "Making object" << endl;
+    Customer customer = Customer("Jeremiah");
+    Animal animal = Animal(Chimpanzee, "Jeremy");
+    Employee employee = Employee("Jeremus");
+
+    LinkedList<Animal> *anims = new LinkedList<Animal>(animal);
+    LinkedList<Employee> *employs = new LinkedList<Employee>(employee);
+
+    Exhibit exhibit = Exhibit(100, "JEROME", anims, employs);
+
+    Zoo zoo = Zoo();
+    zoo.addCustomer(customer);
+    zoo.addCustomer(customer);
+    zoo.addEmployee(employee);
+    zoo.addExhibit(exhibit);
+
+    return zoo;
+}
+
+template <typename T>
 void writeJson(string filePath, const T& object) {
     cout << "Converting to json..." << endl;
     // conversion: object -> json
     json j = object;
+    // Prints entire json
+    cout << j.dump(2) << endl;
 
     ofstream ofs(filePath);
 
