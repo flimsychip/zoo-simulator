@@ -3,9 +3,17 @@
 
 #include <string>
 
+enum menuOptions {
+    EXIT,
+    TEST_NODE_TYPES,
+    TEST_LINKED_LIST,
+    TEST_EXHIBITS,
+    TEST_ZOO
+};
+
 void testNodeTypes();
 void testLinkedListTypes();
-void testNodeCompOperators();
+void testExhibits();
 int getTestMenuChoice();
 void promptUnitTest();
 

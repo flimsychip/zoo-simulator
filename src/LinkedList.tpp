@@ -409,16 +409,17 @@ void LinkedList<T>::print(bool reverse) {
    if (reverse) {
       curr = this->tail;
       while (curr) {
-         cout << curr->getData().getName() << endl;
+         cout << curr->getData().getName() << ", ";
          curr = curr->getPrev();
       }
    }
    else {
       while (curr) {
-         cout << curr->getData().getName() << endl;
+         cout << curr->getData().getName() << ", ";
          curr = curr->getNext();
       }
    }
+   cout << endl;
 }
 
 template <typename T>
